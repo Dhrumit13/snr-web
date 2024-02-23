@@ -70,6 +70,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/pages/pages.module').then((m) => m.PagesModule)
       },
+      {
+        path: 'city-rate',
+        loadChildren: () =>
+          import('./views/city-rate/city-rate.module').then((m) => m.CityRateModule)
+      },
     ]
   },
   {

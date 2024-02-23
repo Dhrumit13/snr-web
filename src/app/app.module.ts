@@ -38,6 +38,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
+import { CityRateModule } from './views/city-rate/city-rate.module';
+
 const APP_CONTAINERS = [
   DefaultFooterComponent,
   DefaultHeaderComponent,
@@ -47,7 +49,7 @@ const APP_CONTAINERS = [
 @NgModule({
   declarations: [AppComponent, ...APP_CONTAINERS],
   imports: [
-    BrowserModule,
+  BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AvatarModule,
@@ -72,6 +74,7 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    CityRateModule,
     NgScrollbarModule
   ],
   providers: [

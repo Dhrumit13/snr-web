@@ -258,5 +258,35 @@ export const navItems: INavData[] = [
     url: 'https://coreui.io/product/angular-dashboard-template/',
     iconComponent: { name: 'cil-layers' },
     attributes: { target: '_blank' }
+  },
+  {
+    title: true,
+    name: 'SNR',
+    class: 'py-0'
+  },
+  {
+    name: 'Consignments',
+    url: '/buttons',
+    iconComponent: { name: 'cil-cursor' }
+  },
+  {
+    name: 'Customers',
+    url: '/buttons',
+    iconComponent: { name: 'cil-cursor' }
+  },
+  {
+    title: true,
+    name: 'Configuration',
+    class: 'py-0'
+  },
+  {
+    name: 'City Rate',
+    url: '/city-rate',
+    iconComponent: { name: 'cil-cursor' }
+  },
+  {
+    name: 'Users',
+    url: '/buttons',
+    iconComponent: { name: 'cil-cursor' }
   }
 ];
