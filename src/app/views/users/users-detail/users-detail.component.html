@@ -1,0 +1,77 @@
+<c-card>
+    <!-- <c-card-header>Header</c-card-header> -->
+    <c-card-body>
+      <c-container>
+        <c-row>
+          <c-col class="pt-2"> <h5 cCardTitle>User Details</h5></c-col>
+        </c-row>
+        <hr />
+        <form>
+            <c-row class="mb-3">
+                <label cLabel="col" cCol [sm]="2" for="inputunm"> User Name </label>
+                <c-col [sm]="10">
+                  <input cFormControl id="inputunm" type="text"  />
+                  <!-- <div class="error-text">
+                    Please enter user name.
+                  </div> -->
+                </c-col>
+              </c-row>
+              <c-row class="mb-3">
+                <label cLabel="col" cCol [sm]="2" for="inputpass"> Password </label>
+                <c-col [sm]="10">
+                  <input cFormControl id="inputpass" type="text"  />
+                  <!-- <div class="error-text">
+                    Please enter user name.
+                  </div> -->
+                </c-col>
+              </c-row>
+              <c-row class="mb-3">
+                <label cLabel="col" cCol [sm]="2" for="inputemail"> Email </label>
+                <c-col [sm]="10">
+                  <input cFormControl id="inputemail" type="text"  />
+                  <!-- <div class="error-text">
+                    Please enter user name.
+                  </div> -->
+                </c-col>
+              </c-row>
+              <c-row class="mb-3">
+                <label cLabel="col" cCol [sm]="2" for="inputmobile"> Mobile </label>
+                <c-col [sm]="10">
+                  <input cFormControl id="inputmobile" type="text"  />
+                  <!-- <div class="error-text">
+                    Please enter user name.
+                  </div> -->
+                </c-col>
+              </c-row>
+              <c-row class="mb-3">
+                <label cLabel="col" cCol [sm]="2" for="inputrole"> Role </label>
+                <c-col [sm]="10">
+                  <input cFormControl id="inputrole" type="text"  />
+                  <!-- <div class="error-text">
+                    Please enter user name.
+                  </div> -->
+                </c-col>
+              </c-row>
+
+              <c-row class="mt-4">
+                <c-col>
+                  <div class="d-grid gap-2">
+                    <button cButton color="success" type="submit" class="me-3">
+                      Save
+                    </button>
+                  </div>
+                </c-col>
+                <c-col>
+                  <div class="d-grid gap-2">
+                    <button cButton color="dark" (click)="onBackClick()">
+                      Cancel
+                    </button>
+                  </div>
+                </c-col>
+              </c-row>
+                            
+        </form>
+      </c-container>
+    </c-card-body>
+  </c-card>
+  

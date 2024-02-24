@@ -80,6 +80,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/customers/customers.module').then((m) => m.CustomerModule)
       },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./views/users/users.module').then((m) => m.UsersModule)
+      },
+      
     ]
   },
   {
