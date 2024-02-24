@@ -7,16 +7,16 @@
 >
   <c-sidebar-brand
     [brandFull]="{
-      src: 'assets/img/brand/coreui-angular.svg',
+      src: 'assets/img/brand/snr-svg.svg',
       width: 200,
       height: 46,
-      alt: 'CoreUI Logo'
+      alt: 'SNR'
     }"
     [brandNarrow]="{
-      src: 'assets/img/brand/coreui-signet-white.svg',
+      src: 'assets/img/brand/snr-svg.svg',
       width: 46,
       height: 46,
-      alt: 'CoreUI Logo'
+      alt: 'SNR'
     }"
     routerLink="./"
   />
@@ -27,11 +27,11 @@
       dropdownMode="close"
     />
   </ng-scrollbar>
-  <c-sidebar-toggler
+  <!-- <c-sidebar-toggler
     *ngIf="!sidebar.narrow"
     toggle="unfoldable"
     cSidebarToggle="sidebar"
-  />
+  /> -->
 </c-sidebar>
 
 <!--main-->
@@ -45,5 +45,5 @@
     </c-container>
   </div>
   <!--app footer-->
-  <app-default-footer />
+  <!-- <app-default-footer /> -->
 </div>

@@ -75,6 +75,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/city-rate/city-rate.module').then((m) => m.CityRateModule)
       },
+      {
+        path: 'customers',
+        loadChildren: () =>
+          import('./views/customers/customers.module').then((m) => m.CustomerModule)
+      },
     ]
   },
   {

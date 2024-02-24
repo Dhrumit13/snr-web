@@ -39,6 +39,7 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 import { CityRateModule } from './views/city-rate/city-rate.module';
+import { ToastrModule } from 'ngx-toastr';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -75,7 +76,8 @@ const APP_CONTAINERS = [
     ListGroupModule,
     CardModule,
     CityRateModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [
     {

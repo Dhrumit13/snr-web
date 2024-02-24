@@ -3,10 +3,10 @@
   <c-card-body>
     <c-container>
       <c-row>
-        <c-col class="pt-2"> <h5 cCardTitle>City Rates</h5></c-col>
+        <c-col class="pt-2"> <h5 cCardTitle>Customers</h5></c-col>
         <c-col>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button cButton color="primary" (click)="onAdd()">
+            <button cButton color="primary" (click)="onAddCustomer()">
               <fa-icon [icon]="faPlus"></fa-icon>
               Add
             </button>
@@ -14,13 +14,26 @@
         </c-col>
       </c-row>
       <hr />
+      <c-input-group class="mb-3">
+        <input
+          aria-describedby="button-addon2"
+          aria-label="Find any customer"
+          cFormControl
+          placeholder="Find any customer"
+        />
+        <button cButton color="dark" id="button-addon2" type="button">
+          <fa-icon [icon]="faSearch"></fa-icon>
+          Search
+        </button>
+      </c-input-group>
 
       <table [striped]="true" cTable>
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">City Name</th>
-            <th scope="col">Rate Per KG</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">City</th>
             <th scope="col" class="text-center">Action</th>
           </tr>
         </thead>
@@ -29,8 +42,9 @@
           {
               <tr>
             <th scope="row">{{ idx + 1 }}</th>
-            <td>{{ cust.city }}</td>
             <td>{{ cust.name }}</td>
+            <td>{{ cust.mobile }}</td>
+            <td>{{ cust.city }}</td>
             <td class="text-center">
               <button cButton color="dark" variant="outline" class="me-2" size="sm" (click)="onEditCustomer(cust)">
                 <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
@@ -42,7 +56,7 @@
           </tr>
           } @empty {
             <tr>
-              <td colSpan="4" class="text-center">No rates found.</td>
+              <td colSpan="4" class="text-center">No customer found.</td>
             </tr>
             }
         </tbody>

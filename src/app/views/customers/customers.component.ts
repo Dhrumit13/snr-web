@@ -1,16 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { faEdit, faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Customer, CustomerListResponse, CustomersService } from '../customers/service/customers.service';
-import { Subject } from 'rxjs/internal/Subject';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  faPlus,
+  faSearch,
+  faEdit,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  Customer,
+  CustomerListResponse,
+  CustomersService,
+} from './service/customers.service';
+import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { takeUntil } from 'rxjs';
 
 @Component({
-  selector: 'app-city-rate',
-  templateUrl: './city-rate.component.html',
-  styleUrls: ['./city-rate.component.scss'],
+  selector: 'app-customers',
+  templateUrl: './customers.component.html',
+  styleUrls: ['./customers.component.scss'],
 })
-export class CityRateComponent implements OnInit {
+export class CustomersComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faSearch = faSearch;
   faEdit = faEdit;
@@ -49,12 +57,12 @@ export class CityRateComponent implements OnInit {
       });
   }
 
-  public onAdd(): void {
-    this.router.navigate(['city-rate/rate-details', 0]);
+  public onAddCustomer(): void {
+    this.router.navigate(['customers/customer-details', 0]);
   }
 
   public onEditCustomer(customer: Customer): void {
-    this.router.navigate(['city-rate/rate-details', customer.customerId]);
+    this.router.navigate(['customers/customer-details', customer.customerId]);
   }
 
   public deleteCustomerById(customer: Customer): void {

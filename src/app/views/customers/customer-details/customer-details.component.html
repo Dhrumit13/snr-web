@@ -1,0 +1,78 @@
+<c-card>
+  <!-- <c-card-header>Header</c-card-header> -->
+  <c-card-body>
+    <c-container>
+      <c-row>
+        <c-col class="pt-2"> <h5 cCardTitle>Customer Details</h5></c-col>
+      </c-row>
+      <hr />
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputname"> Name* </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputname" type="text" formControlName="name" />
+            <div class="error-text" *ngIf="customerForm.get('name')?.invalid && (customerForm.get('name')?.dirty || customerForm.get('name')?.touched)">
+              Please enter customer name.
+            </div>
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputEmail3"> Email </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputEmail3" type="email" formControlName="email" />
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputMobile"> Mobile* </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputMobile" type="text" formControlName="mobile" />
+            <div class="error-text" *ngIf="customerForm.get('mobile')?.invalid && (customerForm.get('mobile')?.dirty || customerForm.get('mobile')?.touched)">
+              Please enter valid mobile number.
+            </div>
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputGST"> GST No </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputGST" type="text" formControlName="gstNo" />
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputAddress"> Address </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputAddress" type="text" formControlName="address" />
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputCity"> City </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputCity" type="text" formControlName="city" />
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputState"> State </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputState" type="text" formControlName="state" />
+          </c-col>
+        </c-row>
+
+        <c-row class="mt-4">
+          <c-col>
+            <div class="d-grid gap-2">
+              <button cButton color="success" type="submit" class="me-3" [disabled]="customerForm.invalid">
+                Save
+              </button>
+            </div>
+          </c-col>
+          <c-col>
+            <div class="d-grid gap-2">
+              <button cButton color="dark" (click)="onBackClick()">
+                Cancel
+              </button>
+            </div>
+          </c-col>
+        </c-row>
+      </form>
+    </c-container>
+  </c-card-body>
+</c-card>

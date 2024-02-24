@@ -1,2 +1,9 @@
 // Here you can add other styles
 
+.btn:disabled {
+  cursor: no-drop !important;
+}
+
+.error-text {
+  color: red;
+}
