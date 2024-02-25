@@ -1,3 +1,163 @@
-<p>
-  rate-details works!
-</p>
+<c-card>
+  <!-- <c-card-header>Header</c-card-header> -->
+  <c-card-body>
+    <c-container>
+      <c-row>
+        <c-col class="pt-2"> <h5 cCardTitle>Rate by Cities</h5></c-col>
+      </c-row>
+      <hr />
+      <c-row class="mb-3">
+        <c-col [sm]="12">
+          <label cLabel for="inputEmail4">Select Customer</label>
+          <select
+            aria-label="Default select example"
+            cSelect
+            [(ngModel)]="selectedCustomer"
+          >
+            @for (customer of customerList; track $index) {
+            <option [ngValue]="customer">{{ customer.name }}</option>
+            }
+          </select>
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col [sm]="6">
+          <label cLabel for="inputEmail4">Select Mode</label>
+          <select
+            aria-label="Default select example"
+            cSelect
+            [(ngModel)]="selectedMode"
+          >
+            <option value="surface">Surface</option>
+            <option value="air">Air</option>
+            <option value="rail">Rail</option>
+          </select>
+        </c-col>
+        <c-col [sm]="6">
+          <label cLabel for="inputEmail4">City</label>
+          <input cFormControl id="inputname" type="text" [(ngModel)]="selectedCity" />
+        </c-col>
+      </c-row>
+      <c-row class="mb-3">
+        <c-col [sm]="4">
+          <label cLabel for="inputEmail4">Minimum Weight</label>
+          <input cFormControl id="inputname" type="text" [(ngModel)]="minWeight" />
+        </c-col>
+        <c-col [sm]="4">
+          <label cLabel for="inputEmail4">Rate Per KG</label>
+          <input cFormControl id="inputname" type="text" [(ngModel)]="ratePerKG" />
+        </c-col>
+        <c-col [sm]="4">
+          <label cLabel for="inputEmail4">Rate Per Piece</label>
+          <input cFormControl id="inputname" type="text" [(ngModel)]="ratePerPiece" />
+        </c-col>
+      </c-row>
+      <c-row class="mt-4 mb-4">
+        <c-col>
+          <div class="d-grid gap-2">
+            <button
+              cButton
+              color="success"
+              type="button"
+              class="me-3"
+              [disabled]="!enableSave()"
+              (click)="onSave()"
+            >
+              Save
+            </button>
+          </div>
+        </c-col>
+        <c-col>
+          <div class="d-grid gap-2">
+            <button cButton color="dark">Cancel</button>
+          </div>
+        </c-col>
+      </c-row>
+      <hr />
+      <h5 cCardTitle *ngIf="selectedCustomer" class="text-center">Rates of {{ selectedCustomer.name }}</h5>
+      <c-nav layout="justified" variant="tabs" *ngIf="selectedCustomer">
+        <a
+          [active]="isDefaultNavActive"
+          [cTabContent]="tabContent"
+          [tabPaneIdx]="0"
+          cNavLink
+          (click)="isDefaultNavActive = true;"
+          >SURFACE</a
+        >
+        <a
+          [cTabContent]="tabContent"
+          [tabPaneIdx]="1"
+          cNavLink
+          (click)="isDefaultNavActive = false"
+          >AIR</a
+        >
+        <a
+          [cTabContent]="tabContent"
+          [tabPaneIdx]="2"
+          cNavLink
+          (click)="isDefaultNavActive = false"
+          >RAIL</a
+        >
+      </c-nav>
+      <c-tab-content #tabContent="cTabContent">
+        <c-tab-pane class="p-3">
+          <table bordered cTable>
+            <thead>
+              <tr>
+                <th scope="col">City</th>
+                <th scope="col">Min Weight</th>
+                <th scope="col">Rate Per KG</th>
+                <th scope="col">Rate Per Piece</th>
+                <th scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (data of surfaceList; track data.cityName; let idx = $index)
+              {
+              <tr>
+                <td>{{ data.cityName }}</td>
+                <td>{{ data.minWeight }}</td>
+                <td>{{ data.ratePerKg }}</td>
+                <td>{{ data.ratePerPiece }}</td>
+                <td class="text-center">
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    class="me-2"
+                    size="sm"
+                  >
+                    <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
+                  </button>
+                  <button cButton color="danger" variant="outline" size="sm">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </td>
+              </tr>
+
+              } @empty {
+              <tr>
+                <td colSpan="5" class="text-center">No Rate found.</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </c-tab-pane>
+        <c-tab-pane class="p-3">
+          This is some placeholder content the <strong>Profile</strong> tab's
+          associated content. Clicking another tab will toggle the visibility of
+          this one for the next. The tab JavaScript swaps classes to control the
+          content visibility and styling. You can use it with tabs, pills, and
+          any other .nav-powered navigation.
+        </c-tab-pane>
+        <c-tab-pane class="p-3">
+          This is some placeholder content the <strong>Contact</strong> tab's
+          associated content. Clicking another tab will toggle the visibility of
+          this one for the next. The tab JavaScript swaps classes to control the
+          content visibility and styling. You can use it with tabs, pills, and
+          any other .nav-powered navigation.
+        </c-tab-pane>
+      </c-tab-content>
+    </c-container>
+  </c-card-body>
+</c-card>
