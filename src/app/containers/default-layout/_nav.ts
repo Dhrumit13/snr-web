@@ -286,7 +286,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Users',
-    url: '/buttons',
+    url: '/users',
     iconComponent: { name: 'cil-cursor' }
   }
 ];

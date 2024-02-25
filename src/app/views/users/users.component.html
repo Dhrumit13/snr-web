@@ -1,0 +1,75 @@
+<c-card>
+    <!-- <c-card-header>Header</c-card-header> -->
+    <c-card-body>
+      <c-container>
+        <c-row>
+          <c-col class="pt-2"> <h5 cCardTitle>Users</h5></c-col>
+          <c-col>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button cButton color="primary" (click)="onAddUser()">
+                <fa-icon [icon]="faPlus"></fa-icon>
+                Add
+              </button>
+            </div>
+          </c-col>
+        </c-row>
+        <hr />
+        <c-input-group class="mb-3">
+          <input
+            aria-describedby="button-addon2"
+            aria-label="Find any user"
+            cFormControl
+            placeholder="Find any user"
+          />
+          <button cButton color="dark" id="button-addon2" type="button">
+            <fa-icon [icon]="faSearch"></fa-icon>
+            Search
+          </button>
+        </c-input-group>
+  
+        <table [striped]="true" cTable>
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User Name</th>
+              <th scope="col">Password</th>
+              <th scope="col">Email</th>
+              <th scope="col">Mobile</th>
+              <th scope="col">Role</th>
+              <th scope="col">Created Date</th>
+              <th scope="col">isDeleted</th>
+              <th scope="col" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- @for (user of customerList; track cust.customerId; let idx = $index)
+            { -->
+                <tr>
+              <th scope="row">1</th>
+              <td>Jhohnwick</td>
+              <td>Admin123</td>
+              <td>jwickyopmail.com</td>
+              <td>1234567890</td>
+              <td>Admin</td>
+              <td>12-March-2024</td>
+              <td>true</td>
+              <td class="text-center">
+                <button cButton color="dark" variant="outline" class="me-2" size="sm" >
+                  <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
+                </button>
+                <button cButton color="danger" variant="outline" size="sm">
+                  <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+              </td>
+            </tr>
+            <!-- } @empty { -->
+              <tr>
+                <td colSpan="8" class="text-center">No user found.</td>
+              </tr>
+              <!-- } -->
+          </tbody>
+        </table>
+      </c-container>
+    </c-card-body>
+  </c-card>
+  
