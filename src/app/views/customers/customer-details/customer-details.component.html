@@ -32,12 +32,6 @@
           </c-col>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputGST"> GST No </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputGST" type="text" formControlName="gstNo" />
-          </c-col>
-        </c-row>
-        <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputAddress"> Address </label>
           <c-col [sm]="10">
             <input cFormControl id="inputAddress" type="text" formControlName="address" />
@@ -53,6 +47,34 @@
           <label cLabel="col" cCol [sm]="2" for="inputState"> State </label>
           <c-col [sm]="10">
             <input cFormControl id="inputState" type="text" formControlName="state" />
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputState"> Active </label>
+          <c-col [sm]="10" class="pt-2">
+            <c-form-check [switch]="true">
+              <input cFormCheckInput type="checkbox" formControlName="isActive" />
+              <!-- <label cFormCheckLabel>Checked switch checkbox input</label> -->
+            </c-form-check>
+          </c-col>
+        </c-row>
+
+
+        <hr class="mb-0">
+        <c-row class="mb-3">
+          <label cLabel="col" for="inputGST"> GST Details </label>
+          <c-col [sm]="6">
+            <input cFormControl id="inputGST" type="text" placeholder="GST Number" formControlName="gstNo" />
+          </c-col>
+          <c-col [sm]="2">
+            <input cFormControl id="inputGST" type="text" placeholder="CGST %" formControlName="cGST" />
+          </c-col>
+          <c-col [sm]="2">
+            <input cFormControl id="inputGST" type="text"  placeholder="SGST %" formControlName="sGST" />
+          </c-col>
+          <c-col [sm]="2">
+            <input cFormControl id="inputGST" type="text"  placeholder="IGST %" formControlName="iGST" />
           </c-col>
         </c-row>
 

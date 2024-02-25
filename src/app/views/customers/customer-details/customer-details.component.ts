@@ -46,10 +46,14 @@ export class CustomerDetailsComponent implements OnInit {
       name: ['', [Validators.required]],
       email: [''],
       mobile: ['', [Validators.required]],
-      gstNo: [''],
       address: [''],
       city: [''],
       state: [''],
+      isActive: [true],
+      gstNo: [''],
+      cGST: [''],
+      sGST: [''],
+      iGST: ['']
     });
   }
 
