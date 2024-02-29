@@ -6,7 +6,12 @@ import {
   CustomersService,
 } from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
-import { CityRateService, RateListResponse } from '../service/city-rate.service';
+import {
+  CityRateService,
+  RateListResponse,
+  Rates,
+} from '../service/city-rate.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-rate-details',
@@ -18,10 +23,11 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public surfaceList: any = [];
   public airList = [];
   public railList = [];
+  public addEditRateID: number = 0;
 
   //formFields
   public selectedCustomer!: Customer;
-  public selectedMode: any;
+  public transportationMode: string = 'surface';
   public selectedCity: any;
   public minWeight: any;
   public ratePerKG: any;
@@ -34,8 +40,11 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private customersService: CustomersService,
-    private cityRateService: CityRateService) {}
+  constructor(
+    private customersService: CustomersService,
+    private tosterService: ToastrService,
+    private cityRateService: CityRateService
+  ) {}
 
   ngOnInit() {
     this.getAllCustomers();
@@ -46,9 +55,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.customerSubscription$.unsubscribe();
   }
 
-  public onCustomerSelect(event: any): void {
-    console.log('this.selectedCustomer: ', this.selectedCustomer);
-    console.log('event: ', event.target.value);
+  public onCustomerSelect(): void {
+    if(this.selectedCustomer) {
+      this.selectedCity = this.selectedCustomer.city?.toUpperCase();
+    }
   }
 
   private getAllCustomers(): void {
@@ -82,32 +92,56 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
+  public enableSave(): boolean {
+    let isEnabled = false;
+    if (
+      this.selectedCustomer &&
+      this.transportationMode &&
+      this.selectedCity &&
+      (this.ratePerKG || this.ratePerPiece)
+    ) {
+      return (isEnabled = true);
+    } else {
+      return (isEnabled = false);
+    }
+  }
+
   onSave(): void {
-    let rateRequest = {
+    let rateRequest: Rates = {
       customerId: this.selectedCustomer.customerId,
-      cityName: this.selectedCity,
+      city: this.selectedCity,
+      transportationMode: this.transportationMode,
       minWeight: this.minWeight,
       ratePerKg: this.ratePerKG,
       ratePerPiece: this.ratePerPiece,
     };
-    this.surfaceList.push(rateRequest);
+
+    if (this.addEditRateID > 0) {
+      rateRequest.rateId = this.addEditRateID;
+    }
+    this.cityRateService
+      .addUpdateRate(rateRequest)
+      .pipe(takeUntil(this.customerSubscription$))
+      .subscribe({
+        next: (response: any) => {
+          console.log('response: ', response);
+          this.tosterService.success('Success', 'Rate saved.');
+        },
+        error: (e) =>
+          this.tosterService.error('Error', 'Something goes wrong!.'),
+        complete: () => {
+          this.resetForm();
+        },
+      });
   }
 
-  public enableSave(): boolean {
-    let isEnabled = false;
-    if(this.selectedCustomer
-      && this.selectedMode
-      && this.selectedCity
-      && (this.ratePerKG || this.ratePerPiece)) {
-       return isEnabled = true;
-      } else {
-       return isEnabled = false;
-      }
+  onDeleteRate(): void {
+
   }
 
   public resetForm(): void {
     this.selectedCustomer = {};
-    this.selectedMode = null;
+    this.transportationMode = 'surface';
     this.selectedCity = '';
     this.minWeight = '';
     this.ratePerKG = '';

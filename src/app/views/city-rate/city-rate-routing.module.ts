@@ -4,15 +4,15 @@ import { CityRateComponent } from './city-rate.component';
 import { RateDetailsComponent } from './rate-details/rate-details.component';
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   component: CityRateComponent,
+  //   data: {
+  //     title: 'City Rates',
+  //   },
+  // },
   {
     path: '',
-    component: CityRateComponent,
-    data: {
-      title: 'City Rates',
-    },
-  },
-  {
-    path: 'rate-details/:id',
     component: RateDetailsComponent,
     data: {
       title: 'City Rates',

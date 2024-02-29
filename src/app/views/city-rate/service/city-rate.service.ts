@@ -33,11 +33,11 @@ export interface RateListResponse {
 }
 
 export interface Rates {
-  rateId: number;
-  customerId: number;
-  transportationMode: string;
-  city: string;
-  minWeight: number;
-  ratePerKg: number;
-  ratePerPiece: number;
+  rateId?: number;
+  customerId?: number;
+  transportationMode?: string;
+  city?: string;
+  minWeight?: number;
+  ratePerKg?: number;
+  ratePerPiece?: number;
 }
