@@ -36,7 +36,7 @@
         </c-col>
         <c-col [sm]="6">
           <label cLabel for="inputEmail4">City</label>
-          <input cFormControl id="inputname" type="text" disabled="true" [(ngModel)]="selectedCity" (ngModelChange)="selectedCity = $event.toUpperCase()" />
+          <input cFormControl id="inputname" type="text" disabled="true" [(ngModel)]="selectedCity" class="uppercase" />
         </c-col>
       </c-row>
       <c-row class="mb-3">
@@ -105,32 +105,33 @@
           <table bordered cTable>
             <thead>
               <tr>
-                <th scope="col">City</th>
-                <th scope="col">Min Weight</th>
-                <th scope="col">Rate Per KG</th>
-                <th scope="col">Rate Per Piece</th>
-                <th scope="col" class="text-center">Action</th>
+                <th class="text-center" scope="col">City</th>
+                <th class="text-center" scope="col">Min Weight</th>
+                <th class="text-center" scope="col">Rate Per KG</th>
+                <th class="text-center" scope="col">Rate Per Piece</th>
+                <th class="text-center" scope="col" class="text-center">Action</th>
               </tr>
             </thead>
             <tbody>
-              @for (data of surfaceList; track data.cityName; let idx = $index)
+              @for (data of surfaceList; track data.rateId; let idx = $index)
               {
               <tr>
-                <td>{{ data.cityName }}</td>
-                <td>{{ data.minWeight }}</td>
-                <td>{{ data.ratePerKg }}</td>
-                <td>{{ data.ratePerPiece }}</td>
-                <td class="text-center">
+                <td class="text-center">{{ data.city }}</td>
+                <td class="text-center">{{ data.minWeight }}</td>
+                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
+                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center" class="text-center">
                   <button
                     cButton
                     color="dark"
                     variant="outline"
                     class="me-2"
                     size="sm"
+                    (click)="onEditClick(data)"
                   >
                     <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
                   </button>
-                  <button cButton color="danger" variant="outline" size="sm">
+                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
                     <fa-icon [icon]="faTrash"></fa-icon>
                   </button>
                 </td>

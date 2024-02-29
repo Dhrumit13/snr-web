@@ -12,6 +12,8 @@ import {
   Rates,
 } from '../service/city-rate.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-rate-details',
@@ -20,14 +22,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RateDetailsComponent implements OnInit, OnDestroy {
   public isDefaultNavActive = true;
-  public surfaceList: any = [];
-  public airList = [];
-  public railList = [];
+  public surfaceList: Rates[] = [];
+  public airList: Rates[] = [];
+  public railList: Rates[] = [];
   public addEditRateID: number = 0;
 
   //formFields
   public selectedCustomer!: Customer;
-  public transportationMode: string = 'surface';
+  public transportationMode: string | undefined = 'surface';
   public selectedCity: any;
   public minWeight: any;
   public ratePerKG: any;
@@ -43,6 +45,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private customersService: CustomersService,
     private tosterService: ToastrService,
+    private modalService: NgbModal,
     private cityRateService: CityRateService
   ) {}
 
@@ -58,6 +61,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public onCustomerSelect(): void {
     if(this.selectedCustomer) {
       this.selectedCity = this.selectedCustomer.city?.toUpperCase();
+      this.getRateByCustomer();
     }
   }
 
@@ -79,16 +83,19 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   private getRateByCustomer(): void {
     this.cityRateService
-      .getRatesByCustomer()
+      .getRatesByCustomer(this.selectedCustomer.customerId)
       .pipe(takeUntil(this.customerSubscription$))
       .subscribe({
         next: (response: RateListResponse) => {
           if (response.rates && response.rates?.length > 0) {
             console.log('response.rates: ', response.rates);
+            this.surfaceList = response.rates.filter(x => x.transportationMode === 'surface');
+            this.airList = response.rates.filter(x => x.transportationMode === 'air');
+            this.railList = response.rates.filter(x => x.transportationMode === 'rail');
           }
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete'),
+        complete: () => {},
       });
   }
 
@@ -135,12 +142,42 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  onDeleteRate(): void {
+  public onEditClick(rate: Rates): void {
+    this.minWeight = rate.minWeight;
+    this.ratePerKG = rate.ratePerKg;
+    this.ratePerPiece = rate.ratePerPiece;
+    this.transportationMode = rate.transportationMode;
+  }
 
+  public onDeleteRate(rate: Rates): void {
+    this.openConfirmationDialog(rate);
+  }
+
+  openConfirmationDialog(rate: Rates) {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (rate.rateId && rate.rateId > 0) {
+          this.cityRateService
+            .deleteRateById(rate.rateId)
+            .pipe(takeUntil(this.customerSubscription$))
+            .subscribe({
+              next: () => {
+                // Call Rates by customer
+                this.getRateByCustomer();
+              },
+              error: (e) => console.error(e),
+              complete: () => console.info('complete'),
+            });
+        }
+      } else {
+      }
+    });
   }
 
   public resetForm(): void {
-    this.selectedCustomer = {};
     this.transportationMode = 'surface';
     this.selectedCity = '';
     this.minWeight = '';

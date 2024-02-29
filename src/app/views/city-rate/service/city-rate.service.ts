@@ -11,8 +11,8 @@ export class CityRateService {
 
   constructor(private http: HttpClient) {}
 
-  getRatesByCustomer(): Observable<RateListResponse> {
-    return this.http.get<RateListResponse>(`${this.apiUrl}Rate`);
+  getRatesByCustomer(customerId: any): Observable<RateListResponse> {
+    return this.http.get<RateListResponse>(`${this.apiUrl}Rate?customerId=${customerId}`);
   }
 
   getRateById(id: number): Observable<RateListResponse> {
