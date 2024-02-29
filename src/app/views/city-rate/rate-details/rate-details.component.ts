@@ -6,6 +6,7 @@ import {
   CustomersService,
 } from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
+import { CityRateService, RateListResponse } from '../service/city-rate.service';
 
 @Component({
   selector: 'app-rate-details',
@@ -33,7 +34,8 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private customersService: CustomersService) {}
+  constructor(private customersService: CustomersService,
+    private cityRateService: CityRateService) {}
 
   ngOnInit() {
     this.getAllCustomers();
@@ -45,6 +47,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onCustomerSelect(event: any): void {
+    console.log('this.selectedCustomer: ', this.selectedCustomer);
     console.log('event: ', event.target.value);
   }
 
@@ -64,14 +67,30 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
+  private getRateByCustomer(): void {
+    this.cityRateService
+      .getRatesByCustomer()
+      .pipe(takeUntil(this.customerSubscription$))
+      .subscribe({
+        next: (response: RateListResponse) => {
+          if (response.rates && response.rates?.length > 0) {
+            console.log('response.rates: ', response.rates);
+          }
+        },
+        error: (e) => console.error(e),
+        complete: () => console.info('complete'),
+      });
+  }
+
   onSave(): void {
-    let temp = {
-      cityName: 'Vadodara',
-      minWeight: '25',
-      ratePerKg: '25',
-      ratePerPiece: '0',
+    let rateRequest = {
+      customerId: this.selectedCustomer.customerId,
+      cityName: this.selectedCity,
+      minWeight: this.minWeight,
+      ratePerKg: this.ratePerKG,
+      ratePerPiece: this.ratePerPiece,
     };
-    this.surfaceList.push(temp);
+    this.surfaceList.push(rateRequest);
   }
 
   public enableSave(): boolean {

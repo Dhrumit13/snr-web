@@ -12,6 +12,7 @@
           <select
             aria-label="Default select example"
             cSelect
+            (ngModelChange)="onCustomerSelect($event)"
             [(ngModel)]="selectedCustomer"
           >
             @for (customer of customerList; track $index) {
