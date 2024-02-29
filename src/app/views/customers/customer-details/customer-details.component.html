@@ -51,20 +51,10 @@
         </c-row>
 
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputState"> Active </label>
-          <c-col [sm]="10" class="pt-2">
-            <c-form-check [switch]="true">
-              <input cFormCheckInput type="checkbox" formControlName="isActive" />
-              <!-- <label cFormCheckLabel>Checked switch checkbox input</label> -->
-            </c-form-check>
-          </c-col>
-        </c-row>
-
-
-        <hr class="mb-0">
-        <c-row class="mb-3">
+          <c-col [sm]="2">
           <label cLabel="col" for="inputGST"> GST Details </label>
-          <c-col [sm]="6">
+          </c-col>
+          <c-col [sm]="4">
             <input cFormControl id="inputGST" type="text" placeholder="GST Number" formControlName="gstNo" />
           </c-col>
           <c-col [sm]="2">
@@ -78,17 +68,30 @@
           </c-col>
         </c-row>
 
+
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputState"> Active </label>
+          <c-col [sm]="10" class="pt-2">
+            <c-form-check [switch]="true" >
+              <input cFormCheckInput type="checkbox" formControlName="isActive" />
+              <!-- <label cFormCheckLabel>Checked switch checkbox input</label> -->
+            </c-form-check>
+          </c-col>
+        </c-row>
+
+
+
         <c-row class="mt-4">
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="success" type="submit" class="me-3" [disabled]="customerForm.invalid">
+              <button cButton color="dark" type="submit" size="lg" class="me-3" [disabled]="customerForm.invalid">
                 Save
               </button>
             </div>
           </c-col>
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="dark" (click)="onBackClick()">
+              <button cButton color="dark" variant="outline" size="lg" (click)="onBackClick()">
                 Cancel
               </button>
             </div>

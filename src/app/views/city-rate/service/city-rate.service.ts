@@ -11,34 +11,33 @@ export class CityRateService {
 
   constructor(private http: HttpClient) {}
 
-  getAllCustomers(): Observable<CustomerListResponse> {
-    return this.http.get<CustomerListResponse>(`${this.apiUrl}Customer`);
+  getRatesByCustomer(): Observable<RateListResponse> {
+    return this.http.get<RateListResponse>(`${this.apiUrl}Rate`);
   }
 
-  getCustomerById(id: number): Observable<CustomerListResponse> {
-    return this.http.get<CustomerListResponse>(`${this.apiUrl}Customer/${id}`);
+  getRateById(id: number): Observable<RateListResponse> {
+    return this.http.get<RateListResponse>(`${this.apiUrl}Rate/${id}`);
   }
 
-  addUpdateCustomer(data: Customer): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}Customer`, data);
+  addUpdateRate(data: Rates): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}Rate`, data);
   }
 
-  deleteCustomerById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}Customer/${id}`);
+  deleteRateById(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}Rate/${id}`);
   }
 }
 
-export interface CustomerListResponse {
-  customers?: Customer[];
+export interface RateListResponse {
+  rates?: Rates[];
 }
 
-export interface Customer {
-  customerId?: number;
-  name?: string;
-  email?: string;
-  mobile?: string;
-  gstNo?: string;
-  address?: string;
-  city?: string;
-  state?: string;
+export interface Rates {
+  rateId: number;
+  customerId: number;
+  transportationMode: string;
+  city: string;
+  minWeight: number;
+  ratePerKg: number;
+  ratePerPiece: number;
 }
