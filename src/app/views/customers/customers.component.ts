@@ -12,7 +12,8 @@ import {
 } from './service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 @Component({
   selector: 'app-customers',
   templateUrl: './customers.component.html',
@@ -29,6 +30,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
   constructor(
     private customersService: CustomersService,
     private router: Router,
+    private modalService: NgbModal,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -66,17 +68,29 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   public deleteCustomerById(customer: Customer): void {
-    if (customer.customerId && customer.customerId > 0) {
-      this.customersService
-        .deleteCustomerById(customer.customerId)
-        .pipe(takeUntil(this.customerSubscription$))
-        .subscribe({
-          next: () => {
-            this.getAllCustomers();
-          },
-          error: (e) => console.error(e),
-          complete: () => console.info('complete'),
-        });
-    }
+    this.openConfirmationDialog(customer);
+  }
+
+  openConfirmationDialog(customer: Customer) {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (customer.customerId && customer.customerId > 0) {
+          this.customersService
+            .deleteCustomerById(customer.customerId)
+            .pipe(takeUntil(this.customerSubscription$))
+            .subscribe({
+              next: () => {
+                this.getAllCustomers();
+              },
+              error: (e) => console.error(e),
+              complete: () => console.info('complete'),
+            });
+        }
+      } else {
+      }
+    });
   }
 }
