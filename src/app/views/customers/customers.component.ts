@@ -49,10 +49,7 @@ export class CustomersComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.customerSubscription$))
       .subscribe({
         next: (response: CustomerListResponse) => {
-          console.log('response: ', response);
-          if (response.customers && response.customers?.length > 0) {
-            this.customerList = response.customers;
-          }
+          this.customerList = response.customers;
         },
         error: (e) => console.error(e),
         complete: () => console.info('complete'),

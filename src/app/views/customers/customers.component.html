@@ -44,7 +44,7 @@
             <th scope="row">{{ idx + 1 }}</th>
             <td>{{ cust.name }}</td>
             <td>{{ cust.mobile }}</td>
-            <td>{{ cust.city }}</td>
+            <td>{{ cust.city | uppercase }}</td>
             <td class="text-center">
               <button cButton color="dark" variant="outline" class="me-2" size="sm" (click)="onEditCustomer(cust)">
                 <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>

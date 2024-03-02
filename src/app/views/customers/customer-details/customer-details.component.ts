@@ -51,9 +51,9 @@ export class CustomerDetailsComponent implements OnInit {
       state: [''],
       isActive: [true],
       gstNo: [''],
-      cGST: [''],
-      sGST: [''],
-      iGST: ['']
+      cgst: [''],
+      sgst: [''],
+      igst: ['']
     });
   }
 

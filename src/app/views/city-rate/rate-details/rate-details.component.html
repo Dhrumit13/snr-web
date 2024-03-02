@@ -58,9 +58,10 @@
           <div class="d-grid gap-2">
             <button
               cButton
-              color="success"
+              color="dark"
               type="button"
               class="me-3"
+              size="lg"
               [disabled]="!enableSave()"
               (click)="onSave()"
             >
@@ -70,7 +71,7 @@
         </c-col>
         <c-col>
           <div class="d-grid gap-2">
-            <button cButton color="dark">Cancel</button>
+            <button cButton variant="outline" size="lg" color="dark">Cancel</button>
           </div>
         </c-col>
       </c-row>
@@ -127,7 +128,7 @@
                     variant="outline"
                     class="me-2"
                     size="sm"
-                    (click)="onEditClick(data)"
+                    (click)="onEditClick(data, idx)"
                   >
                     <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
                   </button>
@@ -146,18 +147,92 @@
           </table>
         </c-tab-pane>
         <c-tab-pane class="p-3">
-          This is some placeholder content the <strong>Profile</strong> tab's
-          associated content. Clicking another tab will toggle the visibility of
-          this one for the next. The tab JavaScript swaps classes to control the
-          content visibility and styling. You can use it with tabs, pills, and
-          any other .nav-powered navigation.
+          <table bordered cTable>
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">City</th>
+                <th class="text-center" scope="col">Min Weight</th>
+                <th class="text-center" scope="col">Rate Per KG</th>
+                <th class="text-center" scope="col">Rate Per Piece</th>
+                <th class="text-center" scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (data of airList; track data.rateId; let idx = $index)
+              {
+              <tr>
+                <td class="text-center">{{ data.city }}</td>
+                <td class="text-center">{{ data.minWeight }}</td>
+                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
+                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center" class="text-center">
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    class="me-2"
+                    size="sm"
+                    (click)="onEditClick(data, idx)"
+                  >
+                    <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
+                  </button>
+                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </td>
+              </tr>
+
+              } @empty {
+              <tr>
+                <td colSpan="5" class="text-center">No Rate found.</td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </c-tab-pane>
         <c-tab-pane class="p-3">
-          This is some placeholder content the <strong>Contact</strong> tab's
-          associated content. Clicking another tab will toggle the visibility of
-          this one for the next. The tab JavaScript swaps classes to control the
-          content visibility and styling. You can use it with tabs, pills, and
-          any other .nav-powered navigation.
+          <table bordered cTable>
+            <thead>
+              <tr>
+                <th class="text-center" scope="col">City</th>
+                <th class="text-center" scope="col">Min Weight</th>
+                <th class="text-center" scope="col">Rate Per KG</th>
+                <th class="text-center" scope="col">Rate Per Piece</th>
+                <th class="text-center" scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (data of railList; track data.rateId; let idx = $index)
+              {
+              <tr>
+                <td class="text-center">{{ data.city }}</td>
+                <td class="text-center">{{ data.minWeight }}</td>
+                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
+                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center" class="text-center">
+                  <button
+                    cButton
+                    color="dark"
+                    variant="outline"
+                    class="me-2"
+                    size="sm"
+                    (click)="onEditClick(data, idx)"
+                  >
+                    <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
+                  </button>
+                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                  </button>
+                </td>
+              </tr>
+
+              } @empty {
+              <tr>
+                <td colSpan="5" class="text-center">No Rate found.</td>
+              </tr>
+              }
+            </tbody>
+          </table>
         </c-tab-pane>
       </c-tab-content>
     </c-container>

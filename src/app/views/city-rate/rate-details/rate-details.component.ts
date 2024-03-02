@@ -25,7 +25,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public surfaceList: Rates[] = [];
   public airList: Rates[] = [];
   public railList: Rates[] = [];
-  public addEditRateID: number = 0;
+  public addEditRateID: number | undefined | null;
 
   //formFields
   public selectedCustomer!: Customer;
@@ -59,7 +59,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onCustomerSelect(): void {
-    if(this.selectedCustomer) {
+    if (this.selectedCustomer) {
       this.selectedCity = this.selectedCustomer.city?.toUpperCase();
       this.getRateByCustomer();
     }
@@ -88,10 +88,15 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (response: RateListResponse) => {
           if (response.rates && response.rates?.length > 0) {
-            console.log('response.rates: ', response.rates);
-            this.surfaceList = response.rates.filter(x => x.transportationMode === 'surface');
-            this.airList = response.rates.filter(x => x.transportationMode === 'air');
-            this.railList = response.rates.filter(x => x.transportationMode === 'rail');
+            this.surfaceList = response.rates.filter(
+              (x) => x.transportationMode === 'surface'
+            );
+            this.airList = response.rates.filter(
+              (x) => x.transportationMode === 'air'
+            );
+            this.railList = response.rates.filter(
+              (x) => x.transportationMode === 'rail'
+            );
           }
         },
         error: (e) => console.error(e),
@@ -115,24 +120,22 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   onSave(): void {
     let rateRequest: Rates = {
+      rateId: this.addEditRateID && this.addEditRateID > 0 ? this.addEditRateID : null,
       customerId: this.selectedCustomer.customerId,
       city: this.selectedCity,
       transportationMode: this.transportationMode,
       minWeight: this.minWeight,
-      ratePerKg: this.ratePerKG,
-      ratePerPiece: this.ratePerPiece,
+      ratePerKg: this.ratePerKG ? this.ratePerKG : null,
+      ratePerPiece: this.ratePerPiece ? this.ratePerPiece : null,
     };
 
-    if (this.addEditRateID > 0) {
-      rateRequest.rateId = this.addEditRateID;
-    }
     this.cityRateService
       .addUpdateRate(rateRequest)
       .pipe(takeUntil(this.customerSubscription$))
       .subscribe({
         next: (response: any) => {
-          console.log('response: ', response);
           this.tosterService.success('Success', 'Rate saved.');
+          this.getRateByCustomer();
         },
         error: (e) =>
           this.tosterService.error('Error', 'Something goes wrong!.'),
@@ -142,11 +145,27 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  public onEditClick(rate: Rates): void {
+  public onEditClick(rate: Rates, index: number): void {
+    this.addEditRateID = rate.rateId;
     this.minWeight = rate.minWeight;
     this.ratePerKG = rate.ratePerKg;
     this.ratePerPiece = rate.ratePerPiece;
     this.transportationMode = rate.transportationMode;
+
+    switch (rate.transportationMode) {
+      case 'surface':
+        this.surfaceList.splice(index, 1);
+        break;
+      case 'air':
+        this.airList.splice(index, 1);
+        break;
+      case 'rail':
+        this.railList.splice(index, 1);
+        break;
+
+      default:
+        break;
+    }
   }
 
   public onDeleteRate(rate: Rates): void {
@@ -179,7 +198,6 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   public resetForm(): void {
     this.transportationMode = 'surface';
-    this.selectedCity = '';
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';

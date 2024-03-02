@@ -33,7 +33,7 @@ export interface RateListResponse {
 }
 
 export interface Rates {
-  rateId?: number;
+  rateId?: number | null;
   customerId?: number;
   transportationMode?: string;
   city?: string;
