@@ -19,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { RateDetailsComponent } from './rate-details/rate-details.component';
 import { CityRateService } from './service/city-rate.service';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 @NgModule({
   declarations: [CityRateComponent, RateDetailsComponent],
@@ -36,6 +37,7 @@ import { CityRateService } from './service/city-rate.service';
     NavModule,
     FontAwesomeModule,
     HttpClientModule,
+    AutocompleteLibModule,
     ReactiveFormsModule,
   ],
   providers: [CityRateService]

@@ -14,6 +14,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { CityNameService } from 'src/app/services/city-name.service';
 
 @Component({
   selector: 'app-rate-details',
@@ -42,14 +43,34 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
 
+
+  keyword = 'name';
+  data = [
+    {
+      id: 1,
+      name: 'Georgia'
+    },
+     {
+       id: 2,
+       name: 'Usa'
+     },
+     {
+       id: 3,
+       name: 'England'
+     }
+  ];
+
+
   constructor(
     private customersService: CustomersService,
     private tosterService: ToastrService,
     private modalService: NgbModal,
-    private cityRateService: CityRateService
+    private cityRateService: CityRateService,
+    private cityNameService: CityNameService,
   ) {}
 
   ngOnInit() {
+    this.getAllCitiesName();
     this.getAllCustomers();
   }
 
@@ -58,11 +79,43 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.customerSubscription$.unsubscribe();
   }
 
+
+
+  selectEvent(item: any) {
+    console.log('item: ', item);
+    // do something with selected item
+  }
+
+  onChangeSearch(val: string) {
+    // fetch remote data from here
+    // And reassign the 'data' which is binded to 'data' property.
+  }
+
+  onFocused(e: any){
+    console.log('e: ', e);
+    // do something when input is focused
+  }
+
+
+
+
   public onCustomerSelect(): void {
     if (this.selectedCustomer) {
-      this.selectedCity = this.selectedCustomer.city?.toUpperCase();
       this.getRateByCustomer();
     }
+  }
+
+  private getAllCitiesName(): void {
+    this.cityNameService
+      .getAllCities()
+      .pipe(takeUntil(this.customerSubscription$))
+      .subscribe({
+        next: (response: any) => {
+          console.log('response: ', response);
+        },
+        error: (e) => console.error(e),
+        complete: () => console.info('complete'),
+      });
   }
 
   private getAllCustomers(): void {
@@ -97,6 +150,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
             this.railList = response.rates.filter(
               (x) => x.transportationMode === 'rail'
             );
+          } else {
+            this.surfaceList = [];
+            this.airList = [];
+            this.railList = [];
           }
         },
         error: (e) => console.error(e),
@@ -147,6 +204,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   public onEditClick(rate: Rates, index: number): void {
     this.addEditRateID = rate.rateId;
+    this.selectedCity = rate.city;
     this.minWeight = rate.minWeight;
     this.ratePerKG = rate.ratePerKg;
     this.ratePerPiece = rate.ratePerPiece;
@@ -198,6 +256,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   public resetForm(): void {
     this.transportationMode = 'surface';
+    this.selectedCity = '';
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';

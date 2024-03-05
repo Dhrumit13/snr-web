@@ -40,6 +40,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 
 import { CityRateModule } from './views/city-rate/city-rate.module';
 import { ToastrModule } from 'ngx-toastr';
+import { CityNameService } from './services/city-name.service';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -85,6 +86,7 @@ const APP_CONTAINERS = [
       useClass: HashLocationStrategy
     },
     IconSetService,
+    CityNameService,
     Title
   ],
   bootstrap: [AppComponent]

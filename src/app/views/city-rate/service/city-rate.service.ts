@@ -12,19 +12,19 @@ export class CityRateService {
   constructor(private http: HttpClient) {}
 
   getRatesByCustomer(customerId: any): Observable<RateListResponse> {
-    return this.http.get<RateListResponse>(`${this.apiUrl}Rate?customerId=${customerId}`);
+    return this.http.get<RateListResponse>(`${this.apiUrl}api/Rate?customerId=${customerId}`);
   }
 
   getRateById(id: number): Observable<RateListResponse> {
-    return this.http.get<RateListResponse>(`${this.apiUrl}Rate/${id}`);
+    return this.http.get<RateListResponse>(`${this.apiUrl}api/Rate/${id}`);
   }
 
   addUpdateRate(data: Rates): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}Rate`, data);
+    return this.http.post<any>(`${this.apiUrl}api/Rate`, data);
   }
 
   deleteRateById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}Rate/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}api/Rate/${id}`);
   }
 }
 

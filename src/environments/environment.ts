@@ -7,7 +7,7 @@ import { Environment } from './environment.dev';
 export const environment: Environment = {
   production: false,
   name: 'development',
-  apiUrl: 'http://localhost:5244/api/',
+  apiUrl: 'http://localhost:5244/',
   // apiUrl: 'assets/mocks/'
 };
 

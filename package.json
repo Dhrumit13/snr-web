@@ -38,6 +38,7 @@
     "@fortawesome/angular-fontawesome": "^0.14.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "angular-ng-autocomplete": "^2.0.12",
     "bootstrap": "^5.3.3",
     "chart.js": "^3.9.1",
     "lodash-es": "^4.17.21",

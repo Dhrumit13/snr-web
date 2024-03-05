@@ -13,19 +13,19 @@ export class CustomersService {
   constructor(private http: HttpClient) {}
 
   getAllCustomers(): Observable<CustomerListResponse> {
-    return this.http.get<CustomerListResponse>(`${this.apiUrl}Customer`);
+    return this.http.get<CustomerListResponse>(`${this.apiUrl}api/Customer`);
   }
 
   getCustomerById(id: number): Observable<CustomerListResponse> {
-    return this.http.get<CustomerListResponse>(`${this.apiUrl}Customer/${id}`);
+    return this.http.get<CustomerListResponse>(`${this.apiUrl}api/Customer/${id}`);
   }
 
   addUpdateCustomer(data: Customer): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}Customer`, data);
+    return this.http.post<any>(`${this.apiUrl}api/Customer`, data);
   }
 
   deleteCustomerById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}Customer/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}api/Customer/${id}`);
   }
 }
 

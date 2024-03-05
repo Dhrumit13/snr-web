@@ -13,19 +13,19 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   getAllUsers(): Observable<UserListResponse> {
-    return this.http.get<UserListResponse>(`${this.apiUrl}User`);
+    return this.http.get<UserListResponse>(`${this.apiUrl}api/User`);
   }
 
   getUserById(id: number): Observable<UserListResponse> {
-    return this.http.get<UserListResponse>(`${this.apiUrl}User/${id}`);
+    return this.http.get<UserListResponse>(`${this.apiUrl}api/User/${id}`);
   }
 
   addUpdateUser(data: User): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}User`, data);
+    return this.http.post<any>(`${this.apiUrl}api/User`, data);
   }
 
   deleteUserById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}User/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}api/User/${id}`);
   }
 }
 
