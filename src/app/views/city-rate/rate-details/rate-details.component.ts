@@ -126,7 +126,6 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
         next: (response: CustomerListResponse) => {
           if (response.customers && response.customers?.length > 0) {
             this.customerList = response.customers;
-            console.log('this.customerList: ', this.customerList);
           }
         },
         error: (e) => console.error(e),

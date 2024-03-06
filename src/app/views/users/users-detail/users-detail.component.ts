@@ -12,12 +12,12 @@ import { Subject } from 'rxjs';
   styleUrl: './users-detail.component.scss'
 })
 export class UsersDetailComponent {
-  public addEditCustomerID: number = 0;
+  public addEditUserID: number = 0;
   faArrowLeft = faArrowLeft;
 
-  customerForm!: FormGroup;
+  userForm!: FormGroup;
 
-  private customerSubscription$: Subject<boolean> = new Subject<boolean>();
+  private userSubscription$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private route: ActivatedRoute,
