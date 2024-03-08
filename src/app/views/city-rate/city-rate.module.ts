@@ -19,12 +19,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { RateDetailsComponent } from './rate-details/rate-details.component';
 import { CityRateService } from './service/city-rate.service';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { CommonSNRModule } from '../common/snr-common.module';
 
 @NgModule({
   declarations: [CityRateComponent, RateDetailsComponent],
   imports: [
-  CityRateRoutingModule,
+    CityRateRoutingModule,
     CommonModule,
     TableModule,
     CardModule,
@@ -37,9 +37,9 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
     NavModule,
     FontAwesomeModule,
     HttpClientModule,
-    AutocompleteLibModule,
     ReactiveFormsModule,
+    CommonSNRModule,
   ],
-  providers: [CityRateService]
+  providers: [CityRateService],
 })
 export class CityRateModule {}

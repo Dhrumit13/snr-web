@@ -36,30 +36,8 @@
         </c-col>
         <c-col [sm]="6">
           <label cLabel for="inputEmail4">City</label>
-          <input cFormControl id="inputname" type="text" disabled="false" [(ngModel)]="selectedCity" class="uppercase" />
-
-          <div class="auto-complete">
-            <ng-autocomplete
-              [data]="data"
-              [searchKeyword]="keyword"
-              placeholder="Select country"
-              (selected)='selectEvent($event)'
-              (inputChanged)='onChangeSearch($event)'
-              (inputFocused)='onFocused($event)'
-              [itemTemplate]="itemTemplate"
-              [notFoundTemplate]="notFoundTemplate">
-            </ng-autocomplete>
-
-            <ng-template #itemTemplate let-item>
-            <a [innerHTML]="item.name"></a>
-            </ng-template>
-
-            <ng-template #notFoundTemplate let-notFound>
-            <div [innerHTML]="notFound"></div>
-            </ng-template>
-            </div>
-
-
+          <!-- <input cFormControl id="inputname" type="text" disabled="false"  class="uppercase" /> -->
+          <app-snr-auto-complete #autocomplete (optionSelected)="handleCitySelected($event)"></app-snr-auto-complete>
 
         </c-col>
       </c-row>
@@ -95,7 +73,7 @@
         </c-col>
         <c-col>
           <div class="d-grid gap-2">
-            <button cButton variant="outline" size="lg" color="dark">Cancel</button>
+            <button cButton variant="outline" size="lg" (click)="resetForm()" color="dark">Cancel</button>
           </div>
         </c-col>
       </c-row>

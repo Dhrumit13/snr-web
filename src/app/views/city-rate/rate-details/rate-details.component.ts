@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   Customer,
@@ -14,7 +14,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { CityNameService } from 'src/app/services/city-name.service';
+import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-auto-complete.component';
 
 @Component({
   selector: 'app-rate-details',
@@ -22,6 +22,8 @@ import { CityNameService } from 'src/app/services/city-name.service';
   styleUrls: ['./rate-details.component.scss'],
 })
 export class RateDetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
+
   public isDefaultNavActive = true;
   public surfaceList: Rates[] = [];
   public airList: Rates[] = [];
@@ -37,40 +39,22 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public ratePerPiece: any;
   // end
 
+
+
   faEdit = faEdit;
   faTrash = faTrash;
 
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
 
-
-  keyword = 'name';
-  data = [
-    {
-      id: 1,
-      name: 'Georgia'
-    },
-     {
-       id: 2,
-       name: 'Usa'
-     },
-     {
-       id: 3,
-       name: 'England'
-     }
-  ];
-
-
   constructor(
     private customersService: CustomersService,
     private tosterService: ToastrService,
     private modalService: NgbModal,
-    private cityRateService: CityRateService,
-    private cityNameService: CityNameService,
+    private cityRateService: CityRateService
   ) {}
 
   ngOnInit() {
-    this.getAllCitiesName();
     this.getAllCustomers();
   }
 
@@ -79,43 +63,16 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.customerSubscription$.unsubscribe();
   }
 
-
-
-  selectEvent(item: any) {
-    console.log('item: ', item);
-    // do something with selected item
+  handleCitySelected(item: any) {
+    this.selectedCity = item.name;
+    console.log('this.selectedCity: ', this.selectedCity);
   }
-
-  onChangeSearch(val: string) {
-    // fetch remote data from here
-    // And reassign the 'data' which is binded to 'data' property.
-  }
-
-  onFocused(e: any){
-    console.log('e: ', e);
-    // do something when input is focused
-  }
-
-
 
 
   public onCustomerSelect(): void {
     if (this.selectedCustomer) {
       this.getRateByCustomer();
     }
-  }
-
-  private getAllCitiesName(): void {
-    this.cityNameService
-      .getAllCities()
-      .pipe(takeUntil(this.customerSubscription$))
-      .subscribe({
-        next: (response: any) => {
-          console.log('response: ', response);
-        },
-        error: (e) => console.error(e),
-        complete: () => console.info('complete'),
-      });
   }
 
   private getAllCustomers(): void {
@@ -176,7 +133,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   onSave(): void {
     let rateRequest: Rates = {
-      rateId: this.addEditRateID && this.addEditRateID > 0 ? this.addEditRateID : null,
+      rateId:
+        this.addEditRateID && this.addEditRateID > 0
+          ? this.addEditRateID
+          : null,
       customerId: this.selectedCustomer.customerId,
       city: this.selectedCity,
       transportationMode: this.transportationMode,
@@ -203,11 +163,14 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   public onEditClick(rate: Rates, index: number): void {
     this.addEditRateID = rate.rateId;
-    this.selectedCity = rate.city;
     this.minWeight = rate.minWeight;
     this.ratePerKG = rate.ratePerKg;
     this.ratePerPiece = rate.ratePerPiece;
     this.transportationMode = rate.transportationMode;
+    // this.selectedCity = rate.city;
+    if(rate.city) {
+      this.autocomplete.setValue(rate.city);
+    }
 
     switch (rate.transportationMode) {
       case 'surface':
@@ -256,6 +219,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public resetForm(): void {
     this.transportationMode = 'surface';
     this.selectedCity = '';
+    this.autocomplete.resetControl();
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';
