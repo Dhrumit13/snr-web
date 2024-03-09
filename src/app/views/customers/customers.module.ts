@@ -16,6 +16,7 @@ import { IconModule } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomersService } from './service/customers.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonSNRModule } from '../common/snr-common.module';
 
 @NgModule({
   declarations: [CustomersComponent, CustomerDetailsComponent],
@@ -31,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     CustomersRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CommonSNRModule
   ],
   providers: [CustomersService],
 })

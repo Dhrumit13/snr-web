@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,7 @@ import {
 } from '../service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-auto-complete.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -16,6 +17,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./customer-details.component.scss'],
 })
 export class CustomerDetailsComponent implements OnInit {
+
+  @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
+
   public addEditCustomerID: number = 0;
   faArrowLeft = faArrowLeft;
 
@@ -41,6 +45,11 @@ export class CustomerDetailsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.customerSubscription$.next(true);
+    this.customerSubscription$.unsubscribe();
+  }
+
   private createForm(): void {
     this.customerForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -59,6 +68,10 @@ export class CustomerDetailsComponent implements OnInit {
 
   public onBackClick(): void {
     this.router.navigate(['customers']);
+  }
+
+  handleCitySelected(item: any) {
+    this.customerForm.controls['city'].setValue(item.name);
   }
 
   // Method to submit the form
@@ -81,6 +94,9 @@ export class CustomerDetailsComponent implements OnInit {
           if (response.customers && response.customers.length > 0) {
             delete response.customers[0].customerId;
             this.customerForm.setValue(response.customers[0]);
+            if(response.customers[0].city) {
+              this.autocomplete.setValue(response.customers[0].city);
+            }
           }
         },
         error: (e) => console.error(e),

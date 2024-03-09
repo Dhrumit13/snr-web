@@ -13,9 +13,9 @@ import {
 import { IconModule } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import { CustomersService } from '../customers/service/customers.service';
 import { UsersComponent } from './users.component';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
+import {UsersService} from './services/users.service';
 
 @NgModule({
   declarations: [UsersComponent, UsersDetailComponent],
@@ -31,6 +31,6 @@ import { UsersDetailComponent } from './users-detail/users-detail.component';
     HttpClientModule,
     ReactiveFormsModule,
     UsersRoutingModule
-  ], providers: [CustomersService],
+  ], providers: [UsersService],
 })
 export class UsersModule { }

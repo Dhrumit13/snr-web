@@ -6,48 +6,42 @@
         <c-col class="pt-2"> <h5 cCardTitle>User Details</h5></c-col>
       </c-row>
       <hr />
-      <form>
+      <form [formGroup]="userForm">
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputunm"> User Name </label>
           <c-col [sm]="10">
-            <input cFormControl id="inputunm" type="text" />
-            <!-- <div class="error-text">
+            <input cFormControl id="inputunm" formControlName="userName" type="text" />
+            <div class="error-text" *ngIf="userForm.get('userName')?.invalid && (userForm.get('userName')?.dirty || userForm.get('userName')?.touched)">
                     Please enter user name.
-                  </div> -->
+                  </div>
           </c-col>
         </c-row>
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputpass"> Password </label>
           <c-col [sm]="10">
-            <input cFormControl id="inputpass" type="text" />
-            <!-- <div class="error-text">
-                    Please enter user name.
-                  </div> -->
+            <input cFormControl id="inputpass" type="text" formControlName="password" />
+            <div class="error-text" *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
+                    Please enter user password.
+                  </div>
           </c-col>
         </c-row>
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputemail"> Email </label>
           <c-col [sm]="10">
-            <input cFormControl id="inputemail" type="text" />
-            <!-- <div class="error-text">
-                    Please enter user name.
-                  </div> -->
+            <input cFormControl id="inputemail" type="text" formControlName="email" />
           </c-col>
         </c-row>
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputmobile"> Mobile </label>
           <c-col [sm]="10">
-            <input cFormControl id="inputmobile" type="text" />
-            <!-- <div class="error-text">
-                    Please enter user name.
-                  </div> -->
+            <input cFormControl id="inputmobile" type="text" formControlName="mobile" />
           </c-col>
         </c-row>
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputrole"> Role </label>
           <c-col [sm]="10">
-            <select aria-label="Default select example" cSelect>
-              <option value="fieldUser" selected>Field User</option>
+            <select aria-label="Default select example" cSelect formControlName="role">
+              <option value="fieldUser">Field User</option>
               <option value="storeManager">Store Manager</option>
               <option value="admin">Admin</option>
             </select>
@@ -59,7 +53,7 @@
             <div class="d-grid gap-2">
               <button cButton color="dark"
               class="me-3"
-              size="lg" type="submit">
+              size="lg" type="button" (click)="onSubmit()">
                 Save
               </button>
             </div>

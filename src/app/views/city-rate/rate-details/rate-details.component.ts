@@ -223,5 +223,8 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';
+    if(this.selectedCustomer) {
+      this.getRateByCustomer();
+    }
   }
 }

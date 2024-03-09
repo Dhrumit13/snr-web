@@ -6,7 +6,7 @@
         <c-col class="pt-2"> <h5 cCardTitle>Customer Details</h5></c-col>
       </c-row>
       <hr />
-      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="customerForm">
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputname"> Name* </label>
           <c-col [sm]="10">
@@ -40,7 +40,9 @@
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputCity"> City </label>
           <c-col [sm]="10">
-            <input cFormControl id="inputCity" type="text" formControlName="city" class="uppercase" />
+            <!-- <input cFormControl id="inputCity" type="text" formControlName="city" class="uppercase" /> -->
+            <app-snr-auto-complete #autocomplete (optionSelected)="handleCitySelected($event)"></app-snr-auto-complete>
+
           </c-col>
         </c-row>
         <c-row class="mb-3">
@@ -84,7 +86,7 @@
         <c-row class="mt-4">
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="dark" type="submit" size="lg" class="me-3" [disabled]="customerForm.invalid">
+              <button cButton color="dark" type="button" size="lg" class="me-3" (click)="onSubmit()" [disabled]="customerForm.invalid">
                 Save
               </button>
             </div>

@@ -6,73 +6,71 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subject, takeUntil } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Customer, CustomerListResponse, CustomersService } from '../customers/service/customers.service';
+import { Router } from '@angular/router';
+import { User, UserListResponse, UsersService } from './services/users.service';
+import { SNR_ROLES } from '../common/enum/snr-enum';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
 })
-export class UsersComponent {
-faPlus = faPlus;
+export class UsersComponent implements OnInit, OnDestroy {
+  faPlus = faPlus;
   faSearch = faSearch;
   faEdit = faEdit;
   faTrash = faTrash;
-  public customerList: Customer[] | undefined = [];
-  private customerSubscription$: Subject<boolean> = new Subject<boolean>();
-  constructor(
-    private customersService: CustomersService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  public SNR_ROLES = SNR_ROLES;
+  public userList: User[] | undefined = [];
+  private userSubscription$: Subject<boolean> = new Subject<boolean>();
+  constructor(private userService: UsersService, private router: Router) {}
 
-  // ngOnInit() {
-  //   this.getAllCustomers();
-  // }
+  ngOnInit() {
+    this.getAllUsers();
+  }
 
-  // ngOnDestroy(): void {
-  //   this.customerSubscription$.next(true);
-  //   this.customerSubscription$.unsubscribe();
-  // }
+  ngOnDestroy(): void {
+    this.userSubscription$.next(true);
+    this.userSubscription$.unsubscribe();
+  }
 
-  // private getAllCustomers(): void {
-  //   this.customersService
-  //     .getAllCustomers()
-  //     .pipe(takeUntil(this.customerSubscription$))
-  //     .subscribe({
-  //       next: (response: CustomerListResponse) => {
-  //         console.log('response: ', response);
-  //         if (response.customers && response.customers?.length > 0) {
-  //           this.customerList = response.customers;
-  //         }
-  //       },
-  //       error: (e) => console.error(e),
-  //       complete: () => console.info('complete'),
-  //     });
-  // }
+  private getAllUsers(): void {
+    this.userService
+      .getAllUsers()
+      .pipe(takeUntil(this.userSubscription$))
+      .subscribe({
+        next: (response: UserListResponse) => {
+          if (response.users && response.users?.length > 0) {
+            this.userList = response.users;
+          } else {
+            this.userList = [];
+          }
+        },
+        error: (e) => console.error(e),
+        complete: () => {},
+      });
+  }
 
   public onAddUser(): void {
     this.router.navigate(['users/users-details', 0]);
   }
 
-  // public onEditCustomer(customer: Customer): void {
-  //   this.router.navigate(['customers/customer-details', customer.customerId]);
-  // }
+  public onEditUser(user: User): void {
+    this.router.navigate(['users/users-details', user.userId]);
+  }
 
-  // public deleteCustomerById(customer: Customer): void {
-  //   if (customer.customerId && customer.customerId > 0) {
-  //     this.customersService
-  //       .deleteCustomerById(customer.customerId)
-  //       .pipe(takeUntil(this.customerSubscription$))
-  //       .subscribe({
-  //         next: () => {
-  //           this.getAllCustomers();
-  //         },
-  //         error: (e) => console.error(e),
-  //         complete: () => console.info('complete'),
-  //       });
-  //   }
-  // }
-
+  public deleteUserById(user: User): void {
+    if (user.userId && user.userId > 0) {
+      this.userService
+        .deleteUserById(user.userId)
+        .pipe(takeUntil(this.userSubscription$))
+        .subscribe({
+          next: () => {
+            this.getAllUsers();
+          },
+          error: (e) => console.error(e),
+          complete: () => {},
+        });
+    }
+  }
 }

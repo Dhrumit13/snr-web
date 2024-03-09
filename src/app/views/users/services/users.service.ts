@@ -36,11 +36,9 @@ export interface UserListResponse {
 
 export interface User {
   userId?: number;
-  username?: string;
+  userName?: string;
   password?: string;
   email?: string;
   mobile?: string;
   role?: string;
-  createdDate?: string;
-  isDeleted?: string;
 }
