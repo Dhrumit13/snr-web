@@ -256,7 +256,7 @@ export const navItems: INavData[] = [
   {
     name: 'Try CoreUI PRO',
     url: 'https://coreui.io/product/angular-dashboard-template/',
-    iconComponent: { name: 'cil-layers' },
+    iconComponent: { name: 'cil-user' },
     attributes: { target: '_blank' }
   },
   {
@@ -267,12 +267,18 @@ export const navItems: INavData[] = [
   {
     name: 'Consignments',
     url: '/buttons',
-    iconComponent: { name: 'cil-cursor' }
+    iconComponent: { name: 'cil-notes' }
   },
+
   {
     name: 'Customers',
     url: '/customers',
-    iconComponent: { name: 'cil-cursor' }
+    iconComponent: { name: 'cil-user' }
+  },
+  {
+    name: 'Receivers',
+    url: '/receivers',
+    iconComponent: { name: 'cil-user' }
   },
   {
     title: true,
