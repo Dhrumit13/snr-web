@@ -9,6 +9,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { User, UserListResponse, UsersService } from './services/users.service';
 import { SNR_ROLES } from '../common/enum/snr-enum';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-users',
@@ -23,7 +25,12 @@ export class UsersComponent implements OnInit, OnDestroy {
   public SNR_ROLES = SNR_ROLES;
   public userList: User[] | undefined = [];
   private userSubscription$: Subject<boolean> = new Subject<boolean>();
-  constructor(private userService: UsersService, private router: Router) {}
+
+  constructor(
+    private userService: UsersService,
+    private modalService: NgbModal,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.getAllUsers();
@@ -60,17 +67,29 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public deleteUserById(user: User): void {
-    if (user.userId && user.userId > 0) {
-      this.userService
-        .deleteUserById(user.userId)
-        .pipe(takeUntil(this.userSubscription$))
-        .subscribe({
-          next: () => {
-            this.getAllUsers();
-          },
-          error: (e) => console.error(e),
-          complete: () => {},
-        });
-    }
+    this.openConfirmationDialog(user);
+  }
+
+  openConfirmationDialog(user: User) {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (user.userId && user.userId > 0) {
+          this.userService
+            .deleteUserById(user.userId)
+            .pipe(takeUntil(this.userSubscription$))
+            .subscribe({
+              next: () => {
+                this.getAllUsers();
+              },
+              error: (e) => console.error(e),
+              complete: () => {},
+            });
+        }
+      } else {
+      }
+    });
   }
 }

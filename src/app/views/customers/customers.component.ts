@@ -11,7 +11,7 @@ import {
   CustomersService,
 } from './service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 @Component({
@@ -31,7 +31,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
     private customersService: CustomersService,
     private router: Router,
     private modalService: NgbModal,
-    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
