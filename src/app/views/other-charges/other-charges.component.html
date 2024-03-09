@@ -1,9 +1,8 @@
 <c-card>
-  <!-- <c-card-header>Header</c-card-header> -->
   <c-card-body>
     <c-container>
       <c-row>
-        <c-col class="pt-2"> <h5 cCardTitle>Receivers</h5></c-col>
+        <c-col class="pt-2"> <h5 cCardTitle>Other Charges</h5></c-col>
         <c-col>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button cButton color="primary" (click)="onAddCustomer()">
@@ -14,19 +13,6 @@
         </c-col>
       </c-row>
       <hr />
-      <c-input-group class="mb-3">
-        <input
-          aria-describedby="button-addon2"
-          aria-label="Find any customer"
-          cFormControl
-          placeholder="Find any customer"
-        />
-        <button cButton color="dark" id="button-addon2" type="button">
-          <fa-icon [icon]="faSearch"></fa-icon>
-          Search
-        </button>
-      </c-input-group>
-
       <table [striped]="true" cTable>
         <thead>
           <tr>

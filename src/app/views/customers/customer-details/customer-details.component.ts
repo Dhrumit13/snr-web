@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -16,7 +16,7 @@ import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-aut
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.scss'],
 })
-export class CustomerDetailsComponent implements OnInit {
+export class CustomerDetailsComponent implements OnInit, OnDestroy {
 
   @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
 

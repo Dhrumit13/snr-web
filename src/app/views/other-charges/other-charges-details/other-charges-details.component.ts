@@ -13,11 +13,11 @@ import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-aut
 
 
 @Component({
-  selector: 'app-receiver-details',
-  templateUrl: './receiver-details.component.html',
-  styleUrls: ['./receiver-details.component.scss']
+  selector: 'app-other-charges-details',
+  templateUrl: './other-charges-details.component.html',
+  styleUrls: ['./other-charges-details.component.scss']
 })
-export class ReceiverDetailsComponent implements OnInit, OnDestroy {
+export class OtherChargesDetailsComponent implements OnInit, OnDestroy {
 
   @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
 
@@ -53,17 +53,13 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
 
   private createForm(): void {
     this.customerForm = this.fb.group({
-      receiverName: ['', [Validators.required]],
-      email: [''],
-      mobile: ['', [Validators.required]],
-      address: [''],
-      city: [''],
-      isActive: [true],
+      otherChargeName: ['', [Validators.required]],
+      amount: ['', [Validators.required]],
     });
   }
 
   public onBackClick(): void {
-    this.router.navigate(['receivers']);
+    this.router.navigate(['other-charges']);
   }
 
   handleCitySelected(item: any) {
@@ -126,5 +122,4 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
       });
   }
 }
-
 

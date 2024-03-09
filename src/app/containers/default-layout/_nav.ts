@@ -11,21 +11,6 @@ export const navItems: INavData[] = [
     }
   },
   {
-    title: true,
-    name: 'Theme'
-  },
-  {
-    name: 'Colors',
-    url: '/theme/colors',
-    iconComponent: { name: 'cil-drop' }
-  },
-  {
-    name: 'Typography',
-    url: '/theme/typography',
-    linkProps: { fragment: 'someAnchor' },
-    iconComponent: { name: 'cil-pencil' }
-  },
-  {
     name: 'Components',
     title: true
   },
@@ -160,29 +145,6 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-chart-pie' }
   },
   {
-    name: 'Icons',
-    iconComponent: { name: 'cil-star' },
-    url: '/icons',
-    children: [
-      {
-        name: 'CoreUI Free',
-        url: '/icons/coreui-icons',
-        badge: {
-          color: 'success',
-          text: 'FREE'
-        }
-      },
-      {
-        name: 'CoreUI Flags',
-        url: '/icons/flags'
-      },
-      {
-        name: 'CoreUI Brands',
-        url: '/icons/brands'
-      }
-    ]
-  },
-  {
     name: 'Notifications',
     url: '/notifications',
     iconComponent: { name: 'cil-bell' },
@@ -241,24 +203,7 @@ export const navItems: INavData[] = [
       }
     ]
   },
-  {
-    title: true,
-    name: 'Links',
-    class: 'py-0'
-  },
-  {
-    name: 'Docs',
-    url: 'https://coreui.io/angular/docs/templates/installation',
-    iconComponent: { name: 'cil-description' },
-    attributes: { target: '_blank', class: '-text-dark' },
-    class: 'mt-auto'
-  },
-  {
-    name: 'Try CoreUI PRO',
-    url: 'https://coreui.io/product/angular-dashboard-template/',
-    iconComponent: { name: 'cil-user' },
-    attributes: { target: '_blank' }
-  },
+
   {
     title: true,
     name: 'SNR',
@@ -267,7 +212,7 @@ export const navItems: INavData[] = [
   {
     name: 'Consignments',
     url: '/buttons',
-    iconComponent: { name: 'cil-notes' }
+    iconComponent: { name: 'cil-cursor' }
   },
 
   {
@@ -278,7 +223,7 @@ export const navItems: INavData[] = [
   {
     name: 'Receivers',
     url: '/receivers',
-    iconComponent: { name: 'cil-user' }
+    iconComponent: { name: 'cil-notes' }
   },
   {
     title: true,
@@ -286,13 +231,18 @@ export const navItems: INavData[] = [
     class: 'py-0'
   },
   {
+    name: 'Other Charges',
+    url: '/other-charges',
+    iconComponent: { name: 'cil-calculator' }
+  },
+  {
     name: 'City Rate',
     url: '/city-rate',
-    iconComponent: { name: 'cil-cursor' }
+    iconComponent: { name: 'cil-pencil' }
   },
   {
     name: 'Users',
     url: '/users',
-    iconComponent: { name: 'cil-cursor' }
+    iconComponent: { name: 'cil-user' }
   }
 ];

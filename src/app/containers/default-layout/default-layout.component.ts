@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { navItems } from './_nav';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,5 +12,5 @@ export class DefaultLayoutComponent {
 
   public navItems = navItems;
 
-  constructor() {}
+  constructor(private domSanitizer:DomSanitizer) {}
 }

@@ -16,11 +16,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-receivers',
-  templateUrl: './receivers.component.html',
-  styleUrls: ['./receivers.component.scss']
+  selector: 'app-other-charges',
+  templateUrl: './other-charges.component.html',
+  styleUrls: ['./other-charges.component.scss']
 })
-export class ReceiversComponent implements OnInit , OnDestroy{
+export class OtherChargesComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faSearch = faSearch;
   faEdit = faEdit;
@@ -57,11 +57,11 @@ export class ReceiversComponent implements OnInit , OnDestroy{
   }
 
   public onAddCustomer(): void {
-    this.router.navigate(['receivers/receiver-details', 0]);
+    this.router.navigate(['other-charges/other-charges-details', 0]);
   }
 
   public onEditCustomer(customer: Customer): void {
-    this.router.navigate(['receivers/receiver-details', customer.customerId]);
+    this.router.navigate(['other-charges/other-charges-details', customer.customerId]);
   }
 
   public deleteCustomerById(customer: Customer): void {

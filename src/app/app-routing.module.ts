@@ -26,11 +26,6 @@ const routes: Routes = [
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
-        path: 'theme',
-        loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
-      },
-      {
         path: 'base',
         loadChildren: () =>
           import('./views/base/base.module').then((m) => m.BaseModule)
@@ -49,11 +44,6 @@ const routes: Routes = [
         path: 'charts',
         loadChildren: () =>
           import('./views/charts/charts.module').then((m) => m.ChartsModule)
-      },
-      {
-        path: 'icons',
-        loadChildren: () =>
-          import('./views/icons/icons.module').then((m) => m.IconsModule)
       },
       {
         path: 'notifications',
@@ -89,6 +79,11 @@ const routes: Routes = [
         path: 'users',
         loadChildren: () =>
           import('./views/users/users.module').then((m) => m.UsersModule)
+      },
+      {
+        path: 'other-charges',
+        loadChildren: () =>
+          import('./views/other-charges/other-charges.module').then((m) => m.OtherChargesModule)
       },
 
     ]

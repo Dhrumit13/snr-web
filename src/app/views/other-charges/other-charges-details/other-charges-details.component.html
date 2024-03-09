@@ -1,0 +1,45 @@
+<c-card>
+  <!-- <c-card-header>Header</c-card-header> -->
+  <c-card-body>
+    <c-container>
+      <c-row>
+        <c-col class="pt-2"> <h5 cCardTitle>Other Charge Details</h5></c-col>
+      </c-row>
+      <hr />
+      <form [formGroup]="customerForm">
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputname"> Title </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputname" type="text" formControlName="otherChargeName" />
+            <div class="error-text" *ngIf="customerForm.get('name')?.invalid && (customerForm.get('name')?.dirty || customerForm.get('name')?.touched)">
+              Please enter customer name.
+            </div>
+          </c-col>
+        </c-row>
+        <c-row class="mb-3">
+          <label cLabel="col" cCol [sm]="2" for="inputEmail3"> Amount </label>
+          <c-col [sm]="10">
+            <input cFormControl id="inputEmail3" type="email" formControlName="amount" />
+          </c-col>
+        </c-row>
+
+        <c-row class="mt-4">
+          <c-col>
+            <div class="d-grid gap-2">
+              <button cButton color="dark" type="button" size="lg" class="me-3" (click)="onSubmit()" [disabled]="customerForm.invalid">
+                Save
+              </button>
+            </div>
+          </c-col>
+          <c-col>
+            <div class="d-grid gap-2">
+              <button cButton color="dark" variant="outline" size="lg" (click)="onBackClick()">
+                Cancel
+              </button>
+            </div>
+          </c-col>
+        </c-row>
+      </form>
+    </c-container>
+  </c-card-body>
+</c-card>
