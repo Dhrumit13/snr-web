@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 // If you want to override variables do it here
+
+/* Core Grid CSS */
+@import 'ag-grid-community/styles/ag-grid.css';
+/* Quartz Theme Specific CSS */
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
 @import "variables";
 
 $enable-ltr: true;
@@ -20,6 +25,7 @@ $enable-rtl: true;
 @import "examples";
 
 @import 'ngx-toastr/toastr';
+
 
 // If you want to add something do it here
 @import "custom";

@@ -41,6 +41,7 @@ import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { CityRateModule } from './views/city-rate/city-rate.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CityNameService } from './services/city-name.service';
+import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.component';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -49,7 +50,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS],
+  declarations: [AppComponent, ConfirmDialogComponent, ...APP_CONTAINERS],
   imports: [
   BrowserModule,
     BrowserAnimationsModule,

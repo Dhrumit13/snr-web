@@ -9,8 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { User, UserListResponse, UsersService } from './services/users.service';
 import { SNR_ROLES } from '../common/enum/snr-enum';
-import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-users',
@@ -19,18 +18,25 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
-  faSearch = faSearch;
-  faEdit = faEdit;
-  faTrash = faTrash;
-  public SNR_ROLES = SNR_ROLES;
+  public ENUM_SNR_ROLES = SNR_ROLES;
   public userList: User[] | undefined = [];
+
+  colDefs: ColDef[] = [
+    { field: 'userId', hide: true },
+    { field: 'userName', flex: 1, filter: 'agSetColumnFilter' },
+    { field: 'password', flex: 1, filter: 'agSetColumnFilter' },
+    { field: 'email', flex: 1 },
+    { field: 'mobile', flex: 1, filter: 'agSetColumnFilter' },
+    {
+      field: 'role',
+      flex: 1,
+      filter: 'agSetColumnFilter',
+      valueFormatter: this.roleFormatter,
+    },
+  ];
   private userSubscription$: Subject<boolean> = new Subject<boolean>();
 
-  constructor(
-    private userService: UsersService,
-    private modalService: NgbModal,
-    private router: Router
-  ) {}
+  constructor(private userService: UsersService, private router: Router) {}
 
   ngOnInit() {
     this.getAllUsers();
@@ -41,6 +47,31 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.userSubscription$.unsubscribe();
   }
 
+  // ag-grid properties
+  gridOptions = {
+    onRowClicked: this.onRowClicked.bind(this),
+    getRowStyle: this.getRowStyle.bind(this),
+  };
+
+  getRowStyle(params: any): any {
+    return { cursor: 'pointer' };
+  }
+
+  onRowClicked(params: any): void {
+    this.onEditUser(params.data);
+  }
+
+  roleFormatter(params: ValueFormatterParams) {
+    if (SNR_ROLES[SNR_ROLES.admin] === params.value) {
+      return SNR_ROLES[params.value];
+    } else if (SNR_ROLES[SNR_ROLES.fieldUser] === params.value) {
+      return SNR_ROLES[params.value];
+    } else if (SNR_ROLES[SNR_ROLES.storeManager] === params.value) {
+      return SNR_ROLES[params.value];
+    }
+    return params.value;
+  }
+  // end
   private getAllUsers(): void {
     this.userService
       .getAllUsers()
@@ -64,32 +95,5 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   public onEditUser(user: User): void {
     this.router.navigate(['users/users-details', user.userId]);
-  }
-
-  public deleteUserById(user: User): void {
-    this.openConfirmationDialog(user);
-  }
-
-  openConfirmationDialog(user: User) {
-    const modalRef = this.modalService.open(ConfirmDialogComponent);
-    modalRef.componentInstance.message = 'Are you sure you want to delete?';
-
-    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        if (user.userId && user.userId > 0) {
-          this.userService
-            .deleteUserById(user.userId)
-            .pipe(takeUntil(this.userSubscription$))
-            .subscribe({
-              next: () => {
-                this.getAllUsers();
-              },
-              error: (e) => console.error(e),
-              complete: () => {},
-            });
-        }
-      } else {
-      }
-    });
   }
 }

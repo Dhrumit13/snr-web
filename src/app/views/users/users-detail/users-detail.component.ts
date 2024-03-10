@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, takeUntil } from 'rxjs';
 import {
@@ -9,6 +9,8 @@ import {
   UserListResponse,
   UsersService,
 } from '../services/users.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -17,8 +19,9 @@ import {
 })
 export class UsersDetailComponent implements OnInit, OnDestroy {
   public addEditUserID: number = 0;
-  faArrowLeft = faArrowLeft;
-
+  faTrash = faTrash;
+  faSave = faSave;
+  faXmark = faXmark;
   userForm!: FormGroup;
 
   private userSubscription$: Subject<boolean> = new Subject<boolean>();
@@ -27,6 +30,7 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private modalService: NgbModal,
     private userService: UsersService,
     private tosterService: ToastrService
   ) {}
@@ -52,7 +56,7 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
       password: ['', [Validators.required]],
       email: [''],
       mobile: [''],
-      role: ['fieldUser', [Validators.required]]
+      role: ['fieldUser', [Validators.required]],
     });
   }
 
@@ -111,5 +115,32 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
           this.userForm.reset();
         },
       });
+  }
+
+  public deleteUserById(): void {
+    this.openConfirmationDialog();
+  }
+
+  openConfirmationDialog() {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete this user?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (this.addEditUserID && this.addEditUserID > 0) {
+          this.userService
+            .deleteUserById(this.addEditUserID)
+            .pipe(takeUntil(this.userSubscription$))
+            .subscribe({
+              next: () => {
+                this.onBackClick();
+              },
+              error: (e) => console.error(e),
+              complete: () => {},
+            });
+        }
+      } else {
+      }
+    });
   }
 }

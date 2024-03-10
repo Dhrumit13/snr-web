@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import {
   Customer,
   CustomerListResponse,
@@ -21,7 +20,6 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
 
   public addEditCustomerID: number = 0;
-  faArrowLeft = faArrowLeft;
 
   customerForm!: FormGroup;
 

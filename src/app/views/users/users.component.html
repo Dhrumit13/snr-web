@@ -6,83 +6,24 @@
         <c-col class="pt-2"> <h5 cCardTitle>Users</h5></c-col>
         <c-col>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button cButton color="primary" (click)="onAddUser()">
+            <button cButton color="dark" (click)="onAddUser()">
               <fa-icon [icon]="faPlus"></fa-icon>
-              Add
+              Add User
             </button>
           </div>
         </c-col>
       </c-row>
       <hr />
-      <c-input-group class="mb-3">
-        <input
-          aria-describedby="button-addon2"
-          aria-label="Find any user"
-          cFormControl
-          placeholder="Find any user"
-        />
-        <button cButton color="dark" id="button-addon2" type="button">
-          <fa-icon [icon]="faSearch"></fa-icon>
-          Search
-        </button>
-      </c-input-group>
-
-      <table [striped]="true" cTable>
-        <thead>
-          <tr>
-            <th scope="col">User Name</th>
-            <th scope="col">Password</th>
-            <th scope="col">Email</th>
-            <th scope="col">Mobile</th>
-            <th scope="col">Role</th>
-            <th scope="col" class="text-center">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (user of userList; track user.userId; let idx = $index) {
-          <tr>
-            <td>{{ user.userName }}</td>
-            <td>{{ user.password }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.mobile }}</td>
-            <td>
-              @switch (user.role) { @case (SNR_ROLES[SNR_ROLES.fieldUser]) {
-              <div>{{ SNR_ROLES.fieldUser }}</div>
-              } @case (SNR_ROLES[SNR_ROLES.storeManager]) {
-              <div>{{ SNR_ROLES.storeManager }}</div>
-              } @case (SNR_ROLES[SNR_ROLES.admin]) {
-              <div>{{ SNR_ROLES.admin }}</div>
-              } }
-            </td>
-            <td class="text-center">
-              <button
-                cButton
-                color="dark"
-                variant="outline"
-                (click)="onEditUser(user)"
-                class="me-2"
-                size="sm"
-              >
-                <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
-              </button>
-              <button
-                cButton
-                color="danger"
-                variant="outline"
-                size="sm"
-                (click)="deleteUserById(user)"
-              >
-                <fa-icon [icon]="faTrash"></fa-icon>
-              </button>
-            </td>
-          </tr>
-          } @empty {
-          <tr>
-            <td colSpan="8" class="text-center">No user found.</td>
-          </tr>
-          }
-        </tbody>
-      </table>
+      <ag-grid-angular
+        class="ag-theme-quartz"
+        domLayout="autoHeight"
+        [rowData]="userList"
+        [rowHeight]="50"
+        [columnDefs]="colDefs"
+        [gridOptions]="gridOptions"
+        [pagination]="true"
+      >
+      </ag-grid-angular>
     </c-container>
   </c-card-body>
 </c-card>

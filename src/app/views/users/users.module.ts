@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsersComponent } from './users.component';
 import { UsersDetailComponent } from './users-detail/users-detail.component';
 import {UsersService} from './services/users.service';
+import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [UsersComponent, UsersDetailComponent],
@@ -30,7 +31,8 @@ import {UsersService} from './services/users.service';
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    AgGridModule
   ], providers: [UsersService],
 })
 export class UsersModule { }
