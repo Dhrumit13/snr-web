@@ -40,7 +40,7 @@
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputCity"> City </label>
           <c-col [sm]="10">
-            <app-snr-auto-complete #autocomplete (optionSelected)="handleCitySelected($event)"></app-snr-auto-complete>
+            <app-auto-complete-city #autocomplete (optionSelected)="handleCitySelected($event)"></app-auto-complete-city>
           </c-col>
         </c-row>
 

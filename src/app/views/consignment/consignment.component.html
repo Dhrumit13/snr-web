@@ -1,0 +1,28 @@
+<c-card>
+  <c-card-body>
+    <c-container>
+      <c-row>
+        <c-col class="pt-2"> <h5 cCardTitle>Total Bookings</h5></c-col>
+        <c-col>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button cButton color="dark" (click)="onAddCustomer()">
+              <fa-icon [icon]="faPlus"></fa-icon>
+              Add Booking
+            </button>
+          </div>
+        </c-col>
+      </c-row>
+      <hr />
+      <ag-grid-angular
+      class="ag-theme-quartz"
+      domLayout="autoHeight"
+      [rowData]="customerList"
+      [rowHeight]="50"
+      [columnDefs]="colDefs"
+      [gridOptions]="gridOptions"
+      [pagination]="true"
+    >
+    </ag-grid-angular>
+    </c-container>
+  </c-card-body>
+</c-card>

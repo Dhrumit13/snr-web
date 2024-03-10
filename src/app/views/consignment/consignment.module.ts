@@ -13,18 +13,17 @@ import { IconModule } from '@coreui/icons-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonSNRModule } from '../common/snr-common.module';
-import { OtherChargesComponent } from './other-charges.component';
-import { OtherChargesDetailsComponent } from './other-charges-details/other-charges-details.component';
-import { OtherChargesRoutingModule } from './other-charges-routing.module';
-import { OtherChargesService } from './services/other-charges.service';
-
+import { AgGridModule } from 'ag-grid-angular';
+import { ConsignmentComponent } from './consignment.component';
+import { ConsignmentRoutingModule } from './consignment-routing.module';
+import { ConsignmentDetailComponent } from './consignment-detail/consignment-detail.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
-  declarations: [OtherChargesComponent, OtherChargesDetailsComponent],
+  declarations: [ConsignmentComponent, ConsignmentDetailComponent],
   imports: [
     CommonModule,
     TableModule,
@@ -34,15 +33,16 @@ import { MatInputModule } from '@angular/material/input';
     GridModule,
     FormModule,
     FontAwesomeModule,
-    OtherChargesRoutingModule,
+    ConsignmentRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    CommonSNRModule,
+    AgGridModule,
     MatInputModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    CommonSNRModule,
   ],
-  providers: [OtherChargesService],
+  providers: [],
 })
-export class OtherChargesModule {}
+export class ConsignmentModule {}

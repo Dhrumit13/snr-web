@@ -21,6 +21,11 @@ import { RateDetailsComponent } from './rate-details/rate-details.component';
 import { CityRateService } from './service/city-rate.service';
 import { CommonSNRModule } from '../common/snr-common.module';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [CityRateComponent, RateDetailsComponent],
   imports: [
@@ -39,6 +44,10 @@ import { CommonSNRModule } from '../common/snr-common.module';
     HttpClientModule,
     ReactiveFormsModule,
     CommonSNRModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [CityRateService],
 })

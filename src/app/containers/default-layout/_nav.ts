@@ -210,8 +210,8 @@ export const navItems: INavData[] = [
     class: 'py-0'
   },
   {
-    name: 'Consignments',
-    url: '/buttons',
+    name: 'Booking',
+    url: '/consignments',
     iconComponent: { name: 'cil-cursor' }
   },
 

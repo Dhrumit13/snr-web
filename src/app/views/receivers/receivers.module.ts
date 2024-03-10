@@ -18,6 +18,11 @@ import { ReceiverDetailsComponent } from './receiver-details/receiver-details.co
 import { ReceiversRoutingModule } from './receivers-routing.module';
 import { ReceiversService } from './services/receivers.service';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 @NgModule({
   declarations: [ReceiversComponent, ReceiverDetailsComponent],
   imports: [
@@ -33,6 +38,10 @@ import { ReceiversService } from './services/receivers.service';
     HttpClientModule,
     ReactiveFormsModule,
     CommonSNRModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [ReceiversService],
 })

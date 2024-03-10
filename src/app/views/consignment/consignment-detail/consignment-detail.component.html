@@ -1,0 +1,51 @@
+<c-card>
+  <c-card-body>
+    <c-container>
+      <c-row>
+        <c-col class="pt-2"> <h5 cCardTitle>Booking Details</h5></c-col>
+      </c-row>
+      <hr />
+
+      <form [formGroup]="customerForm">
+        <c-row class="mb-3">
+          <c-col [md]="6">
+            <mat-form-field appearance="outline">
+              <mat-label>Booking Date</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker ></mat-datepicker>
+            </mat-form-field>
+        </c-col>
+          <c-col [md]="6">
+            <mat-form-field appearance="outline">
+              <mat-label>Booking Number</mat-label>
+              <input matInput placeholder="Placeholder">
+            </mat-form-field>
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-3">
+          <c-col [md]="6">
+            <label cLabel for="inputnumber">Sender</label>
+            <input cFormControl  id="inputnumber" type="text" />
+          </c-col>
+          <c-col [md]="6">
+            <label cLabel for="inputPassword4">Receiver</label>
+            <input cFormControl  id="inputnumber" type="text" />
+          </c-col>
+        </c-row>
+
+        <c-row class="mb-3">
+          <c-col [md]="6">
+            <app-auto-complete-city [title]="'Origin'"></app-auto-complete-city>
+          </c-col>
+          <c-col [md]="6">
+           <app-auto-complete-city [title]="'Destination'"></app-auto-complete-city>
+          </c-col>
+        </c-row>
+
+      </form>
+
+    </c-container>
+  </c-card-body>
+</c-card>

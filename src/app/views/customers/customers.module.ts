@@ -19,6 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonSNRModule } from '../common/snr-common.module';
 import { AgGridModule } from 'ag-grid-angular';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [CustomersComponent, CustomerDetailsComponent],
   imports: [
@@ -34,7 +38,11 @@ import { AgGridModule } from 'ag-grid-angular';
     HttpClientModule,
     ReactiveFormsModule,
     CommonSNRModule,
-    AgGridModule
+    AgGridModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ],
   providers: [CustomersService],
 })

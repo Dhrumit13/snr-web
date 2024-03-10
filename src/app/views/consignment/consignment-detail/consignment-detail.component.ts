@@ -8,15 +8,19 @@ import {
 } from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-
+import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
-  selector: 'app-receiver-details',
-  templateUrl: './receiver-details.component.html',
-  styleUrls: ['./receiver-details.component.scss']
+  selector: 'app-consignment-detail',
+  templateUrl: './consignment-detail.component.html',
+  styleUrls: ['./consignment-detail.component.scss'],
 })
-export class ReceiverDetailsComponent implements OnInit, OnDestroy {
-
+export class ConsignmentDetailComponent implements OnInit, OnDestroy {
+  faTrash = faTrash;
+  faSave = faSave;
+  faXmark = faXmark;
   public addEditCustomerID: number = 0;
 
   customerForm!: FormGroup;
@@ -27,6 +31,7 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private modalService: NgbModal,
     private customerService: CustomersService,
     private tosterService: ToastrService
   ) {}
@@ -48,21 +53,25 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
 
   private createForm(): void {
     this.customerForm = this.fb.group({
-      receiverName: ['', [Validators.required]],
+      date: ['', [Validators.required]],
       email: [''],
       mobile: ['', [Validators.required]],
       address: [''],
       city: [''],
+      state: [''],
       isActive: [true],
+      gstNo: [''],
+      cgst: [''],
+      sgst: [''],
+      igst: [''],
     });
   }
 
   public onBackClick(): void {
-    this.router.navigate(['receivers']);
+    this.router.navigate(['customers']);
   }
 
   handleCitySelected(item: any) {
-    console.log('item: ', item);
     this.customerForm.controls['city'].setValue(item.name);
   }
 
@@ -113,12 +122,39 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
             this.onBackClick();
           }, 1000);
         },
-        error: (e) => this.tosterService.error('Error', 'Something goes wrong!.'),
+        error: (e) =>
+          this.tosterService.error('Error', 'Something goes wrong!.'),
         complete: () => {
           this.customerForm.reset();
         },
       });
   }
+
+  public deleteCustomerById(): void {
+    this.openConfirmationDialog();
+  }
+
+  openConfirmationDialog() {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message =
+      'Are you sure you want to delete this customer?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (this.addEditCustomerID && this.addEditCustomerID > 0) {
+          this.customerService
+            .deleteCustomerById(this.addEditCustomerID)
+            .pipe(takeUntil(this.customerSubscription$))
+            .subscribe({
+              next: () => {
+                this.onBackClick();
+              },
+              error: (e) => console.error(e),
+              complete: () => {},
+            });
+        }
+      } else {
+      }
+    });
+  }
 }
-
-

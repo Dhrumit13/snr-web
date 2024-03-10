@@ -8,7 +8,6 @@ import {
 } from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-auto-complete.component';
 
 
 @Component({
@@ -18,7 +17,6 @@ import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-aut
 })
 export class OtherChargesDetailsComponent implements OnInit, OnDestroy {
 
-  @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
 
   public addEditCustomerID: number = 0;
 
@@ -84,9 +82,7 @@ export class OtherChargesDetailsComponent implements OnInit, OnDestroy {
           if (response.customers && response.customers.length > 0) {
             delete response.customers[0].customerId;
             this.customerForm.setValue(response.customers[0]);
-            if(response.customers[0].city) {
-              this.autocomplete.setValue(response.customers[0].city);
-            }
+
           }
         },
         error: (e) => console.error(e),

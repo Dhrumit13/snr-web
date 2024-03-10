@@ -19,7 +19,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
-import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-auto-complete.component';
+import { AutoCompleteCityComponent } from '../../common/auto-complete-city/auto-complete-city.component';
 
 @Component({
   selector: 'app-rate-details',
@@ -27,8 +27,7 @@ import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-aut
   styleUrls: ['./rate-details.component.scss'],
 })
 export class RateDetailsComponent implements OnInit, OnDestroy {
-  @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
-
+  @ViewChild('autocomplete') autocomplete!: AutoCompleteCityComponent;
   public isDefaultNavActive = true;
   public surfaceList: Rates[] = [];
   public airList: Rates[] = [];
@@ -69,7 +68,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleCitySelected(item: any) {
-    this.selectedCity = item.name;
+    this.selectedCity = item;
     console.log('this.selectedCity: ', this.selectedCity);
   }
 
@@ -171,8 +170,8 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.ratePerKG = rate.ratePerKg;
     this.ratePerPiece = rate.ratePerPiece;
     this.transportationMode = rate.transportationMode;
-    // this.selectedCity = rate.city;
-    if (rate.city) {
+
+    if(rate.city) {
       this.autocomplete.setValue(rate.city);
     }
 
@@ -223,10 +222,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public resetForm(): void {
     this.transportationMode = 'surface';
     this.selectedCity = '';
-    this.autocomplete.resetControl();
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';
+    this.autocomplete.resetControl();
     if (this.selectedCustomer) {
       this.getRateByCustomer();
     }

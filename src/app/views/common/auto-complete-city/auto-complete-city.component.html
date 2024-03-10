@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{title}}</mat-label>
+  <input type="text"
+         placeholder="Pick one"
+         [ariaLabel]="title"
+         matInput
+         [formControl]="selectedCity"
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option.name" (onSelectionChange)="selectEvent($event.source.value)">{{option.name}}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

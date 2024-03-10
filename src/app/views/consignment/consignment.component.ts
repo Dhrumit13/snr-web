@@ -9,17 +9,17 @@ import {
   Customer,
   CustomerListResponse,
   CustomersService,
-} from './service/customers.service';
+} from '../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.scss'],
+  selector: 'app-consignment',
+  templateUrl: './consignment.component.html',
+  styleUrls: ['./consignment.component.scss'],
 })
-export class CustomersComponent implements OnInit, OnDestroy {
+export class ConsignmentComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
   faSearch = faSearch;
   faEdit = faEdit;
@@ -84,10 +84,10 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   public onAddCustomer(): void {
-    this.router.navigate(['customers/customer-details', 0]);
+    this.router.navigate(['consignments/consignment-details', 0]);
   }
 
   public onEditCustomer(customer: Customer): void {
-    this.router.navigate(['customers/customer-details', customer.customerId]);
+    this.router.navigate(['consignments/consignment-details', customer.customerId]);
   }
 }

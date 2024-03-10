@@ -35,10 +35,7 @@
           </select>
         </c-col>
         <c-col [sm]="6">
-          <label cLabel for="inputEmail4">City</label>
-          <!-- <input cFormControl id="inputname" type="text" disabled="false"  class="uppercase" /> -->
-          <app-snr-auto-complete #autocomplete (optionSelected)="handleCitySelected($event)"></app-snr-auto-complete>
-
+          <app-auto-complete-city #autocomplete (optionSelected)="handleCitySelected($event)" [title]="'City'" ></app-auto-complete-city>
         </c-col>
       </c-row>
       <c-row class="mb-3">

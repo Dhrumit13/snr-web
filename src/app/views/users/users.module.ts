@@ -18,6 +18,10 @@ import { UsersDetailComponent } from './users-detail/users-detail.component';
 import {UsersService} from './services/users.service';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [UsersComponent, UsersDetailComponent],
   imports: [
@@ -32,7 +36,11 @@ import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
     HttpClientModule,
     ReactiveFormsModule,
     UsersRoutingModule,
-    AgGridModule
+    AgGridModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
   ], providers: [UsersService],
 })
 export class UsersModule { }

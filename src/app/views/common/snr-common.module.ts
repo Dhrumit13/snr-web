@@ -5,11 +5,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormModule } from '@coreui/angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
-import { SnrAutoCompleteComponent } from './snr-auto-complete/snr-auto-complete.component';
 import { CityNameService } from '../../services/city-name.service';
 
+import { AsyncPipe } from '@angular/common';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import {AutoCompleteCityComponent } from './auto-complete-city/auto-complete-city.component';
+
 @NgModule({
-  declarations: [SnrAutoCompleteComponent],
+  declarations: [AutoCompleteCityComponent],
   imports: [
     CommonModule,
     FormModule,
@@ -17,8 +22,12 @@ import { CityNameService } from '../../services/city-name.service';
     FontAwesomeModule,
     AutocompleteLibModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    AsyncPipe,
   ],
   providers: [CityNameService],
-  exports:[SnrAutoCompleteComponent]
+  exports: [AutoCompleteCityComponent],
 })
 export class CommonSNRModule {}

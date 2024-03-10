@@ -42,6 +42,7 @@ import { CityRateModule } from './views/city-rate/city-rate.module';
 import { ToastrModule } from 'ngx-toastr';
 import { CityNameService } from './services/city-name.service';
 import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -88,7 +89,8 @@ const APP_CONTAINERS = [
     },
     IconSetService,
     CityNameService,
-    Title
+    Title,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
