@@ -14,6 +14,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { ColDef, ValueFormatterParams } from 'ag-grid-community';
 
 @Component({
   selector: 'app-other-charges',
@@ -27,6 +28,18 @@ export class OtherChargesComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
+
+  colDefs: ColDef[] = [
+    { field: 'userId', hide: true },
+    { field: 'otherChargeName', flex: 1, filter: 'agSetColumnFilter' },
+    { field: 'amount', flex: 1, filter: 'agSetColumnFilter' },
+    // {
+    //   field: 'role',
+    //   flex: 1,
+    //   filter: 'agSetColumnFilter',
+    //   valueFormatter: this.roleFormatter,
+    // },
+  ];
 
   constructor(
     private customersService: CustomersService,

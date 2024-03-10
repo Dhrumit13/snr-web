@@ -17,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CustomersService } from './service/customers.service';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonSNRModule } from '../common/snr-common.module';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [CustomersComponent, CustomerDetailsComponent],
@@ -32,7 +33,8 @@ import { CommonSNRModule } from '../common/snr-common.module';
     CustomersRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CommonSNRModule
+    CommonSNRModule,
+    AgGridModule
   ],
   providers: [CustomersService],
 })

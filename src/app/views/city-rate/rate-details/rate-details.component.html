@@ -67,13 +67,14 @@
               [disabled]="!enableSave()"
               (click)="onSave()"
             >
-              Save
+            <fa-icon [icon]="faSave"></fa-icon> Save
             </button>
           </div>
         </c-col>
         <c-col>
           <div class="d-grid gap-2">
-            <button cButton variant="outline" size="lg" (click)="resetForm()" color="dark">Cancel</button>
+            <button cButton variant="outline" size="lg" (click)="resetForm()" color="secondary">
+              <fa-icon [icon]="faXmark"></fa-icon> Cancel</button>
           </div>
         </c-col>
       </c-row>

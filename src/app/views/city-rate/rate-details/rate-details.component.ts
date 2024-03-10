@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faSave,
+  faTrash,
+  faXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   Customer,
   CustomerListResponse,
@@ -39,10 +44,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
   public ratePerPiece: any;
   // end
 
-
-
   faEdit = faEdit;
   faTrash = faTrash;
+  faSave = faSave;
+  faXmark = faXmark;
 
   public customerList: Customer[] | undefined = [];
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
@@ -67,7 +72,6 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.selectedCity = item.name;
     console.log('this.selectedCity: ', this.selectedCity);
   }
-
 
   public onCustomerSelect(): void {
     if (this.selectedCustomer) {
@@ -168,7 +172,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.ratePerPiece = rate.ratePerPiece;
     this.transportationMode = rate.transportationMode;
     // this.selectedCity = rate.city;
-    if(rate.city) {
+    if (rate.city) {
       this.autocomplete.setValue(rate.city);
     }
 
@@ -223,7 +227,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
     this.minWeight = '';
     this.ratePerKG = '';
     this.ratePerPiece = '';
-    if(this.selectedCustomer) {
+    if (this.selectedCustomer) {
       this.getRateByCustomer();
     }
   }

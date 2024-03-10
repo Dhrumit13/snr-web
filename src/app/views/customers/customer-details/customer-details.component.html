@@ -76,7 +76,6 @@
           <c-col [sm]="10" class="pt-2">
             <c-form-check [switch]="true" >
               <input cFormCheckInput type="checkbox" formControlName="isActive" />
-              <!-- <label cFormCheckLabel>Checked switch checkbox input</label> -->
             </c-form-check>
           </c-col>
         </c-row>
@@ -87,14 +86,27 @@
           <c-col>
             <div class="d-grid gap-2">
               <button cButton color="dark" type="button" size="lg" class="me-3" (click)="onSubmit()" [disabled]="customerForm.invalid">
-                Save
+                <fa-icon [icon]="faSave"></fa-icon> Save
               </button>
             </div>
           </c-col>
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="dark" variant="outline" size="lg" (click)="onBackClick()">
-                Cancel
+              <button cButton color="secondary" variant="outline" size="lg" (click)="onBackClick()">
+                <fa-icon [icon]="faXmark"></fa-icon> Cancel
+              </button>
+            </div>
+          </c-col>
+          <c-col *ngIf="addEditCustomerID > 0">
+            <div class="d-grid gap-2">
+              <button
+                cButton
+                variant="outline"
+                size="lg"
+                color="danger"
+                (click)="deleteCustomerById()"
+              >
+              <fa-icon [icon]="faTrash"></fa-icon> Delete
               </button>
             </div>
           </c-col>

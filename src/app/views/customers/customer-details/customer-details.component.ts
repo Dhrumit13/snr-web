@@ -9,6 +9,9 @@ import {
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-auto-complete.component';
+import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -18,7 +21,9 @@ import { SnrAutoCompleteComponent } from '../../common/snr-auto-complete/snr-aut
 export class CustomerDetailsComponent implements OnInit, OnDestroy {
 
   @ViewChild('autocomplete') autocomplete!: SnrAutoCompleteComponent;
-
+  faTrash = faTrash;
+  faSave = faSave;
+  faXmark = faXmark;
   public addEditCustomerID: number = 0;
 
   customerForm!: FormGroup;
@@ -29,6 +34,7 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
+    private modalService: NgbModal,
     private customerService: CustomersService,
     private tosterService: ToastrService
   ) {}
@@ -126,5 +132,32 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
           this.customerForm.reset();
         },
       });
+  }
+
+  public deleteCustomerById(): void {
+    this.openConfirmationDialog();
+  }
+
+  openConfirmationDialog() {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete this customer?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (this.addEditCustomerID && this.addEditCustomerID > 0) {
+          this.customerService
+            .deleteCustomerById(this.addEditCustomerID)
+            .pipe(takeUntil(this.customerSubscription$))
+            .subscribe({
+              next: () => {
+                this.onBackClick();
+              },
+              error: (e) => console.error(e),
+              complete: () => {},
+            });
+        }
+      } else {
+      }
+    });
   }
 }
