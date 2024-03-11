@@ -28,7 +28,11 @@
 
             <mat-form-field appearance="outline">
               <mat-label>User Name</mat-label>
-              <input matInput placeholder="Placeholder" formControlName="userName">
+              <input
+                matInput
+
+                formControlName="userName"
+              />
             </mat-form-field>
           </c-col>
         </c-row>
@@ -54,7 +58,11 @@
           </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input matInput placeholder="Placeholder" formControlName="password">
+            <input
+              matInput
+
+              formControlName="password"
+            />
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
@@ -69,7 +77,12 @@
           </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="Placeholder" type="email" formControlName="email">
+            <input
+              matInput
+
+              type="email"
+              formControlName="email"
+            />
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
@@ -84,24 +97,15 @@
           </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Mobile</mat-label>
-            <input matInput placeholder="Placeholder" type="number" formControlName="mobile">
+            <input
+              matInput
+
+              type="number"
+              formControlName="mobile"
+            />
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <!-- <label cLabel="col" cCol [sm]="2" for="inputrole"> Role </label>
-          <c-col [sm]="10">
-            <select
-              aria-label="Default select example"
-              cSelect
-              formControlName="role"
-            >
-              <option value="fieldUser">Field User</option>
-              <option value="storeManager">Store Manager</option>
-              <option value="admin">Admin</option>
-            </select>
-
-
-          </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>User Type</mat-label>
             <mat-select formControlName="role">
@@ -115,41 +119,25 @@
         <c-row class="mt-4">
           <c-col>
             <div class="d-grid gap-2">
-              <button
-                cButton
-                color="dark"
-                class="me-3"
-                size="lg"
-                type="button"
-                (click)="onSubmit()"
-              >
-              <fa-icon [icon]="faSave"></fa-icon>  Save
+              <button mat-raised-button color="primary" (click)="onSubmit()">
+                <fa-icon [icon]="faSave"></fa-icon> Save
               </button>
             </div>
           </c-col>
           <c-col>
             <div class="d-grid gap-2">
-              <button
-                cButton
-                variant="outline"
-                size="lg"
-                color="secondary"
-                (click)="onBackClick()"
-              >
-              <fa-icon [icon]="faXmark"></fa-icon> Cancel
+              <button mat-raised-button (click)="onBackClick()">
+                <fa-icon [icon]="faXmark"></fa-icon> Cancel
               </button>
             </div>
           </c-col>
           <c-col *ngIf="addEditUserID > 0">
             <div class="d-grid gap-2">
               <button
-                cButton
-                variant="outline"
-                size="lg"
-                color="danger"
+              mat-raised-button color="warn"
                 (click)="deleteUserById()"
               >
-              <fa-icon [icon]="faTrash"></fa-icon> Delete
+                <fa-icon [icon]="faTrash"></fa-icon> Delete
               </button>
             </div>
           </c-col>

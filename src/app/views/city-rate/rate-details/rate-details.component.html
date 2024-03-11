@@ -1,89 +1,97 @@
 <c-card>
-  <!-- <c-card-header>Header</c-card-header> -->
   <c-card-body>
     <c-container>
       <c-row>
-        <c-col class="pt-2"> <h5 cCardTitle>Rate by Cities</h5></c-col>
+        <c-col class="pt-2"> <h5 cCardTitle>Rate by Cities and Customer</h5></c-col>
       </c-row>
       <hr />
       <c-row class="mb-3">
         <c-col [sm]="12">
-          <label cLabel for="inputEmail4">Select Customer</label>
-          <select
-            aria-label="Default select example"
-            cSelect
-            [(ngModel)]="selectedCustomer"
-            (change)="onCustomerSelect()"
-          >
-            @for (customer of customerList; track $index) {
-            <option [ngValue]="customer">{{ customer.name }}</option>
-            }
-          </select>
+          <mat-form-field appearance="outline">
+            <mat-label>Select Customer</mat-label>
+            <mat-select
+              [(ngModel)]="selectedCustomer"
+            >
+              @for (customer of customerList; track $index) {
+              <mat-option [value]="customer" (onSelectionChange)="onCustomerSelect($event.source.value)">{{ customer.name }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
         </c-col>
       </c-row>
       <c-row class="mb-3">
         <c-col [sm]="6">
-          <label cLabel for="inputEmail4">Select Mode</label>
-          <select
-            aria-label="Default select example"
-            cSelect
-            [(ngModel)]="transportationMode"
-          >
-            <option value="surface">Surface</option>
-            <option value="air">Air</option>
-            <option value="rail">Rail</option>
-          </select>
+          <mat-form-field appearance="outline">
+            <mat-label>Select Mode</mat-label>
+            <mat-select [(ngModel)]="transportationMode">
+              <mat-option value="surface">Surface</mat-option>
+              <mat-option value="air">Air</mat-option>
+              <mat-option value="rail">Rail</mat-option>
+            </mat-select>
+          </mat-form-field>
         </c-col>
         <c-col [sm]="6">
-          <app-auto-complete-city #autocomplete (optionSelected)="handleCitySelected($event)" [title]="'City'" ></app-auto-complete-city>
+          <app-auto-complete-city
+            #autocomplete
+            (optionSelected)="handleCitySelected($event)"
+            [title]="'City'"
+          ></app-auto-complete-city>
         </c-col>
       </c-row>
       <c-row class="mb-3">
         <c-col [sm]="4">
-          <label cLabel for="inputEmail4">Minimum Weight (KG)</label>
-          <input cFormControl id="inputname" type="text" [(ngModel)]="minWeight" />
+          <mat-form-field appearance="outline">
+            <mat-label>Minimum Weight (KG)</mat-label>
+            <input matInput type="text" [(ngModel)]="minWeight" />
+          </mat-form-field>
         </c-col>
         <c-col [sm]="4">
-          <label cLabel for="inputEmail4">Rate Per KG</label>
-          <input cFormControl id="inputname" type="text" [(ngModel)]="ratePerKG" />
+          <mat-form-field appearance="outline">
+            <mat-label>Rate Per KG</mat-label>
+            <input matInput type="text" [(ngModel)]="ratePerKG" />
+          </mat-form-field>
         </c-col>
         <c-col [sm]="4">
-          <label cLabel for="inputEmail4">Rate Per Piece</label>
-          <input cFormControl id="inputname" type="text" [(ngModel)]="ratePerPiece" />
+          <mat-form-field appearance="outline">
+            <mat-label>Rate Per Piece</mat-label>
+            <input matInput type="text" [(ngModel)]="ratePerPiece" />
+          </mat-form-field>
         </c-col>
       </c-row>
       <c-row class="mt-4 mb-4">
         <c-col>
           <div class="d-grid gap-2">
             <button
-              cButton
-              color="dark"
-              type="button"
-              class="me-3"
-              size="lg"
+            mat-raised-button color="primary"
               [disabled]="!enableSave()"
               (click)="onSave()"
             >
-            <fa-icon [icon]="faSave"></fa-icon> Save
+              <fa-icon [icon]="faSave"></fa-icon> Save
             </button>
           </div>
         </c-col>
         <c-col>
           <div class="d-grid gap-2">
-            <button cButton variant="outline" size="lg" (click)="resetForm()" color="secondary">
-              <fa-icon [icon]="faXmark"></fa-icon> Cancel</button>
+            <button
+            mat-raised-button
+              (click)="resetForm()"
+            >
+              <fa-icon [icon]="faXmark"></fa-icon> Cancel
+            </button>
           </div>
         </c-col>
       </c-row>
       <hr />
-      <h5 cCardTitle *ngIf="selectedCustomer" class="text-center">Rates of {{ selectedCustomer.name }}</h5>
+      <h5 cCardTitle *ngIf="selectedCustomer" class="text-center">
+        Rates of {{ selectedCustomer.name }}
+      </h5>
       <c-nav layout="justified" variant="tabs" *ngIf="selectedCustomer">
         <a
           [active]="isDefaultNavActive"
           [cTabContent]="tabContent"
           [tabPaneIdx]="0"
           cNavLink
-          (click)="isDefaultNavActive = true;"
+          (click)="isDefaultNavActive = true"
           >SURFACE</a
         >
         <a
@@ -110,17 +118,22 @@
                 <th class="text-center" scope="col">Min Weight</th>
                 <th class="text-center" scope="col">Rate Per KG</th>
                 <th class="text-center" scope="col">Rate Per Piece</th>
-                <th class="text-center" scope="col" class="text-center">Action</th>
+                <th class="text-center" scope="col" class="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
-              @for (data of surfaceList; track data.rateId; let idx = $index)
-              {
+              @for (data of surfaceList; track data.rateId; let idx = $index) {
               <tr>
                 <td class="text-center">{{ data.city }}</td>
                 <td class="text-center">{{ data.minWeight }}</td>
-                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
-                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center">
+                  {{ data.ratePerKg ? data.ratePerKg : "-" }}
+                </td>
+                <td class="text-center">
+                  {{ data.ratePerPiece ? data.ratePerPiece : "-" }}
+                </td>
                 <td class="text-center" class="text-center">
                   <button
                     cButton
@@ -132,7 +145,13 @@
                   >
                     <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
                   </button>
-                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
+                  <button
+                    cButton
+                    color="danger"
+                    variant="outline"
+                    size="sm"
+                    (click)="onDeleteRate(data)"
+                  >
                     <fa-icon [icon]="faTrash"></fa-icon>
                   </button>
                 </td>
@@ -154,17 +173,22 @@
                 <th class="text-center" scope="col">Min Weight</th>
                 <th class="text-center" scope="col">Rate Per KG</th>
                 <th class="text-center" scope="col">Rate Per Piece</th>
-                <th class="text-center" scope="col" class="text-center">Action</th>
+                <th class="text-center" scope="col" class="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
-              @for (data of airList; track data.rateId; let idx = $index)
-              {
+              @for (data of airList; track data.rateId; let idx = $index) {
               <tr>
                 <td class="text-center">{{ data.city }}</td>
                 <td class="text-center">{{ data.minWeight }}</td>
-                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
-                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center">
+                  {{ data.ratePerKg ? data.ratePerKg : "-" }}
+                </td>
+                <td class="text-center">
+                  {{ data.ratePerPiece ? data.ratePerPiece : "-" }}
+                </td>
                 <td class="text-center" class="text-center">
                   <button
                     cButton
@@ -176,7 +200,13 @@
                   >
                     <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
                   </button>
-                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
+                  <button
+                    cButton
+                    color="danger"
+                    variant="outline"
+                    size="sm"
+                    (click)="onDeleteRate(data)"
+                  >
                     <fa-icon [icon]="faTrash"></fa-icon>
                   </button>
                 </td>
@@ -198,17 +228,22 @@
                 <th class="text-center" scope="col">Min Weight</th>
                 <th class="text-center" scope="col">Rate Per KG</th>
                 <th class="text-center" scope="col">Rate Per Piece</th>
-                <th class="text-center" scope="col" class="text-center">Action</th>
+                <th class="text-center" scope="col" class="text-center">
+                  Action
+                </th>
               </tr>
             </thead>
             <tbody>
-              @for (data of railList; track data.rateId; let idx = $index)
-              {
+              @for (data of railList; track data.rateId; let idx = $index) {
               <tr>
                 <td class="text-center">{{ data.city }}</td>
                 <td class="text-center">{{ data.minWeight }}</td>
-                <td class="text-center">{{ data.ratePerKg ? data.ratePerKg : '-' }}</td>
-                <td class="text-center">{{ data.ratePerPiece ? data.ratePerPiece : '-'  }}</td>
+                <td class="text-center">
+                  {{ data.ratePerKg ? data.ratePerKg : "-" }}
+                </td>
+                <td class="text-center">
+                  {{ data.ratePerPiece ? data.ratePerPiece : "-" }}
+                </td>
                 <td class="text-center" class="text-center">
                   <button
                     cButton
@@ -220,7 +255,13 @@
                   >
                     <fa-icon [icon]="faEdit" class="mr-3"></fa-icon>
                   </button>
-                  <button cButton color="danger" variant="outline" size="sm" (click)="onDeleteRate(data)">
+                  <button
+                    cButton
+                    color="danger"
+                    variant="outline"
+                    size="sm"
+                    (click)="onDeleteRate(data)"
+                  >
                     <fa-icon [icon]="faTrash"></fa-icon>
                   </button>
                 </td>

@@ -12,6 +12,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {AutoCompleteCityComponent } from './auto-complete-city/auto-complete-city.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [AutoCompleteCityComponent],
@@ -26,6 +27,7 @@ import {AutoCompleteCityComponent } from './auto-complete-city/auto-complete-cit
     MatInputModule,
     MatAutocompleteModule,
     AsyncPipe,
+    MatButtonModule
   ],
   providers: [CityNameService],
   exports: [AutoCompleteCityComponent],

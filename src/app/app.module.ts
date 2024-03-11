@@ -43,6 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CityNameService } from './services/city-name.service';
 import { ConfirmDialogComponent } from './views/confirm-dialog/confirm-dialog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatButtonModule } from '@angular/material/button';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -80,6 +81,7 @@ const APP_CONTAINERS = [
     CardModule,
     CityRateModule,
     NgScrollbarModule,
+    MatButtonModule,
     ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [

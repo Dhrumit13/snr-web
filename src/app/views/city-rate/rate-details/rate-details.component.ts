@@ -69,10 +69,10 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
 
   handleCitySelected(item: any) {
     this.selectedCity = item;
-    console.log('this.selectedCity: ', this.selectedCity);
   }
 
-  public onCustomerSelect(): void {
+  public onCustomerSelect(value: any): void {
+    this.selectedCustomer = value;
     if (this.selectedCustomer) {
       this.getRateByCustomer();
     }
