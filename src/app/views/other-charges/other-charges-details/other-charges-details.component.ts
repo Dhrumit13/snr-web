@@ -8,6 +8,7 @@ import {
 } from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { faSave, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OtherChargesDetailsComponent implements OnInit, OnDestroy {
 
-
+  faSave = faSave;
+  faXmark = faXmark;
   public addEditCustomerID: number = 0;
 
   customerForm!: FormGroup;

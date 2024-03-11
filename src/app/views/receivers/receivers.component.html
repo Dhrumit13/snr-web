@@ -1,14 +1,13 @@
 <c-card>
-  <!-- <c-card-header>Header</c-card-header> -->
   <c-card-body>
     <c-container>
       <c-row>
         <c-col class="pt-2"> <h5 cCardTitle>Receivers</h5></c-col>
         <c-col>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button cButton color="primary" (click)="onAddCustomer()">
+            <button mat-raised-button color="primary" (click)="onAddCustomer()">
               <fa-icon [icon]="faPlus"></fa-icon>
-              Add
+              Add Receiver
             </button>
           </div>
         </c-col>
