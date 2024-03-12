@@ -1,5 +1,4 @@
 <c-card>
-  <!-- <c-card-header>Header</c-card-header> -->
   <c-card-body>
     <c-container>
       <c-row>
@@ -8,48 +7,42 @@
       <hr />
       <form [formGroup]="customerForm">
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputname"> Name* </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputname" type="text" formControlName="name" />
-            <div class="error-text" *ngIf="customerForm.get('name')?.invalid && (customerForm.get('name')?.dirty || customerForm.get('name')?.touched)">
-              Please enter customer name.
-            </div>
-          </c-col>
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name" />
+          </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputEmail3"> Email </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputEmail3" type="email" formControlName="email" />
-          </c-col>
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" />
+          </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputMobile"> Mobile* </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputMobile" type="text" formControlName="mobile" />
-            <div class="error-text" *ngIf="customerForm.get('mobile')?.invalid && (customerForm.get('mobile')?.dirty || customerForm.get('mobile')?.touched)">
-              Please enter valid mobile number.
-            </div>
-          </c-col>
+          <mat-form-field appearance="outline">
+            <mat-label>Mobile</mat-label>
+            <input matInput type="text"  formControlName="mobile" />
+          </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputAddress"> Address </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputAddress" type="text" formControlName="address" />
-          </c-col>
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput type="text"  formControlName="address" />
+          </mat-form-field>
         </c-row>
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputCity"> City </label>
           <c-col [sm]="10">
             <!-- <input cFormControl id="inputCity" type="text" formControlName="city" class="uppercase" /> -->
-            <app-auto-complete-city #autocomplete (optionSelected)="handleCitySelected($event)"></app-auto-complete-city>
+            <app-auto-complete-city #autocomplete [title]="'City'" (optionSelected)="handleCitySelected($event)"></app-auto-complete-city>
 
           </c-col>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputState"> State </label>
-          <c-col [sm]="10">
-            <input cFormControl id="inputState" type="text" formControlName="state" />
-          </c-col>
+          <mat-form-field appearance="outline">
+            <mat-label>State</mat-label>
+            <input matInput type="text"  formControlName="state" />
+          </mat-form-field>
         </c-row>
 
         <c-row class="mb-3">
@@ -57,16 +50,32 @@
           <label cLabel="col" for="inputGST"> GST Details </label>
           </c-col>
           <c-col [sm]="4">
-            <input cFormControl id="inputGST" type="text" placeholder="GST Number" formControlName="gstNo" />
+            <mat-form-field appearance="outline">
+              <mat-label>GST Number</mat-label>
+              <input matInput type="text"  formControlName="gstNo" />
+            </mat-form-field>
+            <!-- <input cFormControl id="inputGST" type="text" placeholder="GST Number" formControlName="gstNo" /> -->
           </c-col>
           <c-col [sm]="2">
-            <input cFormControl id="cgst" type="text" placeholder="CGST %" formControlName="cgst" />
+            <mat-form-field appearance="outline">
+              <mat-label>CGST %</mat-label>
+              <input matInput type="text"  formControlName="cgst" />
+            </mat-form-field>
+            <!-- <input cFormControl id="cgst" type="text" placeholder="CGST %" formControlName="cgst" /> -->
           </c-col>
           <c-col [sm]="2">
-            <input cFormControl id="sgst" type="text"  placeholder="SGST %" formControlName="sgst" />
+            <mat-form-field appearance="outline">
+              <mat-label>SGST %</mat-label>
+              <input matInput type="text"  formControlName="sgst" />
+            </mat-form-field>
+            <!-- <input cFormControl id="sgst" type="text"  placeholder="SGST %" formControlName="sgst" /> -->
           </c-col>
           <c-col [sm]="2">
-            <input cFormControl id="igst" type="text"  placeholder="IGST %" formControlName="igst" />
+            <mat-form-field appearance="outline">
+              <mat-label>IGST %</mat-label>
+              <input matInput type="text"  formControlName="igst" />
+            </mat-form-field>
+            <!-- <input cFormControl id="igst" type="text"  placeholder="IGST %" formControlName="igst" /> -->
           </c-col>
         </c-row>
 
