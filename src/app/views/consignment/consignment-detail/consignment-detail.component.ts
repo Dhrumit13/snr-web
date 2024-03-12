@@ -72,7 +72,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   }
 
   handleCitySelected(item: any) {
-    this.customerForm.controls['city'].setValue(item.name);
+    this.customerForm.controls['city'].setValue(item);
   }
 
   // Method to submit the form

@@ -31,12 +31,7 @@
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <label cLabel="col" cCol [sm]="2" for="inputCity"> City </label>
-          <c-col [sm]="10">
-            <!-- <input cFormControl id="inputCity" type="text" formControlName="city" class="uppercase" /> -->
             <app-auto-complete-city #autocomplete [title]="'City'" (optionSelected)="handleCitySelected($event)"></app-auto-complete-city>
-
-          </c-col>
         </c-row>
         <c-row class="mb-3">
           <mat-form-field appearance="outline">
@@ -46,36 +41,29 @@
         </c-row>
 
         <c-row class="mb-3">
-          <c-col [sm]="2">
-          <label cLabel="col" for="inputGST"> GST Details </label>
-          </c-col>
-          <c-col [sm]="4">
+          <c-col [sm]="6">
             <mat-form-field appearance="outline">
               <mat-label>GST Number</mat-label>
               <input matInput type="text"  formControlName="gstNo" />
             </mat-form-field>
-            <!-- <input cFormControl id="inputGST" type="text" placeholder="GST Number" formControlName="gstNo" /> -->
           </c-col>
           <c-col [sm]="2">
             <mat-form-field appearance="outline">
               <mat-label>CGST %</mat-label>
               <input matInput type="text"  formControlName="cgst" />
             </mat-form-field>
-            <!-- <input cFormControl id="cgst" type="text" placeholder="CGST %" formControlName="cgst" /> -->
           </c-col>
           <c-col [sm]="2">
             <mat-form-field appearance="outline">
               <mat-label>SGST %</mat-label>
               <input matInput type="text"  formControlName="sgst" />
             </mat-form-field>
-            <!-- <input cFormControl id="sgst" type="text"  placeholder="SGST %" formControlName="sgst" /> -->
           </c-col>
           <c-col [sm]="2">
             <mat-form-field appearance="outline">
               <mat-label>IGST %</mat-label>
               <input matInput type="text"  formControlName="igst" />
             </mat-form-field>
-            <!-- <input cFormControl id="igst" type="text"  placeholder="IGST %" formControlName="igst" /> -->
           </c-col>
         </c-row>
 
@@ -83,9 +71,7 @@
         <c-row class="mb-3">
           <label cLabel="col" cCol [sm]="2" for="inputState"> Active </label>
           <c-col [sm]="10" class="pt-2">
-            <c-form-check [switch]="true" >
-              <input cFormCheckInput type="checkbox" formControlName="isActive" />
-            </c-form-check>
+            <mat-slide-toggle formControlName="isActive"></mat-slide-toggle>
           </c-col>
         </c-row>
 
@@ -94,14 +80,14 @@
         <c-row class="mt-4">
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="dark" type="button" size="lg" class="me-3" (click)="onSubmit()" [disabled]="customerForm.invalid">
+              <button mat-raised-button color="primary" type="button" (click)="onSubmit()" [disabled]="customerForm.invalid">
                 <fa-icon [icon]="faSave"></fa-icon> Save
               </button>
             </div>
           </c-col>
           <c-col>
             <div class="d-grid gap-2">
-              <button cButton color="secondary" variant="outline" size="lg" (click)="onBackClick()">
+              <button mat-raised-button (click)="onBackClick()">
                 <fa-icon [icon]="faXmark"></fa-icon> Cancel
               </button>
             </div>
@@ -109,10 +95,8 @@
           <c-col *ngIf="addEditCustomerID > 0">
             <div class="d-grid gap-2">
               <button
-                cButton
-                variant="outline"
-                size="lg"
-                color="danger"
+               mat-raised-button
+               color="warn"
                 (click)="deleteCustomerById()"
               >
               <fa-icon [icon]="faTrash"></fa-icon> Delete

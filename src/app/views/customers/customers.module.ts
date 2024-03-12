@@ -23,6 +23,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [CustomersComponent, CustomerDetailsComponent],
   imports: [
@@ -43,6 +45,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
+    MatSlideToggleModule,
+    MatButtonModule
   ],
   providers: [CustomersService],
 })

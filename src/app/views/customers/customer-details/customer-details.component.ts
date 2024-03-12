@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AutoCompleteCityComponent } from '../../common/auto-complete-city/auto-complete-city.component';
 
 @Component({
   selector: 'app-customer-details',
@@ -18,7 +19,7 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
   styleUrls: ['./customer-details.component.scss'],
 })
 export class CustomerDetailsComponent implements OnInit, OnDestroy {
-
+  @ViewChild('autocomplete') autocomplete!: AutoCompleteCityComponent;
   faTrash = faTrash;
   faSave = faSave;
   faXmark = faXmark;
@@ -73,8 +74,7 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleCitySelected(item: any) {
-    console.log('item: ', item);
-    this.customerForm.controls['city'].setValue(item.name);
+    this.customerForm.controls['city'].setValue(item);
   }
 
   // Method to submit the form
@@ -97,7 +97,9 @@ export class CustomerDetailsComponent implements OnInit, OnDestroy {
           if (response.customers && response.customers.length > 0) {
             delete response.customers[0].customerId;
             this.customerForm.setValue(response.customers[0]);
-
+            if(response?.customers[0]?.city) {
+              this.autocomplete.setValue(response.customers[0].city);
+            }
           }
         },
         error: (e) => console.error(e),

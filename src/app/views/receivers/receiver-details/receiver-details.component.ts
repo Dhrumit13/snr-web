@@ -66,8 +66,7 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleCitySelected(item: any) {
-    console.log('item: ', item);
-    this.customerForm.controls['city'].setValue(item.name);
+    this.customerForm.controls['city'].setValue(item);
   }
 
   // Method to submit the form
