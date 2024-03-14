@@ -23,6 +23,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [OtherChargesComponent, OtherChargesDetailsComponent],
@@ -43,7 +44,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatNativeDateModule,
     MatDatepickerModule,
     CommonSNRModule,
-    MatButtonModule
+    MatButtonModule,
+    AgGridModule
   ],
   providers: [OtherChargesService],
 })

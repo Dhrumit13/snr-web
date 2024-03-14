@@ -5,7 +5,7 @@
         <c-col class="pt-2"> <h5 cCardTitle>Other Charge Details</h5></c-col>
       </c-row>
       <hr />
-      <form [formGroup]="customerForm">
+      <form [formGroup]="chargeForm">
         <c-row class="mb-3">
           <mat-form-field appearance="outline">
             <mat-label>Title</mat-label>
@@ -22,7 +22,7 @@
         <c-row class="mt-4">
           <c-col>
             <div class="d-grid gap-2">
-              <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="customerForm.invalid">
+              <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="chargeForm.invalid">
                 <fa-icon [icon]="faSave"></fa-icon> Save
               </button>
             </div>
@@ -31,6 +31,17 @@
             <div class="d-grid gap-2">
               <button mat-raised-button (click)="onBackClick()">
                 <fa-icon [icon]="faXmark"></fa-icon>  Cancel
+              </button>
+            </div>
+          </c-col>
+          <c-col *ngIf="addEditChargeID > 0">
+            <div class="d-grid gap-2">
+              <button
+               mat-raised-button
+               color="warn"
+                (click)="deleteCustomerById()"
+              >
+              <fa-icon [icon]="faTrash"></fa-icon> Delete
               </button>
             </div>
           </c-col>

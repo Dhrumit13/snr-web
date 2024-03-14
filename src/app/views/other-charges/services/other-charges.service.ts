@@ -12,33 +12,29 @@ export class OtherChargesService {
 
   constructor(private http: HttpClient) {}
 
-  getAllReceivers(): Observable<ReceiverListResponse> {
-    return this.http.get<ReceiverListResponse>(`${this.apiUrl}api/Receiver`);
+  getAllCharges(): Observable<ChargeListResponse> {
+    return this.http.get<ChargeListResponse>(`${this.apiUrl}api/OtherCharges`);
   }
 
-  getReceiverById(id: number): Observable<ReceiverListResponse> {
-    return this.http.get<ReceiverListResponse>(`${this.apiUrl}api/Receiver/${id}`);
+  getChargeById(id: number): Observable<ChargeListResponse> {
+    return this.http.get<ChargeListResponse>(`${this.apiUrl}api/OtherCharges?OtherChargesId=${id}`);
   }
 
-  addUpdateReceiver(data: Receiver): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}api/Receiver`, data);
+  addUpdateCharge(data: OtherCharge): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}api/OtherCharges`, data);
   }
 
-  deleteReceiverById(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}api/Receiver/${id}`);
+  deleteChargeById(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}api/OtherCharges/${id}`);
   }
 }
 
-export interface ReceiverListResponse {
-  receivers?: Receiver[];
+export interface ChargeListResponse {
+  otherChargess?: OtherCharge[];
 }
 
-export interface Receiver {
-  receiverId?: number;
-  receiverName?: string;
-  city?: string;
-  address?: string;
-  email?: string;
-  mobile?: string;
-  isActive?: boolean;
+export interface OtherCharge {
+  otherChargeId?: number;
+  otherChargeName?: string;
+  amount?: number;
 }

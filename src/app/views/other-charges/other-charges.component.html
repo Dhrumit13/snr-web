@@ -5,7 +5,7 @@
         <c-col class="pt-2"> <h5 cCardTitle>Other Charges</h5></c-col>
         <c-col>
           <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button mat-raised-button color="primary" (click)="onAddCustomer()">
+            <button mat-raised-button color="primary" (click)="onAddCharge()">
               <fa-icon [icon]="faPlus"></fa-icon>
               Add Charge
             </button>
@@ -13,16 +13,16 @@
         </c-col>
       </c-row>
       <hr />
-      <!-- <ag-grid-angular
+      <ag-grid-angular
         class="ag-theme-quartz"
         domLayout="autoHeight"
-        [rowData]="userList"
+        [rowData]="chargeList"
         [rowHeight]="50"
         [columnDefs]="colDefs"
         [gridOptions]="gridOptions"
         [pagination]="true"
       >
-      </ag-grid-angular> -->
+      </ag-grid-angular>
     </c-container>
   </c-card-body>
 </c-card>
