@@ -67,7 +67,6 @@ export class CustomersComponent implements OnInit, OnDestroy {
   onRowClicked(params: any): void {
     this.onEditCustomer(params.data);
   }
-
   // end
 
   private getAllCustomers(): void {

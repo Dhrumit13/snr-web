@@ -5,7 +5,7 @@
         <c-col class="pt-2"> <h5 cCardTitle>Receiver Details</h5></c-col>
       </c-row>
       <hr />
-      <form [formGroup]="customerForm">
+      <form [formGroup]="receiverForm">
         <c-row class="mb-3">
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
@@ -54,7 +54,7 @@
                 mat-raised-button
                 color="primary"
                 (click)="onSubmit()"
-                [disabled]="customerForm.invalid"
+                [disabled]="receiverForm.invalid"
               >
                 <fa-icon [icon]="faSave"></fa-icon> Save
               </button>
@@ -64,6 +64,17 @@
             <div class="d-grid gap-2">
               <button mat-raised-button (click)="onBackClick()">
                 <fa-icon [icon]="faXmark"></fa-icon> Cancel
+              </button>
+            </div>
+          </c-col>
+          <c-col *ngIf="addEditReceiverID > 0">
+            <div class="d-grid gap-2">
+              <button
+               mat-raised-button
+               color="warn"
+                (click)="deleteReceiverById()"
+              >
+              <fa-icon [icon]="faTrash"></fa-icon> Delete
               </button>
             </div>
           </c-col>

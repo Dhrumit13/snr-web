@@ -1,14 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import {
-  Customer,
-  CustomerListResponse,
-  CustomersService,
-} from '../../customers/service/customers.service';
 import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Receiver, ReceiverListResponse, ReceiversService } from '../services/receivers.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -21,37 +19,38 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
   faTrash = faTrash;
   faSave = faSave;
   faXmark = faXmark;
-  public addEditCustomerID: number = 0;
+  public addEditReceiverID: number = 0;
 
-  customerForm!: FormGroup;
+  receiverForm!: FormGroup;
 
-  private customerSubscription$: Subject<boolean> = new Subject<boolean>();
+  private receiverSubscription$: Subject<boolean> = new Subject<boolean>();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
-    private customerService: CustomersService,
-    private tosterService: ToastrService
-  ) {}
+    private modalService: NgbModal,
+    private tosterService: ToastrService,
+    private receiversService: ReceiversService
+  ) { }
 
   ngOnInit() {
     this.createForm();
     this.route.params.subscribe((params: Params) => {
-      this.addEditCustomerID = +params['id'];
-      if (this.addEditCustomerID > 0) {
-        this.getCustomerById(this.addEditCustomerID);
+      this.addEditReceiverID = +params['id'];
+      if (this.addEditReceiverID > 0) {
+        this.getReceiverById(this.addEditReceiverID);
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.customerSubscription$.next(true);
-    this.customerSubscription$.unsubscribe();
+    this.receiverSubscription$.next(true);
+    this.receiverSubscription$.unsubscribe();
   }
 
   private createForm(): void {
-    this.customerForm = this.fb.group({
+    this.receiverForm = this.fb.group({
       receiverName: ['', [Validators.required]],
       email: [''],
       mobile: ['', [Validators.required]],
@@ -66,61 +65,87 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
   }
 
   handleCitySelected(item: any) {
-    this.customerForm.controls['city'].setValue(item);
+    this.receiverForm.controls['city'].setValue(item);
   }
 
   // Method to submit the form
   onSubmit() {
-    if (this.customerForm.valid) {
+    if (this.receiverForm.valid) {
       // Form is valid, handle the submission logic here
-      this.addUpdateCustomer(this.customerForm.value);
+      this.addUpdateReceiver(this.receiverForm.value);
     } else {
       // Form is invalid, mark all fields as touched to display error messages
-      this.customerForm.markAllAsTouched();
+      this.receiverForm.markAllAsTouched();
     }
   }
 
-  private getCustomerById(id: number): void {
-    this.customerService
-      .getCustomerById(id)
-      .pipe(takeUntil(this.customerSubscription$))
+  private getReceiverById(id: number): void {
+    this.receiversService
+      .getReceiverById(id)
+      .pipe(takeUntil(this.receiverSubscription$))
       .subscribe({
-        next: (response: CustomerListResponse) => {
-          if (response.customers && response.customers.length > 0) {
-            delete response.customers[0].customerId;
-            this.customerForm.setValue(response.customers[0]);
-
+        next: (response: ReceiverListResponse) => {
+          if (response.receivers && response.receivers.length > 0) {
+            delete response.receivers[0].receiverId;
+            this.receiverForm.setValue(response.receivers[0]);
           }
         },
         error: (e) => console.error(e),
-        complete: () => {},
+        complete: () => { },
       });
   }
 
-  private addUpdateCustomer(data: Customer): void {
-    let request: Customer = {};
-    if (this.addEditCustomerID > 0) {
-      request.customerId = this.addEditCustomerID;
-      request = { ...data, ...{ customerId: request.customerId } };
+  private addUpdateReceiver(data: Receiver): void {
+    let request: Receiver = {};
+    if (this.addEditReceiverID > 0) {
+      request.receiverId = this.addEditReceiverID;
+      request = { ...data, ...{ receiverId: request.receiverId } };
     } else {
-      delete request.customerId;
+      delete request.receiverId;
       request = { ...data };
     }
-    this.customerService
-      .addUpdateCustomer(request)
-      .pipe(takeUntil(this.customerSubscription$))
+    this.receiversService
+      .addUpdateReceiver(request)
+      .pipe(takeUntil(this.receiverSubscription$))
       .subscribe({
         next: (response: any) => {
-          this.tosterService.success('Success', 'Customer saved.');
+          this.tosterService.success('Success', 'Receiver saved.');
           setTimeout(() => {
             this.onBackClick();
           }, 1000);
         },
         error: (e) => this.tosterService.error('Error', 'Something goes wrong!.'),
         complete: () => {
-          this.customerForm.reset();
+          this.receiverForm.reset();
         },
       });
+  }
+
+  public deleteReceiverById(): void {
+    this.openConfirmationDialog();
+  }
+
+  openConfirmationDialog() {
+    const modalRef = this.modalService.open(ConfirmDialogComponent);
+    modalRef.componentInstance.message = 'Are you sure you want to delete?';
+
+    modalRef.componentInstance.confirmed.subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        if (this.addEditReceiverID && this.addEditReceiverID > 0) {
+          this.receiversService
+            .deleteReceiverById(this.addEditReceiverID)
+            .pipe(takeUntil(this.receiverSubscription$))
+            .subscribe({
+              next: () => {
+                this.onBackClick();
+              },
+              error: (e) => console.error(e),
+              complete: () => { },
+            });
+        }
+      } else {
+      }
+    });
   }
 }
 

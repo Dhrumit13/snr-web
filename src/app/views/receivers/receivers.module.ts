@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [ReceiversComponent, ReceiverDetailsComponent],
@@ -46,6 +47,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatDatepickerModule,
     MatButtonModule,
     MatSlideToggleModule,
+    AgGridModule
   ],
   providers: [ReceiversService],
 })
