@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline">
+  <mat-label>Select Customer</mat-label>
+  <input type="text"
+         placeholder="Pick one"
+         matInput
+         [formControl]="selectedCustomer"
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayProperty">
+    @for (option of filteredOptions | async; track option) {
+      <mat-option [value]="option" (onSelectionChange)="selectEvent($event.source.value)">{{option.name}}</mat-option>
+    }
+  </mat-autocomplete>
+</mat-form-field>

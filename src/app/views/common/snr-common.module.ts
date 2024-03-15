@@ -11,11 +11,17 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {AutoCompleteCityComponent } from './auto-complete-city/auto-complete-city.component';
+import { AutoCompleteCityComponent } from './auto-complete-city/auto-complete-city.component';
+import { AutoSelectCustomerComponent } from './auto-select-customer/auto-select-customer.component';
 import { MatButtonModule } from '@angular/material/button';
+import { AutoSelectReceiverComponent } from './auto-select-receiver/auto-select-receiver.component';
 
 @NgModule({
-  declarations: [AutoCompleteCityComponent],
+  declarations: [
+    AutoCompleteCityComponent,
+    AutoSelectCustomerComponent,
+    AutoSelectReceiverComponent,
+  ],
   imports: [
     CommonModule,
     FormModule,
@@ -27,9 +33,13 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatAutocompleteModule,
     AsyncPipe,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [CityNameService],
-  exports: [AutoCompleteCityComponent],
+  exports: [
+    AutoCompleteCityComponent,
+    AutoSelectCustomerComponent,
+    AutoSelectReceiverComponent,
+  ],
 })
 export class CommonSNRModule {}

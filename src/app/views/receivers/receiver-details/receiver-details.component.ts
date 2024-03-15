@@ -7,6 +7,7 @@ import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { Receiver, ReceiverListResponse, ReceiversService } from '../services/receivers.service';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AutoCompleteCityComponent } from '../../common/auto-complete-city/auto-complete-city.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ReceiverDetailsComponent implements OnInit, OnDestroy {
 
+  @ViewChild('autocomplete') autocomplete!: AutoCompleteCityComponent;
   faTrash = faTrash;
   faSave = faSave;
   faXmark = faXmark;
@@ -88,6 +90,9 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
           if (response.receivers && response.receivers.length > 0) {
             delete response.receivers[0].receiverId;
             this.receiverForm.setValue(response.receivers[0]);
+            if(response?.receivers[0]?.city) {
+              this.autocomplete.setValue(response.receivers[0].city);
+            }
           }
         },
         error: (e) => console.error(e),
