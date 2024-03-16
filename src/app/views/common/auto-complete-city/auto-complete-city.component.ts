@@ -45,7 +45,6 @@ export class AutoCompleteCityComponent implements OnInit {
   }
 
   selectEvent(event: any): void {
-    console.log('event: ', event);
     this.optionSelected.emit(event);
   }
 

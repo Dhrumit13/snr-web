@@ -64,3 +64,19 @@
 .mat-mdc-raised-button {
   height: 45px !important;
 }
+
+.mdc-text-field--disabled {
+  background-color: #e8e8e8 !important;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

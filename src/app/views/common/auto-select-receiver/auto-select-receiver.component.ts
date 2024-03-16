@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, map, startWith, takeUntil } from 'rxjs';
 import { ReceiverListResponse, ReceiversService } from './../../receivers/services/receivers.service';
 
@@ -16,7 +16,7 @@ export class AutoSelectReceiverComponent implements OnInit {
 
   options: any[] = [];
   filteredOptions!: Observable<any[]>;
-  selectedReceiver = new FormControl();
+  selectedReceiver = new FormControl('', Validators['required']);
 
   constructor(private receiverService: ReceiversService) {
     this.getAllReceivers();

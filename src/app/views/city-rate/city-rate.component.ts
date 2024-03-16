@@ -45,7 +45,7 @@ export class CityRateComponent implements OnInit {
           }
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete'),
+        complete: () => {},
       });
   }
 
@@ -67,7 +67,7 @@ export class CityRateComponent implements OnInit {
             this.getAllCustomers();
           },
           error: (e) => console.error(e),
-          complete: () => console.info('complete'),
+          complete: () => {},
         });
     }
   }

@@ -89,7 +89,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
           }
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete'),
+        complete: () => {},
       });
   }
 
@@ -211,7 +211,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
                 this.getRateByCustomer();
               },
               error: (e) => console.error(e),
-              complete: () => console.info('complete'),
+              complete: () => {},
             });
         }
       } else {

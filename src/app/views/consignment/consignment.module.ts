@@ -22,11 +22,14 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [ConsignmentComponent, ConsignmentDetailComponent],
   imports: [
-    CommonModule,
+  CommonModule,
     TableModule,
     CardModule,
     ButtonModule,
@@ -43,7 +46,10 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSelectModule,
+    TextFieldModule,
+    MatRadioModule
   ],
   providers: [],
 })

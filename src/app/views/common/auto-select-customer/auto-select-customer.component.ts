@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable, Subject, map, startWith, takeUntil } from 'rxjs';
 import {
   CustomerListResponse,
@@ -15,11 +15,11 @@ export class AutoSelectCustomerComponent implements OnInit {
   @Output() optionSelected = new EventEmitter<string>();
   public customerMasterList: any[] = [];
 
+  selectedCustomer = new FormControl('', Validators['required']);
   private customerSubscription$: Subject<boolean> = new Subject<boolean>();
 
   options: any[] = [];
   filteredOptions!: Observable<any[]>;
-  selectedCustomer = new FormControl();
 
   constructor(private customerService: CustomersService) {
     this.getAllCustomers();
@@ -43,7 +43,7 @@ export class AutoSelectCustomerComponent implements OnInit {
           }
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete'),
+        complete: () => {},
       });
   }
 
@@ -74,7 +74,6 @@ export class AutoSelectCustomerComponent implements OnInit {
   }
 
   selectEvent(event: any): void {
-    console.log('event: ', event);
     this.optionSelected.emit(event);
   }
 

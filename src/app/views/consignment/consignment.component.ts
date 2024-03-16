@@ -79,7 +79,7 @@ export class ConsignmentComponent implements OnInit, OnDestroy {
           this.customerList = response.customers;
         },
         error: (e) => console.error(e),
-        complete: () => console.info('complete'),
+        complete: () => {},
       });
   }
 

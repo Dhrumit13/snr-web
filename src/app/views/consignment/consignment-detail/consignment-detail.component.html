@@ -1,49 +1,217 @@
-<c-card>
-  <c-card-body>
-    <c-container>
-      <c-row>
-        <c-col class="pt-2"> <h5 cCardTitle>Booking Details</h5></c-col>
-      </c-row>
-      <hr />
+<c-row>
+  <c-col [md]="8">
+    <c-card>
+      <c-card-body>
+        <c-container>
+          <c-row>
+            <c-col class="pt-2"> <h5 cCardTitle>Booking Details</h5></c-col>
+          </c-row>
+          <hr />
 
-      <form [formGroup]="customerForm">
-        <c-row class="mb-3">
-          <c-col [md]="6">
-            <mat-form-field appearance="outline">
-              <mat-label>Booking Date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker ></mat-datepicker>
-            </mat-form-field>
-        </c-col>
-          <c-col [md]="6">
-            <mat-form-field appearance="outline">
-              <mat-label>Booking Number</mat-label>
-              <input matInput >
-            </mat-form-field>
-          </c-col>
-        </c-row>
+          <form [formGroup]="bookingForm">
+            <c-row class="mb-3">
+              <c-col [md]="6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Booking Date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="date"
+                    placeholder="Choose a date"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </c-col>
+              <c-col [md]="6">
+                <mat-form-field appearance="outline">
+                  <mat-label>Booking Number</mat-label>
+                  <input matInput formControlName="bookingNumber" />
+                </mat-form-field>
+              </c-col>
+            </c-row>
 
-        <c-row class="mb-3">
-          <c-col [md]="6">
-            <app-auto-select-customer></app-auto-select-customer>
-          </c-col>
-          <c-col [md]="6">
-            <app-auto-select-receiver></app-auto-select-receiver>
-          </c-col>
-        </c-row>
+            <c-row class="mb-3">
+              <c-col [md]="12">
+                <app-auto-select-customer
+                  #autocompleteCustomer
+                  (optionSelected)="handleCustomerSelected($event)"
+                ></app-auto-select-customer>
+              </c-col>
+            </c-row>
 
-        <c-row class="mb-3">
-          <c-col [md]="6">
-            <app-auto-complete-city [title]="'Origin'"></app-auto-complete-city>
-          </c-col>
-          <c-col [md]="6">
-           <app-auto-complete-city [title]="'Destination'"></app-auto-complete-city>
-          </c-col>
-        </c-row>
 
-      </form>
+            <c-row class="mb-3">
+              <c-col [md]="6">
+                <app-auto-complete-city
+                  #autocompleteOrigin
+                  (optionSelected)="handleOriginSelected($event)"
+                  [title]="'Origin'"
+                ></app-auto-complete-city>
+              </c-col>
+              <c-col [md]="6">
+                <app-auto-complete-city
+                  #autocompleteDestination
+                  (optionSelected)="handleDestinationSelected($event)"
+                  [title]="'Destination'"
+                ></app-auto-complete-city>
+              </c-col>
+            </c-row>
+            <c-row class="mb-3">
+              <c-col [md]="12">
+                <app-auto-select-receiver
+                  #autocompleteReceiver
+                  (optionSelected)="handleReceiverSelected($event)"
+                ></app-auto-select-receiver>
+              </c-col>
+            </c-row>
+            <c-row class="mb-3">
+              <c-col [md]="5">
+                <mat-form-field appearance="outline">
+                  <mat-label>Package Type</mat-label>
+                  <mat-select formControlName="packageType">
+                    <mat-option value="surface">Surface</mat-option>
+                    <mat-option value="air">Air</mat-option>
+                    <mat-option value="rail">Rail</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </c-col>
+              <c-col [md]="3">
+                <mat-form-field appearance="outline">
+                  <mat-label>Weight(KG)</mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </c-col>
+              <c-col [md]="4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gross Amount</mat-label>
+                  <input matInput />
+                </mat-form-field>
+              </c-col>
+            </c-row>
 
-    </c-container>
-  </c-card-body>
-</c-card>
+            <hr />
+
+            <h6 class="mb-3">Other Charges</h6>
+            <div formArrayName="otherCharges">
+              <ng-container
+                *ngFor="let control of chargeControls.controls; let i = index"
+              >
+                <c-row [formGroupName]="i" class="mb-3">
+                  <c-col [md]="8">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Select Other Charge</mat-label>
+                      <mat-select formControlName="chargeType" (selectionChange)="onOtherChargeSelect(i, $event.value)">
+                        @for (option of chargeList; track option) {
+                        <mat-option
+                          [value]="option"
+                          >{{ option.otherChargeName }}</mat-option
+                        >
+                        }
+                      </mat-select>
+                    </mat-form-field>
+                  </c-col>
+                  <c-col [md]="4">
+                    <c-row class="align-items-center">
+                      <c-col [md]="10">
+                        <mat-form-field appearance="outline">
+                          <mat-label>Amount</mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            formControlName="value"
+                          /> </mat-form-field
+                      ></c-col>
+                      <c-col [md]="2">
+                        <fa-icon style="cursor: pointer;" *ngIf="i < chargeControls.length - 1" [icon]="faTrash" (click)="removeOtherCharge(i)"></fa-icon>
+                        <fa-icon style="cursor: pointer;" *ngIf="i === chargeControls.length - 1" [icon]="faPlus" (click)="addChargeControl(i)"></fa-icon>
+                      </c-col>
+                    </c-row>
+                  </c-col>
+                </c-row>
+              </ng-container>
+            </div>
+
+            <hr />
+            <c-row class="mb-3 align-items-center">
+              <c-col [md]="4" style="border-right: 1px solid #d2d2d2;">
+                <h6>
+                  Payment Mode
+                </h6>
+                <div class="text-center">
+                  <mat-radio-group aria-label="Select an option" formControlName="paymentMode">
+                    <mat-radio-button value="cash">Cash</mat-radio-button>
+                    <mat-radio-button value="credit">Credit</mat-radio-button>
+                  </mat-radio-group>
+                </div>
+              </c-col>
+              <c-col [md]="4">
+                <h5 class="text-end" style="color: rgb(194, 4, 4)">
+                  NET AMOUNT
+                </h5>
+              </c-col>
+              <c-col [md]="4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Amount</mat-label>
+                  <input matInput type="number" [disabled]="true" />
+                </mat-form-field>
+              </c-col>
+            </c-row>
+            <c-row class="mb-3">
+              <c-col [md]="12">
+                <mat-form-field appearance="outline">
+                  <mat-label>Remarks</mat-label>
+                  <textarea matInput></textarea>
+                </mat-form-field>
+              </c-col>
+            </c-row>
+
+            <c-row class="mt-4">
+              <c-col>
+                <div class="d-grid gap-2">
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    type="button"
+                    (click)="onSave()"
+                  >
+                    <fa-icon [icon]="faSave"></fa-icon> Save
+                  </button>
+                </div>
+              </c-col>
+              <c-col>
+                <div class="d-grid gap-2">
+                  <button mat-raised-button>
+                    <fa-icon [icon]="faXmark"></fa-icon> Cancel
+                  </button>
+                </div>
+              </c-col>
+              <c-col>
+                <div class="d-grid gap-2">
+                  <button mat-raised-button color="warn">
+                    <fa-icon [icon]="faTrash"></fa-icon> Delete
+                  </button>
+                </div>
+              </c-col>
+            </c-row>
+          </form>
+        </c-container>
+      </c-card-body>
+    </c-card>
+  </c-col>
+  <c-col [md]="4">
+    <c-card>
+      <c-card-body>
+        <c-container>
+          <c-row>
+            <c-col class="pt-2"> <h5 cCardTitle>Booking Preview</h5></c-col>
+          </c-row>
+          <hr />
+        </c-container>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
