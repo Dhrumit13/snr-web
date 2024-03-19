@@ -57,6 +57,7 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
       email: [''],
       mobile: [''],
       role: ['fieldUser', [Validators.required]],
+      city: ['', [Validators.required]]
     });
   }
 

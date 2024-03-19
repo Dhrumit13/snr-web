@@ -1,5 +1,4 @@
 <c-card>
-  <!-- <c-card-header>Header</c-card-header> -->
   <c-card-body>
     <c-container>
       <c-row>
@@ -9,97 +8,39 @@
       <form [formGroup]="userForm">
         <c-row class="mb-3">
           <c-col [sm]="12">
-            <!-- <input
-              cFormControl
-              id="inputunm"
-              formControlName="userName"
-              type="text"
-            /> -->
-            <!-- <div
-              class="error-text"
-              *ngIf="
-                userForm.get('userName')?.invalid &&
-                (userForm.get('userName')?.dirty ||
-                  userForm.get('userName')?.touched)
-              "
-            >
-              Please enter user name.
-            </div> -->
-
             <mat-form-field appearance="outline">
               <mat-label>User Name</mat-label>
               <input
                 matInput
-
                 formControlName="userName"
               />
             </mat-form-field>
           </c-col>
         </c-row>
         <c-row class="mb-3">
-          <!-- <label cLabel="col" cCol [sm]="2" for="inputpass"> Password </label>
-          <c-col [sm]="10">
-            <input
-              cFormControl
-              id="inputpass"
-              type="text"
-              formControlName="password"
-            />
-            <div
-              class="error-text"
-              *ngIf="
-                userForm.get('password')?.invalid &&
-                (userForm.get('password')?.dirty ||
-                  userForm.get('password')?.touched)
-              "
-            >
-              Please enter user password.
-            </div>
-          </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
             <input
               matInput
-
               formControlName="password"
             />
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <!-- <label cLabel="col" cCol [sm]="2" for="inputemail"> Email </label>
-          <c-col [sm]="10">
-            <input
-              cFormControl
-              id="inputemail"
-              type="text"
-              formControlName="email"
-            />
-          </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
             <input
               matInput
-
               type="email"
               formControlName="email"
             />
           </mat-form-field>
         </c-row>
         <c-row class="mb-3">
-          <!-- <label cLabel="col" cCol [sm]="2" for="inputmobile"> Mobile </label>
-          <c-col [sm]="10">
-            <input
-              cFormControl
-              id="inputmobile"
-              type="text"
-              formControlName="mobile"
-            />
-          </c-col> -->
           <mat-form-field appearance="outline">
             <mat-label>Mobile</mat-label>
             <input
               matInput
-
               type="number"
               formControlName="mobile"
             />
@@ -113,6 +54,16 @@
               <mat-option value="storeManager">Store Manager</mat-option>
               <mat-option value="admin">Admin</mat-option>
             </mat-select>
+          </mat-form-field>
+        </c-row>
+        <c-row class="mb-3">
+          <mat-form-field appearance="outline">
+            <mat-label>City</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="city"
+            />
           </mat-form-field>
         </c-row>
         <hr class="mt-4" />

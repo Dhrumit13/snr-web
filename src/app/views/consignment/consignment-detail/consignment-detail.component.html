@@ -236,7 +236,41 @@
           </c-row>
           <c-row *ngIf="bookingForm.get('receiver')?.value">
             <c-col [md]="5">Receiver</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('receiver')?.value}}</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('receiver')?.value.receiverName}}</c-col>
+          </c-row>
+          <c-row *ngIf="bookingForm.get('origin')?.value">
+            <c-col [md]="5">Origin</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('origin')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('destination')?.value">
+            <c-col [md]="5">Destination</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('destination')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('weight')?.value">
+            <c-col [md]="5">Weight</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('weight')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('quantity')?.value">
+            <c-col [md]="5">Quantity</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('quantity')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('grossAmount')?.value">
+            <c-col [md]="5">Gross Amount</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('grossAmount')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('packageType')?.value">
+            <c-col [md]="5">Package Type</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('packageType')?.value}}</c-col>
+          </c-row>
+
+          <c-row *ngIf="bookingForm.get('paymentMode')?.value">
+            <c-col [md]="5">Payment Mode</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('paymentMode')?.value}}</c-col>
           </c-row>
 
         </c-container>
