@@ -126,6 +126,7 @@ export class RateDetailsComponent implements OnInit, OnDestroy {
       this.selectedCustomer &&
       this.transportationMode &&
       this.selectedCity &&
+      this.minWeight &&
       (this.ratePerKG || this.ratePerPiece)
     ) {
       return (isEnabled = true);

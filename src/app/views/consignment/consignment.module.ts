@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import {MatRadioModule} from '@angular/material/radio';
+import { CityRateService } from '../city-rate/service/city-rate.service';
 
 @NgModule({
   declarations: [ConsignmentComponent, ConsignmentDetailComponent],
@@ -51,6 +52,6 @@ import {MatRadioModule} from '@angular/material/radio';
     TextFieldModule,
     MatRadioModule
   ],
-  providers: [],
+  providers: [CityRateService],
 })
 export class ConsignmentModule {}

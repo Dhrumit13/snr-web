@@ -61,15 +61,13 @@
               </c-col>
             </c-row>
             <c-row class="mb-3">
-              <c-col [md]="12">
+              <c-col [md]="8">
                 <app-auto-select-receiver
                   #autocompleteReceiver
                   (optionSelected)="handleReceiverSelected($event)"
                 ></app-auto-select-receiver>
               </c-col>
-            </c-row>
-            <c-row class="mb-3">
-              <c-col [md]="5">
+              <c-col [md]="4">
                 <mat-form-field appearance="outline">
                   <mat-label>Package Type</mat-label>
                   <mat-select formControlName="packageType">
@@ -79,20 +77,30 @@
                   </mat-select>
                 </mat-form-field>
               </c-col>
-              <c-col [md]="3">
+            </c-row>
+            <c-row class="mb-1">
+              <c-col [md]="4">
                 <mat-form-field appearance="outline">
                   <mat-label>Weight(KG)</mat-label>
-                  <input matInput />
+                  <input matInput type="number" formControlName="weight" (blur)="onWeightBlur()" />
+                </mat-form-field>
+              </c-col>
+              <c-col [md]="4">
+                <mat-form-field appearance="outline">
+                  <mat-label>Quantity(Boxes)</mat-label>
+                  <input matInput type="number" formControlName="quantity" (blur)="onWeightBlur()" />
                 </mat-form-field>
               </c-col>
               <c-col [md]="4">
                 <mat-form-field appearance="outline">
                   <mat-label>Gross Amount</mat-label>
-                  <input matInput />
+                  <input matInput type="number" formControlName="grossAmount" />
                 </mat-form-field>
               </c-col>
             </c-row>
-
+            <div class="text-end" *ngIf="grossAmountCalculationHint">
+              <small [innerHTML]="grossAmountCalculationHint"></small>
+            </div>
             <hr />
 
             <h6 class="mb-3">Other Charges</h6>
@@ -141,10 +149,11 @@
                 <h6>
                   Payment Mode
                 </h6>
-                <div class="text-center">
+                <div>
                   <mat-radio-group aria-label="Select an option" formControlName="paymentMode">
-                    <mat-radio-button value="cash">Cash</mat-radio-button>
                     <mat-radio-button value="credit">Credit</mat-radio-button>
+                    <mat-radio-button value="cash">Cash</mat-radio-button>
+                    <mat-radio-button value="gpay">GPay</mat-radio-button>
                   </mat-radio-group>
                 </div>
               </c-col>
@@ -210,6 +219,26 @@
             <c-col class="pt-2"> <h5 cCardTitle>Booking Preview</h5></c-col>
           </c-row>
           <hr />
+
+          <c-row>
+            <c-col [md]="5">
+             <small>Booking Date</small>
+            </c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('date')?.value | date:'dd-mm-yyyy'}}</c-col>
+          </c-row>
+          <c-row *ngIf="bookingForm.get('bookingNumber')?.value">
+            <c-col [md]="5"> <small>Number</small> </c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('bookingNumber')?.value}}</c-col>
+          </c-row>
+          <c-row *ngIf="bookingForm.get('customer')?.value">
+            <c-col [md]="5">Customer</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('customer')?.value.name}}</c-col>
+          </c-row>
+          <c-row *ngIf="bookingForm.get('receiver')?.value">
+            <c-col [md]="5">Receiver</c-col>
+            <c-col [md]="7" class="text-end">{{bookingForm.get('receiver')?.value}}</c-col>
+          </c-row>
+
         </c-container>
       </c-card-body>
     </c-card>
