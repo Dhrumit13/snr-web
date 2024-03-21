@@ -24,7 +24,11 @@ import {
 import { AutoSelectCustomerComponent } from '../../common/auto-select-customer/auto-select-customer.component';
 import { AutoSelectReceiverComponent } from '../../common/auto-select-receiver/auto-select-receiver.component';
 import { AutoCompleteCityComponent } from '../../common/auto-complete-city/auto-complete-city.component';
-import { CityRateService, RateListResponse, Rates } from '../../city-rate/service/city-rate.service';
+import {
+  CityRateService,
+  RateListResponse,
+  Rates,
+} from '../../city-rate/service/city-rate.service';
 
 @Component({
   selector: 'app-consignment-detail',
@@ -66,6 +70,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getAllCharges();
     this.createForm();
+    this.bookingForm.controls['netAmount'].disable();
     this.route.params.subscribe((params: Params) => {
       this.addEditCustomerID = +params['id'];
       if (this.addEditCustomerID > 0) {
@@ -100,7 +105,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   private createForm(): void {
     this.bookingForm = this.fb.group({
       date: [new Date(), [Validators.required]],
-      bookingNumber: ['', [Validators.required]],
+      bookingNumber: [{ value: '', disabled: true }, [Validators.required]],
       customer: ['', [Validators.required]],
       receiver: ['', [Validators.required]],
       origin: ['', [Validators.required]],
@@ -111,6 +116,8 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
       packageType: ['surface', [Validators.required]],
       paymentMode: ['credit'],
       otherCharges: this.fb.array([this.createChargesControl()]),
+      netAmount: [ '', [Validators.required]],
+      remarks: [''],
     });
 
     // Subscribe to value changes in the form controls
@@ -140,7 +147,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
     }
   }
   public onSave(): void {
-    console.log(this.bookingForm.value);
+    console.log(this.bookingForm.getRawValue());
   }
 
   public removeOtherCharge(index: number): void {
@@ -244,18 +251,18 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   private getCityRatesByCustomer(customerId: number): void {
     this.customerCityRates = [];
     this.cityRateService
-    .getRatesByCustomer(customerId)
-    .pipe(takeUntil(this.customerSubscription$))
-    .subscribe({
-      next: (response: RateListResponse) => {
-        if (response.rates && response.rates?.length > 0) {
-          this.customerCityRates = response.rates;
-          this.calculateGrossAmount();
-        }
-      },
-      error: (e) => console.error(e),
-      complete: () => {},
-    });
+      .getRatesByCustomer(customerId)
+      .pipe(takeUntil(this.customerSubscription$))
+      .subscribe({
+        next: (response: RateListResponse) => {
+          if (response.rates && response.rates?.length > 0) {
+            this.customerCityRates = response.rates;
+            this.calculateGrossAmount();
+          }
+        },
+        error: (e) => console.error(e),
+        complete: () => {},
+      });
   }
 
   // Receiver
@@ -280,39 +287,51 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
     const destination = this.bookingForm.get('destination')?.value;
     const packageType = this.bookingForm.get('packageType')?.value;
 
-    if(customer && destination && packageType) {
-      let selectedCityRate = this.customerCityRates.find(x => x.city === destination && x.transportationMode === packageType);
-      console.log('selectedCityRate: ', selectedCityRate);
+    if (customer && destination && packageType) {
+      let selectedCityRate = this.customerCityRates.find(
+        (x) => x.city === destination && x.transportationMode === packageType
+      );
       let calculationBy = '';
-      if(selectedCityRate?.ratePerKg && selectedCityRate?.ratePerKg > 0) {
-        this.grossAmountCalculationHint = 'Gross amount calculation on <strong> rate per KG </strong>';
+      if (selectedCityRate?.ratePerKg && selectedCityRate?.ratePerKg > 0) {
+        this.grossAmountCalculationHint =
+          'Gross amount calculation on <strong> rate per KG </strong>';
         calculationBy = 'weight';
       } else {
         calculationBy = 'box';
-        this.grossAmountCalculationHint = 'Gross amount calculation on <strong> rate per Quantity(Boxes) </strong>';
+        this.grossAmountCalculationHint =
+          'Gross amount calculation on <strong> rate per Quantity(Boxes) </strong>';
       }
 
       let weightValue: number = this.bookingForm.controls['weight'].value;
       let quantityValue: number = this.bookingForm.controls['quantity'].value;
 
-      if(weightValue && selectedCityRate?.minWeight && weightValue < +selectedCityRate?.minWeight) {
+      if (
+        weightValue &&
+        selectedCityRate?.minWeight &&
+        weightValue < +selectedCityRate?.minWeight
+      ) {
         const min = +selectedCityRate?.minWeight; // New minimum value
-        this.bookingForm.get('weight')?.setErrors({ 'invalid': true });
-        this.tosterService.error('Entered weight is less then minimum weight.', 'ERROR');
+        this.bookingForm.get('weight')?.setErrors({ invalid: true });
+        this.tosterService.error(
+          'Entered weight is less then minimum weight.',
+          'ERROR'
+        );
       } else {
         switch (calculationBy) {
           case 'weight':
-              if(selectedCityRate?.ratePerKg) {
-                let grossAmount: number = (+selectedCityRate?.ratePerKg * weightValue);
-                this.bookingForm.controls['grossAmount'].setValue(grossAmount);
-              }
+            if (selectedCityRate?.ratePerKg) {
+              let grossAmount: number =
+                +selectedCityRate?.ratePerKg * weightValue;
+              this.bookingForm.controls['grossAmount'].setValue(grossAmount);
+            }
             break;
 
-            case 'box':
-                if(selectedCityRate?.ratePerPiece) {
-                  let grossAmount: number = (+selectedCityRate?.ratePerPiece * quantityValue);
-                  this.bookingForm.controls['grossAmount'].setValue(grossAmount);
-                }
+          case 'box':
+            if (selectedCityRate?.ratePerPiece) {
+              let grossAmount: number =
+                +selectedCityRate?.ratePerPiece * quantityValue;
+              this.bookingForm.controls['grossAmount'].setValue(grossAmount);
+            }
             break;
           default:
             break;
@@ -323,5 +342,19 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
 
   public onWeightBlur(): void {
     this.calculateGrossAmount();
+  }
+
+  public calculateNet():void {
+
+    let netAmount = 0;
+    netAmount = +this.bookingForm.controls['grossAmount'].value;
+    this.chargeControls.controls.forEach((control: any) => {
+      if(control.controls['value'].value > 0) {
+        netAmount += parseInt(control.controls['value'].value);
+      }
+    });
+
+
+    this.bookingForm.controls['netAmount'].setValue(netAmount);
   }
 }

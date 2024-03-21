@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { faSave, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,7 @@ import {
 } from '../services/users.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
+import { AutoCompleteCityComponent } from '../../common/auto-complete-city/auto-complete-city.component';
 
 @Component({
   selector: 'app-users-detail',
@@ -18,6 +19,8 @@ import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.comp
   styleUrl: './users-detail.component.scss',
 })
 export class UsersDetailComponent implements OnInit, OnDestroy {
+
+  @ViewChild('autocomplete') autocomplete!: AutoCompleteCityComponent;
   public addEditUserID: number = 0;
   faTrash = faTrash;
   faSave = faSave;
@@ -65,6 +68,10 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['users']);
   }
 
+  handleCitySelected(item: any) {
+    this.userForm.controls['city'].setValue(item);
+  }
+
   onSubmit() {
     if (this.userForm.valid) {
       // Form is valid, handle the submission logic here
@@ -84,6 +91,9 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
           if (response.users && response.users.length > 0) {
             delete response.users[0].userId;
             this.userForm.setValue(response.users[0]);
+            if(response?.users[0]?.city) {
+              this.autocomplete.setValue(response.users[0].city);
+            }
           }
         },
         error: (e) => console.error(e),

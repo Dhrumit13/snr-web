@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
+import { CommonSNRModule } from '../common/snr-common.module';
 @NgModule({
   declarations: [UsersComponent, UsersDetailComponent],
   imports: [
@@ -44,7 +45,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatButtonModule
+    MatButtonModule,
+    CommonSNRModule
   ],
   providers: [UsersService],
 })

@@ -41,4 +41,5 @@ export interface User {
   email?: string;
   mobile?: string;
   role?: string;
+  city?: string;
 }

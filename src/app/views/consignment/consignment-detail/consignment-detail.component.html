@@ -1,5 +1,5 @@
 <c-row>
-  <c-col [md]="8">
+  <c-col [md]="12">
     <c-card>
       <c-card-body>
         <c-container>
@@ -145,7 +145,7 @@
 
             <hr />
             <c-row class="mb-3 align-items-center">
-              <c-col [md]="4" style="border-right: 1px solid #d2d2d2;">
+              <c-col [md]="5" style="border-right: 1px solid #d2d2d2;">
                 <h6>
                   Payment Mode
                 </h6>
@@ -157,15 +157,14 @@
                   </mat-radio-group>
                 </div>
               </c-col>
-              <c-col [md]="4">
-                <h5 class="text-end" style="color: rgb(194, 4, 4)">
+              <c-col [md]="3">
+                <h6 class="text-end" style="color: rgb(194, 4, 4)">
                   NET AMOUNT
-                </h5>
+                </h6>
               </c-col>
               <c-col [md]="4">
                 <mat-form-field appearance="outline">
-                  <mat-label>Amount</mat-label>
-                  <input matInput type="number" [disabled]="true" />
+                  <input matInput type="number" formControlName="netAmount" [value]="calculateNet()" />
                 </mat-form-field>
               </c-col>
             </c-row>
@@ -173,7 +172,7 @@
               <c-col [md]="12">
                 <mat-form-field appearance="outline">
                   <mat-label>Remarks</mat-label>
-                  <textarea matInput></textarea>
+                  <textarea matInput formControlName="remarks"></textarea>
                 </mat-form-field>
               </c-col>
             </c-row>
@@ -211,7 +210,7 @@
       </c-card-body>
     </c-card>
   </c-col>
-  <c-col [md]="4">
+  <!-- <c-col [md]="4">
     <c-card>
       <c-card-body>
         <c-container>
@@ -220,61 +219,70 @@
           </c-row>
           <hr />
 
-          <c-row>
-            <c-col [md]="5">
-             <small>Booking Date</small>
-            </c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('date')?.value | date:'dd-mm-yyyy'}}</c-col>
-          </c-row>
-          <c-row *ngIf="bookingForm.get('bookingNumber')?.value">
-            <c-col [md]="5"> <small>Number</small> </c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('bookingNumber')?.value}}</c-col>
-          </c-row>
-          <c-row *ngIf="bookingForm.get('customer')?.value">
-            <c-col [md]="5">Customer</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('customer')?.value.name}}</c-col>
-          </c-row>
-          <c-row *ngIf="bookingForm.get('receiver')?.value">
-            <c-col [md]="5">Receiver</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('receiver')?.value.receiverName}}</c-col>
-          </c-row>
-          <c-row *ngIf="bookingForm.get('origin')?.value">
-            <c-col [md]="5">Origin</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('origin')?.value}}</c-col>
-          </c-row>
 
-          <c-row *ngIf="bookingForm.get('destination')?.value">
-            <c-col [md]="5">Destination</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('destination')?.value}}</c-col>
-          </c-row>
+          <table cTable>
+            <tbody>
+            <tr cTableColor="light">
+              <td><small>Booking Date</small></td>
+              <td class="text-end fw-bold">{{bookingForm.get('date')?.value | date:'dd-mm-yyyy'}}</td>
+            </tr>
+            <tr cTableColor="light">
+              <td><small>Number</small></td>
+              <td class="text-end">{{bookingForm.get('bookingNumber')?.value}}</td>
+            </tr>
 
-          <c-row *ngIf="bookingForm.get('weight')?.value">
-            <c-col [md]="5">Weight</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('weight')?.value}}</c-col>
-          </c-row>
+            <tr cTableColor="light">
+              <td><small>Customer</small></td>
+              <td class="text-end">{{bookingForm.get('customer')?.value.name}}</td>
+            </tr>
 
-          <c-row *ngIf="bookingForm.get('quantity')?.value">
-            <c-col [md]="5">Quantity</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('quantity')?.value}}</c-col>
-          </c-row>
+            <tr>
+              <td><small>Receiver</small></td>
+              <td class="text-end">{{bookingForm.get('receiver')?.value.receiverName}}</td>
+            </tr>
 
-          <c-row *ngIf="bookingForm.get('grossAmount')?.value">
-            <c-col [md]="5">Gross Amount</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('grossAmount')?.value}}</c-col>
-          </c-row>
+            <tr>
+              <td><small>Origin</small></td>
+              <td class="text-end">{{bookingForm.get('origin')?.value}}</td>
+            </tr>
 
-          <c-row *ngIf="bookingForm.get('packageType')?.value">
-            <c-col [md]="5">Package Type</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('packageType')?.value}}</c-col>
-          </c-row>
+            <tr>
+              <td><small>Destination</small></td>
+              <td class="text-end">{{bookingForm.get('destination')?.value}}</td>
+            </tr>
 
-          <c-row *ngIf="bookingForm.get('paymentMode')?.value">
-            <c-col [md]="5">Payment Mode</c-col>
-            <c-col [md]="7" class="text-end">{{bookingForm.get('paymentMode')?.value}}</c-col>
-          </c-row>
+
+            <tr>
+              <td><small>Weight</small></td>
+              <td class="text-end">{{bookingForm.get('weight')?.value}} <span *ngIf="bookingForm.get('weight')?.value">KG</span></td>
+            </tr>
+
+            <tr>
+              <td><small>Quantity</small></td>
+              <td class="text-end">{{bookingForm.get('quantity')?.value}}</td>
+            </tr>
+
+            <tr>
+              <td><small>Package Type</small></td>
+              <td class="text-capitalize text-end">{{bookingForm.get('packageType')?.value}}</td>
+            </tr>
+
+            <tr>
+              <td><small>Payment Mode</small></td>
+              <td class="text-capitalize text-end">{{bookingForm.get('paymentMode')?.value}}</td>
+            </tr>
+
+            <tr>
+              <td><small>Gross Amount</small></td>
+              <td class="text-end">{{bookingForm.get('grossAmount')?.value}}</td>
+            </tr>
+
+            </tbody>
+          </table>
+
 
         </c-container>
       </c-card-body>
     </c-card>
-  </c-col>
+  </c-col> -->
 </c-row>
