@@ -50,7 +50,7 @@ import { CityRateService } from '../city-rate/service/city-rate.service';
     MatButtonModule,
     MatSelectModule,
     TextFieldModule,
-    MatRadioModule
+    MatRadioModule,
   ],
   providers: [CityRateService],
 })

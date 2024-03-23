@@ -116,7 +116,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
       packageType: ['surface', [Validators.required]],
       paymentMode: ['credit'],
       otherCharges: this.fb.array([this.createChargesControl()]),
-      netAmount: [ '', [Validators.required]],
+      netAmount: ['', [Validators.required]],
       remarks: [''],
     });
 
@@ -344,17 +344,31 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
     this.calculateGrossAmount();
   }
 
-  public calculateNet():void {
-
+  public calculateNet(): void {
     let netAmount = 0;
     netAmount = +this.bookingForm.controls['grossAmount'].value;
     this.chargeControls.controls.forEach((control: any) => {
-      if(control.controls['value'].value > 0) {
+      if (control.controls['value'].value > 0) {
         netAmount += parseInt(control.controls['value'].value);
       }
     });
 
-
     this.bookingForm.controls['netAmount'].setValue(netAmount);
+  }
+
+  onPrint(): void {
+    const printContent = document.getElementById('snr-receipt');
+    const WindowPrt = window.open(
+      '',
+      '',
+      'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0'
+    );
+    if (WindowPrt && printContent) {
+      WindowPrt.document.write(printContent.innerHTML);
+      WindowPrt.document.close();
+      WindowPrt.focus();
+      WindowPrt.print();
+      // WindowPrt.close();
+    }
   }
 }

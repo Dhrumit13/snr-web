@@ -1,4 +1,55 @@
-<c-row>
+<div id="print-content">
+  <div style="border: 1px solid; font-family: 'Poppins', sans-serif">
+    <table>
+      <tr>
+        <td rowspan="3" style="width: 45%">
+          <div style="text-align: center">
+            <img
+              src="assets/images/logo.jpg"
+              style="height: 50px; width: 100px"
+              alt=""
+            />
+          </div>
+          <div style="font-size: 12px">
+            <b>Reg. Office:</b> SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+            Kalaghodha, BARODA
+          </div>
+          <div>
+            <b>GST No: 24AEWFS3181C1ZU</b>
+          </div>
+        </td>
+        <td
+          style="font-size: 12px; text-align: center; border-bottom: 1px solid; height: 30px;"
+        >
+          <b>ORIGIN</b>
+        </td>
+        <td style="font-size: 12px; text-align: center; height: 30px;">
+          <b>DESTINATION</b>
+        </td>
+        <td rowspan="2" style="align-content: baseline;">
+          <div style="text-align: center">
+            <b>CONSIGNMENT NO.</b>
+            <div style="padding: 10px;">
+             <b style="font-size: 18px;">12345</b>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td rowspan="2" style="text-align: center; text-transform: uppercase;">vadodara</td>
+        <td rowspan="2" style="text-align: center; text-transform: uppercase;">Gorwa</td>
+      </tr>
+      <tr>
+        <td style="text-align: center;"> <b>Date:</b> 12/02/2023</td>
+      </tr>
+
+    </table>
+  </div>
+</div>
+
+<button class="no-print" onclick="window.print()">print</button>
+
+<c-row class="no-print">
   <c-col [md]="12">
     <c-card>
       <c-card-body>
@@ -43,7 +94,6 @@
               </c-col>
             </c-row>
 
-
             <c-row class="mb-3">
               <c-col [md]="6">
                 <app-auto-complete-city
@@ -82,13 +132,23 @@
               <c-col [md]="4">
                 <mat-form-field appearance="outline">
                   <mat-label>Weight(KG)</mat-label>
-                  <input matInput type="number" formControlName="weight" (blur)="onWeightBlur()" />
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="weight"
+                    (blur)="onWeightBlur()"
+                  />
                 </mat-form-field>
               </c-col>
               <c-col [md]="4">
                 <mat-form-field appearance="outline">
                   <mat-label>Quantity(Boxes)</mat-label>
-                  <input matInput type="number" formControlName="quantity" (blur)="onWeightBlur()" />
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="quantity"
+                    (blur)="onWeightBlur()"
+                  />
                 </mat-form-field>
               </c-col>
               <c-col [md]="4">
@@ -112,12 +172,14 @@
                   <c-col [md]="8">
                     <mat-form-field appearance="outline">
                       <mat-label>Select Other Charge</mat-label>
-                      <mat-select formControlName="chargeType" (selectionChange)="onOtherChargeSelect(i, $event.value)">
+                      <mat-select
+                        formControlName="chargeType"
+                        (selectionChange)="onOtherChargeSelect(i, $event.value)"
+                      >
                         @for (option of chargeList; track option) {
-                        <mat-option
-                          [value]="option"
-                          >{{ option.otherChargeName }}</mat-option
-                        >
+                        <mat-option [value]="option">{{
+                          option.otherChargeName
+                        }}</mat-option>
                         }
                       </mat-select>
                     </mat-form-field>
@@ -134,8 +196,18 @@
                           /> </mat-form-field
                       ></c-col>
                       <c-col [md]="2">
-                        <fa-icon style="cursor: pointer;" *ngIf="i < chargeControls.length - 1" [icon]="faTrash" (click)="removeOtherCharge(i)"></fa-icon>
-                        <fa-icon style="cursor: pointer;" *ngIf="i === chargeControls.length - 1" [icon]="faPlus" (click)="addChargeControl(i)"></fa-icon>
+                        <fa-icon
+                          style="cursor: pointer"
+                          *ngIf="i < chargeControls.length - 1"
+                          [icon]="faTrash"
+                          (click)="removeOtherCharge(i)"
+                        ></fa-icon>
+                        <fa-icon
+                          style="cursor: pointer"
+                          *ngIf="i === chargeControls.length - 1"
+                          [icon]="faPlus"
+                          (click)="addChargeControl(i)"
+                        ></fa-icon>
                       </c-col>
                     </c-row>
                   </c-col>
@@ -145,12 +217,13 @@
 
             <hr />
             <c-row class="mb-3 align-items-center">
-              <c-col [md]="5" style="border-right: 1px solid #d2d2d2;">
-                <h6>
-                  Payment Mode
-                </h6>
+              <c-col [md]="5" style="border-right: 1px solid #d2d2d2">
+                <h6>Payment Mode</h6>
                 <div>
-                  <mat-radio-group aria-label="Select an option" formControlName="paymentMode">
+                  <mat-radio-group
+                    aria-label="Select an option"
+                    formControlName="paymentMode"
+                  >
                     <mat-radio-button value="credit">Credit</mat-radio-button>
                     <mat-radio-button value="cash">Cash</mat-radio-button>
                     <mat-radio-button value="gpay">GPay</mat-radio-button>
@@ -164,7 +237,12 @@
               </c-col>
               <c-col [md]="4">
                 <mat-form-field appearance="outline">
-                  <input matInput type="number" formControlName="netAmount" [value]="calculateNet()" />
+                  <input
+                    matInput
+                    type="number"
+                    formControlName="netAmount"
+                    [value]="calculateNet()"
+                  />
                 </mat-form-field>
               </c-col>
             </c-row>
