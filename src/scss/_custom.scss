@@ -81,6 +81,24 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+.ng-scroll-content {
+  // background-color: #d7dee8;
+  background-color: #d6dce8;
+}
+
+.sidebar-nav .nav-title,
+.sidebar-nav .nav-link.active,
+.sidebar-nav .nav-link,
+.sidebar-nav .nav-icon,
+.sidebar-nav .nav-link.active .nav-icon {
+  color: rgba(0, 0, 0, 0.801);
+}
+
+.sidebar-nav .nav-link.active,
+.sidebar-nav .nav-link:hover {
+  background: #b9bfca;
+}
+
 @media print {
   .no-print {
     display: none;
