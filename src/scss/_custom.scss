@@ -8,7 +8,7 @@
   color: red;
 }
 
-.uppercase{
+.uppercase {
   text-transform: uppercase;
 }
 
@@ -51,10 +51,10 @@
 }
 
 .form-control-lg {
-    min-height: calc(2em + 1rem + 2px);
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-    border-radius: 0.5rem;
+  min-height: calc(2em + 1rem + 2px);
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  border-radius: 0.5rem;
 }
 
 .md-datepicker-input-container {
@@ -77,12 +77,18 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
 @media print {
   .no-print {
     display: none;
-}
+  }
+  @page {
+    margin: 15px;
+  }
+  body {
+    margin: 1cm;
+  }
 }

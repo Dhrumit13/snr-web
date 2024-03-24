@@ -1,54 +1,3 @@
-<div id="print-content">
-  <div style="border: 1px solid; font-family: 'Poppins', sans-serif">
-    <table>
-      <tr>
-        <td rowspan="3" style="width: 45%">
-          <div style="text-align: center">
-            <img
-              src="assets/images/logo.jpg"
-              style="height: 50px; width: 100px"
-              alt=""
-            />
-          </div>
-          <div style="font-size: 12px">
-            <b>Reg. Office:</b> SB - 28 Paradies Complex, Nr. Rajshree Cinema,
-            Kalaghodha, BARODA
-          </div>
-          <div>
-            <b>GST No: 24AEWFS3181C1ZU</b>
-          </div>
-        </td>
-        <td
-          style="font-size: 12px; text-align: center; border-bottom: 1px solid; height: 30px;"
-        >
-          <b>ORIGIN</b>
-        </td>
-        <td style="font-size: 12px; text-align: center; height: 30px;">
-          <b>DESTINATION</b>
-        </td>
-        <td rowspan="2" style="align-content: baseline;">
-          <div style="text-align: center">
-            <b>CONSIGNMENT NO.</b>
-            <div style="padding: 10px;">
-             <b style="font-size: 18px;">12345</b>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="2" style="text-align: center; text-transform: uppercase;">vadodara</td>
-        <td rowspan="2" style="text-align: center; text-transform: uppercase;">Gorwa</td>
-      </tr>
-      <tr>
-        <td style="text-align: center;"> <b>Date:</b> 12/02/2023</td>
-      </tr>
-
-    </table>
-  </div>
-</div>
-
-<button class="no-print" onclick="window.print()">print</button>
-
 <c-row class="no-print">
   <c-col [md]="12">
     <c-card>
@@ -265,6 +214,13 @@
                     (click)="onSave()"
                   >
                     <fa-icon [icon]="faSave"></fa-icon> Save
+                  </button>
+                </div>
+              </c-col>
+              <c-col>
+                <div class="d-grid gap-2">
+                  <button mat-raised-button color="accent" (click)="onPrint()">
+                    <fa-icon [icon]="faXmark"></fa-icon> Print Preview
                   </button>
                 </div>
               </c-col>

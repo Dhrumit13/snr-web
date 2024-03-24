@@ -357,18 +357,10 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   }
 
   onPrint(): void {
-    const printContent = document.getElementById('snr-receipt');
-    const WindowPrt = window.open(
-      '',
-      '',
-      'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0'
-    );
-    if (WindowPrt && printContent) {
-      WindowPrt.document.write(printContent.innerHTML);
-      WindowPrt.document.close();
-      WindowPrt.focus();
-      WindowPrt.print();
-      // WindowPrt.close();
-    }
+  // const printPreviewURL = 'http://localhost:4200/#/consignments/consignment-print';
+
+    // window.open( printPreviewURL, '_blank');
+
+    this.router.navigate(['consignments/consignment-print']);
   }
 }

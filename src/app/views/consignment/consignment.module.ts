@@ -24,13 +24,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { TextFieldModule } from '@angular/cdk/text-field';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule } from '@angular/material/radio';
 import { CityRateService } from '../city-rate/service/city-rate.service';
+import { ConsignmentPreviewComponent } from './consignment-preview/consignment-preview.component';
+import { NgxBarcode6Module } from 'ngx-barcode6';
 
 @NgModule({
-  declarations: [ConsignmentComponent, ConsignmentDetailComponent],
+  declarations: [
+    ConsignmentComponent,
+    ConsignmentDetailComponent,
+    ConsignmentPreviewComponent,
+  ],
   imports: [
-  CommonModule,
+    CommonModule,
     TableModule,
     CardModule,
     ButtonModule,
@@ -51,6 +57,8 @@ import { CityRateService } from '../city-rate/service/city-rate.service';
     MatSelectModule,
     TextFieldModule,
     MatRadioModule,
+    NgxBarcode6Module
+
   ],
   providers: [CityRateService],
 })

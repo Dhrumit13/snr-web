@@ -1,0 +1,1937 @@
+<div style="background-color: white">
+  <c-row class="no-print">
+    <c-col [md]="12">
+      <button
+        mat-raised-button
+        color="primary"
+        class="m-3"
+        onclick="window.print()"
+      >
+        <fa-icon [icon]="faPrint"></fa-icon> Print
+      </button>
+    </c-col>
+    <c-col [md]="12">
+      <div class="text-center m-3">
+        <h5>Print Preview</h5>
+      </div>
+    </c-col>
+  </c-row>
+
+  <div id="print-content">
+    <div style="font-family: 'Poppins', sans-serif">
+      <!-- Customer receipt -->
+      <div style="text-align: end">
+        <small> Customer Copy </small>
+      </div>
+      <table style="border: 1px solid #000; width: 800px; margin: 0 auto">
+        <tbody>
+          <tr>
+            <td>
+              <table style="table-layout: fixed">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 45%;
+                        border-right: 1px solid #000;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table style="table-layout: fixed; width: 100%">
+                        <tbody>
+                          <tr>
+                            <td style="width: 124px">
+                              <img
+                                src="assets/images/logo.jpg"
+                                alt="logo"
+                                style="width: 120px"
+                              />
+                            </td>
+                            <td style="padding-left: 10px">
+                              <p
+                                style="
+                                  font-size: 12px;
+                                  font-weight: 400;
+                                  margin: 0;
+                                  line-height: 16px;
+                                "
+                              >
+                                <span style="font-weight: 500; margin: 0"
+                                  >Reg. Office:</span
+                                >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                              <span style="font-size: 12px; font-weight: 600"
+                                >GST No: 24AEWFS3181C1ZU</span
+                              >
+                            </td>
+                          </tr>
+                          <!-- <tr>
+
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 35%;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table style="table-layout: fixed; width: 100%">
+                        <tbody>
+                          <tr>
+                            <td
+                              style="
+                                width: 50%;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-bottom: 1px solid #000;
+                                border-right: 1px solid #000;
+                              "
+                            >
+                              ORIGIN
+                            </td>
+                            <td
+                              style="
+                                width: 50%;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-bottom: 1px solid #000;
+                              "
+                            >
+                              DESTINATION
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 50%;
+                                height: 99px;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 500;
+                                border-bottom: 0;
+                                border-right: 1px solid #000;
+                              "
+                            >
+                              AHMEDABAD
+                            </td>
+                            <td
+                              style="
+                                width: 50%;
+                                height: 99px;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 500;
+                                border-bottom: 0;
+                              "
+                            >
+                              BARODA
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 20%;
+                        vertical-align: middle;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; height: 102px"
+                      >
+                        <tbody>
+                          <tr>
+                            <th
+                              colspan="4"
+                              style="
+                                vertical-align: baseline;
+                                text-align: center;
+                              "
+                            >
+                              <span
+                                style="
+                                  font-size: 13px;
+                                  font-weight: 700;
+                                  text-align: center;
+                                  text-transform: uppercase;
+                                "
+                                >Consignment no.</span
+                              >
+                            </th>
+                          </tr>
+                          <tr style="height: 60px">
+                            <th
+                              colspan="4"
+                              style="vertical-align: middle; text-align: center"
+                            >
+                              <ngx-barcode6
+                                [bc-format]="'MSI'"
+                                [bc-value]="'123456789'"
+                                [bc-display-value]="true"
+                                [bc-margin-right]="0"
+                                [bc-width]="1"
+                                [bc-height]="30"
+                                [bc-format]="'CODE128'"
+                                [bc-element-type]="'svg'"
+                                [bc-font-size]="12"
+                              >
+                              </ngx-barcode6>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 26%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-weight: 600;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              Date
+                            </td>
+                            <td
+                              style="
+                                width: 20%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              16
+                            </td>
+                            <td
+                              style="
+                                width: 20%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              03
+                            </td>
+                            <td
+                              style="
+                                width: 40%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              2024
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed; border-bottom: 1px solid #000">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 50%;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; padding: 5px"
+                      >
+                        <tbody>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >CONSIGNOR</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                PANNEST INTEGRATED SERVICES PRIVATE LIMITED
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >ADDRESS</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              colspan="2"
+                              style="vertical-align: baseline; height: 25px"
+                            >
+                              <table>
+                                <tr>
+                                  <td>
+                                    <span
+                                      style="
+                                        margin: 0;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        text-transform: uppercase;
+                                        color: #000;
+                                      "
+                                      >Mobile No1. </span
+                                    >
+                                    <span style="margin: 0; font-size: 12px"
+                                      >9323542440</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <span
+                                    style="
+                                      height: 25px;
+                                      margin: 0;
+                                      font-size: 12px;
+                                      font-weight: 600;
+                                      text-transform: uppercase;
+                                      margin-left: 10px;
+                                      color: #000;
+                                    "
+                                    >GST No. </span
+                                  >
+                                  <span
+                                    style="
+                                      margin: 0;
+                                      font-size: 12px;
+                                      height: 25px;
+                                      text-transform: uppercase;
+                                    "
+                                    >27AAGCP7171G1Z7</span
+                                  >
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 50%;
+                        vertical-align: baseline;
+                        border: 1px solid transparent;
+                        border-bottom: 1px;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; padding: 5px"
+                      >
+                        <tbody>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >CONSIGNEE</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SNR BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >ADDRESS</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              colspan="2"
+                              style="vertical-align: baseline; height: 25px">
+                              <table>
+                                <tr>
+                                  <td>
+                                    <span
+                                      style="
+                                        margin: 0;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        text-transform: uppercase;
+                                        color: #000;
+                                      "
+                                      >Mobile No. </span
+                                    >
+                                    <span style="margin: 0; font-size: 12px"
+                                      >9323542440</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <span
+                                    style="
+                                      height: 25px;
+                                      margin: 0;
+                                      font-size: 12px;
+                                      font-weight: 600;
+                                      text-transform: uppercase;
+                                      margin-left: 10px;
+                                      color: #000;
+                                    "
+                                    >GST No. </span
+                                  >
+                                  <span
+                                    style="
+                                      margin: 0;
+                                      font-size: 12px;
+                                      height: 25px;
+                                      text-transform: uppercase;
+                                    "
+                                    >27AAGCP7171G1Z7</span
+                                  >
+                                  </td>
+                                </tr>
+                              </table>
+
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed; border-bottom: 1px solid #000">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 130px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >package type</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        SURFACE
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 120px;
+                        text-align: center;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >no of pieces</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        1
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 130px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >weight</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        10
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 170px;
+                        text-align: center;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >mode of payment</span
+                      >
+                      <span style="display: inline-flex; align-items: center">
+                        <input
+                          type="checkbox"
+                          [checked]="false"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >Cash</span
+                        >
+                      </span>
+                      <span
+                        style="
+                          display: inline-flex;
+                          align-items: center;
+                          margin-left: 8px;
+                        "
+                      >
+                        <input
+                          type="checkbox"
+                          [checked]="true"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >Credit</span
+                        >
+                      </span>
+                      <span
+                        style="
+                          display: inline-flex;
+                          align-items: center;
+                          margin-left: 8px;
+                        "
+                      >
+                        <input
+                          type="checkbox"
+                          [checked]="false"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >GPay</span
+                        >
+                      </span>
+                    </td>
+                    <td
+                      style="
+                        width: 128px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >parcel value</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      ></p>
+                    </td>
+                    <td
+                      style="
+                        width: 176px;
+                        vertical-align: baseline;
+                        border-right: 1px solid transparent;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                          text-align: center;
+                        "
+                        >Remarks</span
+                      >
+                      <p
+                        style="
+                          font-size: 10px;
+                          font-weight: 400;
+                          margin: 0;
+                          text-align: center;
+                          line-height: 16px;
+                          height: 36px;
+                          overflow: hidden;
+                        "
+                      ></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 407px;
+                        border-right: 1px solid #000;
+                        vertical-align: top;
+                        padding: 0 5px 5px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                        "
+                        >Terms &amp; Condition</span
+                      >
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 10px;
+                          font-weight: 400;
+                          color: #000;
+                        "
+                      >
+                        TERMS &amp; CONDITIONS 1) The company shall not be
+                        responsible for any enquiry regarding consignment after
+                        30 days from the date of booking. 2) Maximum sum of Rs.
+                        1000/- may be paid in cash to the consignor as
+                        companion, if the document or parcel is lost, mislaid
+                        during transit. 3) Letters Notes or other goods having
+                        Government Restrictions are not accepted. 4) Not Insured
+                        and owners risk. 5) We are not responsible for Late
+                        delivery due to fire, accident, airlines, flight &amp;
+                        train delay etc. 6) Subject to VADODARA Jurisdiction. 7)
+                        GST as applicable. 8) Shipper confirm that no restricted
+                        items as per DGRIATA is contain of consignment. 9) All
+                        Taxes like Octroi, S. Tax, Customs, Excise, etc will be
+                        paid by shipper or consignee 10) Train Services are
+                        Station to Station services by lease SLR 11) Value of
+                        Consignment to be declare, Invoice mandatory. There read
+                        terms &amp; condition carefully &amp; I agree with it.
+                        SHIPPER&nbsp;SIGN.
+                      </p>
+                    </td>
+                    <td style="width: 217px; vertical-align: baseline">
+                      <table style="width: 100%; height: 190px">
+                        <tbody>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Gross Amount
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              50.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Other Charges
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              IGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              SGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              CGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Net Amount
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              50.00
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 160px;
+                        vertical-align: top;
+                        border: 1px solid transparent;
+                        text-align: center;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                        "
+                        >Signature &amp; Stamp</span
+                      >
+                      <!-- <img src="digital-signature.png" style="width: 120px;height: 120px;object-fit: contain;"> -->
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 12px;
+                          font-weight: 400;
+                          color: #000;
+                          padding-top: 130px;
+                        "
+                      >
+                        SNR Cargo Services
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Owner receipt -->
+      <div style="text-align: end; margin-top: 10px;">
+        <small> Owner Copy </small>
+      </div>
+      <table style="border: 1px solid #000; width: 800px; margin: 0 auto">
+        <tbody>
+          <tr>
+            <td>
+              <table style="table-layout: fixed">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 45%;
+                        border-right: 1px solid #000;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table style="table-layout: fixed; width: 100%">
+                        <tbody>
+                          <tr>
+                            <td style="width: 124px">
+                              <img
+                                src="assets/images/logo.jpg"
+                                alt="logo"
+                                style="width: 120px"
+                              />
+                            </td>
+                            <td style="padding-left: 10px">
+                              <p
+                                style="
+                                  font-size: 12px;
+                                  font-weight: 400;
+                                  margin: 0;
+                                  line-height: 16px;
+                                "
+                              >
+                                <span style="font-weight: 500; margin: 0"
+                                  >Reg. Office:</span
+                                >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                              <span style="font-size: 12px; font-weight: 600"
+                                >GST No: 24AEWFS3181C1ZU</span
+                              >
+                            </td>
+                          </tr>
+                          <!-- <tr>
+
+                          </tr> -->
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 35%;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table style="table-layout: fixed; width: 100%">
+                        <tbody>
+                          <tr>
+                            <td
+                              style="
+                                width: 50%;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-bottom: 1px solid #000;
+                                border-right: 1px solid #000;
+                              "
+                            >
+                              ORIGIN
+                            </td>
+                            <td
+                              style="
+                                width: 50%;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 600;
+                                border-bottom: 1px solid #000;
+                              "
+                            >
+                              DESTINATION
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 50%;
+                                height: 99px;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 500;
+                                border-bottom: 0;
+                                border-right: 1px solid #000;
+                              "
+                            >
+                              AHMEDABAD
+                            </td>
+                            <td
+                              style="
+                                width: 50%;
+                                height: 99px;
+                                text-align: center;
+                                font-size: 12px;
+                                font-weight: 500;
+                                border-bottom: 0;
+                              "
+                            >
+                              BARODA
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 20%;
+                        vertical-align: middle;
+                        border-bottom: 1px solid #000;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; height: 102px"
+                      >
+                        <tbody>
+                          <tr>
+                            <th
+                              colspan="4"
+                              style="
+                                vertical-align: baseline;
+                                text-align: center;
+                              "
+                            >
+                              <span
+                                style="
+                                  font-size: 13px;
+                                  font-weight: 700;
+                                  text-align: center;
+                                  text-transform: uppercase;
+                                "
+                                >Consignment no.</span
+                              >
+                            </th>
+                          </tr>
+                          <tr style="height: 60px">
+                            <th
+                              colspan="4"
+                              style="vertical-align: middle; text-align: center"
+                            >
+                              <ngx-barcode6
+                                [bc-format]="'MSI'"
+                                [bc-value]="'123456789'"
+                                [bc-display-value]="true"
+                                [bc-margin-right]="0"
+                                [bc-width]="1"
+                                [bc-height]="30"
+                                [bc-format]="'CODE128'"
+                                [bc-element-type]="'svg'"
+                                [bc-font-size]="12"
+                              >
+                              </ngx-barcode6>
+                            </th>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 26%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-transform: uppercase;
+                                text-align: center;
+                                font-weight: 600;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              Date
+                            </td>
+                            <td
+                              style="
+                                width: 20%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              16
+                            </td>
+                            <td
+                              style="
+                                width: 20%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-right: 1px solid #000;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              03
+                            </td>
+                            <td
+                              style="
+                                width: 40%;
+                                font-size: 12px;
+                                height: 28px;
+                                text-align: center;
+                                font-weight: 500;
+                                border-top: 1px solid #000;
+                              "
+                            >
+                              2024
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed; border-bottom: 1px solid #000">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 50%;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; padding: 5px"
+                      >
+                        <tbody>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >CONSIGNOR</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                PANNEST INTEGRATED SERVICES PRIVATE LIMITED
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >ADDRESS</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              colspan="2"
+                              style="vertical-align: baseline; height: 25px"
+                            >
+                              <table>
+                                <tr>
+                                  <td>
+                                    <span
+                                      style="
+                                        margin: 0;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        text-transform: uppercase;
+                                        color: #000;
+                                      "
+                                      >Mobile No1. </span
+                                    >
+                                    <span style="margin: 0; font-size: 12px"
+                                      >9323542440</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <span
+                                    style="
+                                      height: 25px;
+                                      margin: 0;
+                                      font-size: 12px;
+                                      font-weight: 600;
+                                      text-transform: uppercase;
+                                      margin-left: 10px;
+                                      color: #000;
+                                    "
+                                    >GST No. </span
+                                  >
+                                  <span
+                                    style="
+                                      margin: 0;
+                                      font-size: 12px;
+                                      height: 25px;
+                                      text-transform: uppercase;
+                                    "
+                                    >27AAGCP7171G1Z7</span
+                                  >
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 50%;
+                        vertical-align: baseline;
+                        border: 1px solid transparent;
+                        border-bottom: 1px;
+                      "
+                    >
+                      <table
+                        style="table-layout: fixed; width: 100%; padding: 5px"
+                      >
+                        <tbody>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >CONSIGNEE</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SNR BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="vertical-align: baseline; width: 30%">
+                              <span
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  font-weight: 600;
+                                  text-transform: uppercase;
+                                  color: #000;
+                                "
+                                >ADDRESS</span
+                              >
+                            </td>
+                            <td style="height: 42px">
+                              <p
+                                style="
+                                  margin: 0;
+                                  font-size: 12px;
+                                  height: 42px;
+                                  text-transform: uppercase;
+                                "
+                              >
+                                SB - 28 Paradies Complex, Nr. Rajshree Cinema,
+                                Kalaghodha, BARODA
+                              </p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              colspan="2"
+                              style="vertical-align: baseline; height: 25px">
+                              <table>
+                                <tr>
+                                  <td>
+                                    <span
+                                      style="
+                                        margin: 0;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        text-transform: uppercase;
+                                        color: #000;
+                                      "
+                                      >Mobile No. </span
+                                    >
+                                    <span style="margin: 0; font-size: 12px"
+                                      >9323542440</span
+                                    >
+                                  </td>
+                                  <td>
+                                    <span
+                                    style="
+                                      height: 25px;
+                                      margin: 0;
+                                      font-size: 12px;
+                                      font-weight: 600;
+                                      text-transform: uppercase;
+                                      margin-left: 10px;
+                                      color: #000;
+                                    "
+                                    >GST No. </span
+                                  >
+                                  <span
+                                    style="
+                                      margin: 0;
+                                      font-size: 12px;
+                                      height: 25px;
+                                      text-transform: uppercase;
+                                    "
+                                    >27AAGCP7171G1Z7</span
+                                  >
+                                  </td>
+                                </tr>
+                              </table>
+
+                            </td>
+                          </tr>
+
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed; border-bottom: 1px solid #000">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 130px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >package type</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        SURFACE
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 120px;
+                        text-align: center;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >no of pieces</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        1
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 130px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >weight</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      >
+                        10
+                      </p>
+                    </td>
+                    <td
+                      style="
+                        width: 170px;
+                        text-align: center;
+                        vertical-align: baseline;
+                        border-right: 1px solid #000;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >mode of payment</span
+                      >
+                      <span style="display: inline-flex; align-items: center">
+                        <input
+                          type="checkbox"
+                          [checked]="false"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >Cash</span
+                        >
+                      </span>
+                      <span
+                        style="
+                          display: inline-flex;
+                          align-items: center;
+                          margin-left: 8px;
+                        "
+                      >
+                        <input
+                          type="checkbox"
+                          [checked]="true"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >Credit</span
+                        >
+                      </span>
+                      <span
+                        style="
+                          display: inline-flex;
+                          align-items: center;
+                          margin-left: 8px;
+                        "
+                      >
+                        <input
+                          type="checkbox"
+                          [checked]="false"
+                          disabled=""
+                          style="accent-color: #000"
+                        /><span
+                          style="font-size: 12px; font-weight: 400; margin: 0"
+                          >GPay</span
+                        >
+                      </span>
+                    </td>
+                    <td
+                      style="
+                        width: 128px;
+                        text-align: center;
+                        border-right: 1px solid #000;
+                        vertical-align: baseline;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                        "
+                        >parcel value</span
+                      >
+                      <p
+                        style="
+                          font-size: 12px;
+                          font-weight: 400;
+                          margin: 0;
+                          height: 36px;
+                        "
+                      ></p>
+                    </td>
+                    <td
+                      style="
+                        width: 176px;
+                        vertical-align: baseline;
+                        border-right: 1px solid transparent;
+                        height: 58px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                          border-bottom: 1px solid #000;
+                          display: block;
+                          text-align: center;
+                        "
+                        >Remarks</span
+                      >
+                      <p
+                        style="
+                          font-size: 10px;
+                          font-weight: 400;
+                          margin: 0;
+                          text-align: center;
+                          line-height: 16px;
+                          height: 36px;
+                          overflow: hidden;
+                        "
+                      ></p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table style="table-layout: fixed">
+                <tbody>
+                  <tr>
+                    <td
+                      style="
+                        width: 407px;
+                        border-right: 1px solid #000;
+                        vertical-align: top;
+                        padding: 0 5px 5px;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                        "
+                        >Terms &amp; Condition</span
+                      >
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 10px;
+                          font-weight: 400;
+                          color: #000;
+                        "
+                      >
+                        TERMS &amp; CONDITIONS 1) The company shall not be
+                        responsible for any enquiry regarding consignment after
+                        30 days from the date of booking. 2) Maximum sum of Rs.
+                        1000/- may be paid in cash to the consignor as
+                        companion, if the document or parcel is lost, mislaid
+                        during transit. 3) Letters Notes or other goods having
+                        Government Restrictions are not accepted. 4) Not Insured
+                        and owners risk. 5) We are not responsible for Late
+                        delivery due to fire, accident, airlines, flight &amp;
+                        train delay etc. 6) Subject to VADODARA Jurisdiction. 7)
+                        GST as applicable. 8) Shipper confirm that no restricted
+                        items as per DGRIATA is contain of consignment. 9) All
+                        Taxes like Octroi, S. Tax, Customs, Excise, etc will be
+                        paid by shipper or consignee 10) Train Services are
+                        Station to Station services by lease SLR 11) Value of
+                        Consignment to be declare, Invoice mandatory. There read
+                        terms &amp; condition carefully &amp; I agree with it.
+                        SHIPPER&nbsp;SIGN.
+                      </p>
+                    </td>
+                    <td style="width: 217px; vertical-align: baseline">
+                      <table style="width: 100%; height: 190px">
+                        <tbody>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Gross Amount
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              50.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Other Charges
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              IGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              SGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                              "
+                            >
+                              CGST
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                border-bottom: 1px solid #000;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 500;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              0.00
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="
+                                width: 124px;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                              "
+                            >
+                              Net Amount
+                            </td>
+                            <td
+                              style="
+                                width: 92px;
+                                font-size: 12px;
+                                border-right: 1px solid #000;
+                                padding: 0 5px;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                height: 29px;
+                                text-align: end;
+                              "
+                            >
+                              50.00
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td
+                      style="
+                        width: 160px;
+                        vertical-align: top;
+                        border: 1px solid transparent;
+                        text-align: center;
+                      "
+                    >
+                      <span
+                        style="
+                          font-size: 12px;
+                          font-weight: 600;
+                          text-transform: uppercase;
+                        "
+                        >Signature &amp; Stamp</span
+                      >
+                      <!-- <img src="digital-signature.png" style="width: 120px;height: 120px;object-fit: contain;"> -->
+                      <p
+                        style="
+                          margin: 0;
+                          font-size: 12px;
+                          font-weight: 400;
+                          color: #000;
+                          padding-top: 130px;
+                        "
+                      >
+                        SNR Cargo Services
+                      </p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+
+    </div>
+  </div>
+</div>
