@@ -76,11 +76,11 @@ export class ReceiversComponent implements OnInit, OnDestroy {
   // end
 
   public onAddReceiver(): void {
-    this.router.navigate(['receivers/receiver-details', 0]);
+    this.router.navigate(['snr/receivers/receiver-details', 0]);
   }
 
   public onEditReceiver(receiver: Receiver): void {
-    this.router.navigate(['receivers/receiver-details', receiver.receiverId]);
+    this.router.navigate(['snr/receivers/receiver-details', receiver.receiverId]);
   }
 
 

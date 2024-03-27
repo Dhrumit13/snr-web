@@ -90,10 +90,10 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   public onAddUser(): void {
-    this.router.navigate(['users/users-details', 0]);
+    this.router.navigate(['snr/users/users-details', 0]);
   }
 
   public onEditUser(user: User): void {
-    this.router.navigate(['users/users-details', user.userId]);
+    this.router.navigate(['snr/users/users-details', user.userId]);
   }
 }

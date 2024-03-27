@@ -4,6 +4,7 @@ import {
   faSearch,
   faEdit,
   faTrash,
+  faPrint,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   Customer,
@@ -21,6 +22,7 @@ import { ColDef } from 'ag-grid-community';
 })
 export class ConsignmentComponent implements OnInit, OnDestroy {
   faPlus = faPlus;
+  faPrint = faPrint;
   faSearch = faSearch;
   faEdit = faEdit;
   faTrash = faTrash;
@@ -84,10 +86,10 @@ export class ConsignmentComponent implements OnInit, OnDestroy {
   }
 
   public onAddCustomer(): void {
-    this.router.navigate(['consignments/consignment-details', 0]);
+    this.router.navigate(['snr/consignments/consignment-details', 0]);
   }
 
   public onEditCustomer(customer: Customer): void {
-    this.router.navigate(['consignments/consignment-details', customer.customerId]);
+    this.router.navigate(['snr/consignments/consignment-details', customer.customerId]);
   }
 }

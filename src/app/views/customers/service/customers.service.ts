@@ -42,4 +42,8 @@ export interface Customer {
   address?: string;
   city?: string;
   state?: string;
+  cgst?: number,
+  sgst?: number,
+  igst?: number,
+  isActive?: boolean
 }

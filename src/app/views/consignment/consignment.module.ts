@@ -28,7 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CityRateService } from '../city-rate/service/city-rate.service';
 import { ConsignmentPreviewComponent } from './consignment-preview/consignment-preview.component';
 import { NgxBarcode6Module } from 'ngx-barcode6';
-
+import { ConsignmentService } from './services/consignment.service';
 @NgModule({
   declarations: [
     ConsignmentComponent,
@@ -60,6 +60,6 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
     NgxBarcode6Module
 
   ],
-  providers: [CityRateService],
+  providers: [CityRateService, ConsignmentService],
 })
 export class ConsignmentModule {}

@@ -63,7 +63,7 @@ export class ReceiverDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onBackClick(): void {
-    this.router.navigate(['receivers']);
+    this.router.navigate(['snr/receivers']);
   }
 
   handleCitySelected(item: any) {

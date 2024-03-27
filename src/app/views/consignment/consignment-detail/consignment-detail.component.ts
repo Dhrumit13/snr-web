@@ -10,6 +10,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import {
   faPlus,
+  faPrint,
   faSave,
   faTrash,
   faXmark,
@@ -49,6 +50,7 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
   faSave = faSave;
   faXmark = faXmark;
   faPlus = faPlus;
+  faPrint = faPrint;
   public addEditCustomerID: number = 0;
 
   bookingForm!: FormGroup;
@@ -361,6 +363,6 @@ export class ConsignmentDetailComponent implements OnInit, OnDestroy {
 
     // window.open( printPreviewURL, '_blank');
 
-    this.router.navigate(['consignments/consignment-print']);
+    this.router.navigate(['snr/consignments/consignment-print']);
   }
 }

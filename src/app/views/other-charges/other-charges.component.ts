@@ -74,10 +74,10 @@ export class OtherChargesComponent implements OnInit, OnDestroy {
     // end
 
   public onAddCharge(): void {
-    this.router.navigate(['other-charges/other-charges-details', 0]);
+    this.router.navigate(['snr/other-charges/other-charges-details', 0]);
   }
 
   public onEditCharge(charge: OtherCharge): void {
-    this.router.navigate(['other-charges/other-charges-details', charge.otherChargeId]);
+    this.router.navigate(['snr/other-charges/other-charges-details', charge.otherChargeId]);
   }
 }

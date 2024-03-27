@@ -65,7 +65,7 @@ export class UsersDetailComponent implements OnInit, OnDestroy {
   }
 
   public onBackClick(): void {
-    this.router.navigate(['users']);
+    this.router.navigate(['snr/users']);
   }
 
   handleCitySelected(item: any) {

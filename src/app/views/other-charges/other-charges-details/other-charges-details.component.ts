@@ -59,7 +59,7 @@ export class OtherChargesDetailsComponent implements OnInit, OnDestroy {
   }
 
   public onBackClick(): void {
-    this.router.navigate(['other-charges']);
+    this.router.navigate(['snr/other-charges']);
   }
 
   // Method to submit the form

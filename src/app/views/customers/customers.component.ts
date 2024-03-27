@@ -83,10 +83,10 @@ export class CustomersComponent implements OnInit, OnDestroy {
   }
 
   public onAddCustomer(): void {
-    this.router.navigate(['customers/customer-details', 0]);
+    this.router.navigate(['snr/customers/customer-details', 0]);
   }
 
   public onEditCustomer(customer: Customer): void {
-    this.router.navigate(['customers/customer-details', customer.customerId]);
+    this.router.navigate(['snr/customers/customer-details', customer.customerId]);
   }
 }
